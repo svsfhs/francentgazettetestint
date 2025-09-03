@@ -1,0 +1,261 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>  
+<html lang="en">    
+<head>    
+  <meta charset="UTF-8">    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+  <title>ORAWCO Society: The Daily Artikulo</title>    
+  <style>    
+    body {    
+      margin: 0;    
+      font-family: Arial, sans-serif;    
+      height: 200vh;    
+      overflow-x: hidden;    
+    }    
+    .cover {    
+      width: 100%;    
+      aspect-ratio: 16 / 5;    
+      background-color: #0077FF;    
+      position: relative;    
+      display: flex;    
+      justify-content: center;    
+      align-items: center;    
+    }    
+    #cabinetButton {    
+      position: absolute;    
+      top: 20px;    
+      left: 20px;    
+      padding: 10px 15px;    
+      background: #0077FF;    
+      color: white;    
+      border: none;    
+      cursor: pointer;    
+      z-index: 1001;    
+      font-size: 30px;    
+    }    
+    .cover img {    
+      max-height: 80%;    
+      max-width: 80%;    
+      object-fit: contain;    
+    }    
+    #cabinet {    
+      position: fixed;    
+      top: 0;    
+      left: -60%;    
+      width: 45%;    
+      max-width: 300px;    
+      height: 100vh;    
+      background: #004390;    
+      color: white;    
+      padding: 20px;    
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);    
+      transition: left 0.3s ease;    
+      z-index: 1000;    
+      display: flex;    
+      flex-direction: column;    
+      justify-content: space-between;    
+    }    
+    #cabinet.open {    
+      left: 0;    
+    }    
+    body.lock-scroll {    
+      overflow: hidden;    
+    }    
+    #cabinet a {    
+      display: block;    
+      margin: 10px 0;    
+      text-decoration: none;    
+      color: white;    
+      font-size: 18px;    
+    }    
+    #cabinet p {    
+      margin: 15px 0;    
+      cursor: pointer;    
+    }    
+    #cabinet p:hover {    
+      text-decoration: underline;    
+    }    
+    #closeCabinet {    
+      padding: 10px 15px;    
+      background: #004390;    
+      color: white;    
+      border: none;    
+      cursor: pointer;    
+      margin-top: auto;    
+      width: 100%;    
+      text-align: center;    
+      font-size: 50px;    
+    }    
+
+    /* Search button inside cover */    
+    #searchBtn {    
+      position: absolute;    
+      right: 20px;    
+      top: 20px;    
+      background: transparent;    
+      border: none;    
+      cursor: pointer;    
+      z-index: 1001;    
+    }    
+    #searchBtn img {    
+      width: 40px;    
+      height: 40px;    
+    }    
+
+    /* Search panel */    
+    #searchPanel {    
+      position: fixed;    
+      top: 0;    
+      right: -400px;    
+      width: 350px;    
+      height: 100%;    
+      background: #fff;    
+      box-shadow: -3px 0 10px rgba(0,0,0,0.3);    
+      padding: 20px;    
+      transition: right 0.3s ease;    
+      overflow-y: auto;    
+      z-index: 1000;    
+    }    
+    #searchPanel.active {    
+      right: 0;    
+    }    
+    .searchResult {    
+      border: 1px solid #ccc;    
+      margin: 8px 0;    
+      padding: 10px;    
+      cursor: pointer;    
+      display: flex;    
+      align-items: center;    
+      gap: 10px;    
+      border-radius: 8px;    
+      background: #f9f9f9;    
+    }    
+    .searchResult:hover {    
+      background: #eee;    
+    }    
+    .searchResult img {    
+      width: 50px;    
+      height: 50px;    
+      border-radius: 6px;    
+    }    
+
+    /* Carousel */    
+    .carousel {    
+      display: flex;    
+      overflow-x: auto;    
+      gap: 10px;    
+      padding: 10px;    
+      scrollbar-width: none;    
+    }    
+    .carousel::-webkit-scrollbar {    
+      display: none;    
+    }    
+    .carousel button {    
+      flex: 0 0 auto;    
+      padding: 15px 25px;    
+      border: none;    
+      border-radius: 8px;    
+      background: #4CAF50;    
+      color: white;    
+      font-size: 16px;    
+      cursor: pointer;    
+    }    
+  </style>    
+</head>    
+<body>    
+  <div class="cover">    
+    <button id="cabinetButton">☰</button>    
+    <img src="orawco2023org.png" alt="Cover Image" style="width: 65%; height: auto;">    
+    <button id="searchBtn">    
+      <img src="search-button-gui.png" alt="Search">    
+    </button>    
+  </div>    
+
+  <!-- Cabinet (left) -->    
+  <div id="cabinet">    
+    <div>    
+      <button id="closeCabinet"><strong>×</strong></button>    
+      <img src="orawco-club-svsfhs.png" alt="Cover Photo Cabinet" style="width: 75%; height: auto; margin-bottom: -70px;">    
+      <a>&nbsp;</a><a>&nbsp;</a>    
+      <a href="index.html">Home</a>    
+      <a href="category-section.html">Categories</a>    
+      <a href="news-section.html">News</a>    
+      <a href="news-section.html#sports">Sports</a>    
+      <a href="juanmazing-section.html#agham">Agham</a>    
+      <a href="juanmazing-section.html#historya">Historya</a>    
+      <a href="about_us.html">About Us</a>    
+      <a href="feedback.html">Feedback</a>    
+    </div>    
+  </div>    
+
+  <!-- Search panel (right) -->    
+  <div id="searchPanel">    
+    <input type="text" id="searchBox" placeholder="Search..." style="width:100%;padding:8px;margin-bottom:10px;">    
+    <div id="results"></div>    
+  </div>    
+
+  <!-- Carousel -->    
+  <div class="carousel">    
+    <button>One</button>    
+    <button>Two</button>    
+    <button>Three</button>    
+    <button>Four</button>    
+    <button>Five</button>    
+  </div>    
+
+  <script>    
+    /* Cabinet logic */    
+    const cabinetButton = document.getElementById("cabinetButton");    
+    const cabinet = document.getElementById("cabinet");    
+    const closeCabinet = document.getElementById("closeCabinet");    
+    const body = document.body;    
+
+    cabinetButton.addEventListener("click", () => {    
+      cabinet.classList.add("open");    
+      body.classList.add("lock-scroll");    
+      cabinetButton.style.display = "none";    
+    });    
+    closeCabinet.addEventListener("click", () => {    
+      cabinet.classList.remove("open");    
+      body.classList.remove("lock-scroll");    
+      cabinetButton.style.display = "block";    
+    });    
+
+    /* Search logic */    
+    const data = [    
+      { type: "FEATURE", text: "tricycle is a students' cycle", link: "feature-tricycle.html", image: "https://via.placeholder.com/60?text=Tricycle" },    
+      { type: "NEWS", text: "tripod that cost $300 USD", link: "news-tripod.html", image: "https://via.placeholder.com/60?text=Tripod" },    
+      { type: "FEATURE", text: "train systems in the city", link: "feature-train.html", image: "https://via.placeholder.com/60?text=Train" },    
+      { type: "NEWS", text: "tree planting event this weekend", link: "news-tree.html", image: "https://via.placeholder.com/60?text=Tree" }    
+    ];    
+
+    document.getElementById("searchBtn").onclick = () => {    
+      document.getElementById("searchPanel").classList.toggle("active");    
+    };    
+
+    function searchFunction() {    
+      let input = document.getElementById("searchBox").value.toLowerCase();    
+      let resultsDiv = document.getElementById("results");    
+      resultsDiv.innerHTML = "";    
+
+      if (input.length === 0) return;    
+
+      let matches = data.filter(item => item.text.toLowerCase().includes(input));    
+
+      matches.forEach(item => {    
+        let div = document.createElement("div");    
+        div.className = "searchResult";    
+        div.innerHTML = `    
+          <img src="${item.image}" alt="">    
+          <div>    
+            <strong>${item.type}:</strong><br>${item.text}    
+          </div>    
+        `;    
+        div.onclick = () => window.location.href = item.link;    
+        resultsDiv.appendChild(div);    
+      });    
+    }    
+
+    document.getElementById("searchBox").addEventListener("keyup", searchFunction);    
+  </script>    
+</body>    
+</html>
