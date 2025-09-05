@@ -20,38 +20,37 @@
       align-items: center;
     }
 
-    #cabinetButton {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      padding: 10px 15px;
-      background: #00B200;
-      color: white;
-      border: none;
-      cursor: pointer;
-      z-index: 1001;
-      font-size: 30px;
-    }
-
-    .cover img {
-      max-height: 80%;
-      max-width: 80%;
-      object-fit: contain;
-    }
-
+    /* FIXED alignment for cabinet + search buttons */
+    #cabinetButton,
     #searchBtn {
       position: absolute;
-      right: 20px;
-      top: 20px;
+      top: 50%;                      /* push to middle */
+      transform: translateY(-50%);   /* correct vertical centering */
       background: transparent;
       border: none;
       cursor: pointer;
       z-index: 1001;
     }
 
+    #cabinetButton {
+      left: 20px;
+      color: white;
+      font-size: 30px;
+    }
+
+    #searchBtn {
+      right: 20px;
+    }
+
     #searchBtn img {
-      width: 40px;
-      height: 40px;
+      width: 32px;  /* adjusted size */
+      height: 32px;
+    }
+
+    .cover img {
+      max-height: 80%;
+      max-width: 80%;
+      object-fit: contain;
     }
 
     #cabinet {
@@ -175,7 +174,7 @@
     <button id="cabinetButton">☰</button>
     <img src="francentgazette-svsfhs-head-cover.png" alt="Cover Image" style="width: 65%; height: auto;">
     <button id="searchBtn">
-      <img src="search-icon-gui.png" style="vertical-align: middle;" alt="Search">
+      <img src="search-icon-gui.png" alt="Search">
     </button>
   </div>
 
@@ -224,7 +223,6 @@
   </section>
 
   <script>
-
     const cabinetButton = document.getElementById("cabinetButton");
     const cabinet = document.getElementById("cabinet");
     const closeCabinet = document.getElementById("closeCabinet");
