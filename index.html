@@ -147,6 +147,7 @@
       display: flex;
       border-radius: 10px;
       -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
     }
 
     .carousel-slide {
@@ -164,6 +165,23 @@
     }
 
     #carousel::-webkit-scrollbar { display: none; }
+
+    /* ARROWS */
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      font-size: 24px;
+      border-radius: 50%;
+      z-index: 10;
+    }
+    .carousel-arrow.left { left: 10px; }
+    .carousel-arrow.right { right: 10px; }
   </style>
 </head>
 <body>
@@ -212,6 +230,10 @@
     <div class="carousel-slide">
       <a href=".html"><img src="test.png" alt="Slide 4"></a>
     </div>
+
+    <!-- ARROW BUTTONS -->
+    <button class="carousel-arrow left">&#10094;</button>
+    <button class="carousel-arrow right">&#10095;</button>
   </section>
 
   <script>
@@ -267,6 +289,26 @@
       });
     }
     document.getElementById("searchBox").addEventListener("keyup", searchFunction);
+
+    /* CAROUSEL ARROWS */
+    const carousel = document.getElementById("carousel");
+    const leftArrow = document.querySelector(".carousel-arrow.left");
+    const rightArrow = document.querySelector(".carousel-arrow.right");
+
+    let slideWidth = carousel.offsetWidth;
+
+    function updateSlideWidth() {
+      slideWidth = carousel.offsetWidth;
+    }
+    window.addEventListener("resize", updateSlideWidth);
+
+    leftArrow.addEventListener("click", () => {
+      carousel.scrollBy({ left: -slideWidth, behavior: "smooth" });
+    });
+
+    rightArrow.addEventListener("click", () => {
+      carousel.scrollBy({ left: slideWidth, behavior: "smooth" });
+    });
   </script>
 </body>
 </html>
