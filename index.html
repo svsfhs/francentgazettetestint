@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Francent Gazette: School Publication of SVSFHS</title>
-  <link rel="icon" href="favicon.png" type="image/png">
   <style>
     body {
       margin: 0;
@@ -12,131 +11,18 @@
     }
 
     .cover {
-      width: 100%;
-      aspect-ratio: 16 / 5;
-      background-color: #00B200;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    /* FIXED alignment for cabinet + search buttons */
-    #cabinetButton,
-    #searchBtn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      z-index: 1001;
-    }
-
-    #cabinetButton {
-      left: 20px;
+      background-color: #003366;
       color: white;
-      font-size: 30px;
-    }
-
-    #searchBtn {
-      right: 20px;
-    }
-
-    #searchBtn img {
-      width: 32px;
-      height: 32px;
+      padding: 20px;
+      text-align: center;
     }
 
     .cover img {
-      max-height: 80%;
-      max-width: 80%;
-      object-fit: contain;
+      height: 80px;
+      border-radius: 50%;
     }
 
-    #cabinet {
-      position: fixed;
-      top: 0;
-      left: -60%;
-      width: 45%;
-      max-width: 300px;
-      height: 100vh;
-      background: #004390;
-      color: white;
-      padding: 20px;
-      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
-      transition: left 0.3s ease;
-      z-index: 1000;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    #cabinet.open { left: 0; }
-    body.lock-scroll { overflow: hidden; }
-
-    #cabinet a {
-      display: block;
-      margin: 10px 0;
-      text-decoration: none;
-      color: white;
-      font-size: 18px;
-    }
-
-    #closeCabinet {
-      padding: 10px 15px;
-      background: #004390;
-      color: white;
-      border: none;
-      cursor: pointer;
-      margin-top: auto;
-      width: 100%;
-      text-align: center;
-      font-size: 50px;
-    }
-
-    #searchSection {
-      display: none;
-      padding: 15px;
-      background: #f9f9f9;
-      border-bottom: 1px solid #ccc;
-    }
-
-    #searchSection input {
-      padding: 8px;
-      width: 100%;
-      max-width: 400px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    .searchResult {
-      border: 1px solid #ccc;
-      margin: 8px 0;
-      padding: 10px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      border-radius: 8px;
-      background: #fff;
-    }
-
-    .searchResult:hover { background: #eee; }
-
-    .searchResult img {
-      width: 50px;
-      height: 50px;
-      border-radius: 6px;
-    }
-
-    p.latest {
-      font-family: Arial;
-      font-size: 23px;
-      margin: 20px;
-    }
-
-    /* NEW CAROUSEL */
+    /* CAROUSEL */
     #carousel {
       position: relative;
       width: 100%;
@@ -164,59 +50,45 @@
       border-radius: 10px;
     }
 
-    #carousel::-webkit-scrollbar { display: none; }
+    #carousel::-webkit-scrollbar {
+      display: none;
+    }
 
-    /* ARROWS */
-    .carousel-arrow {
+    /* OLD ARROWS STYLE (your original buttons) */
+    .prev, .next {
+      cursor: pointer;
       position: absolute;
       top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0,0,0,0.5);
+      width: auto;
+      margin-top: -22px;
+      padding: 16px;
       color: white;
-      border: none;
-      padding: 10px 15px;
-      cursor: pointer;
-      font-size: 24px;
-      border-radius: 50%;
-      z-index: 10;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.6s ease;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+      background: rgba(0,0,0,0.5);
     }
-    .carousel-arrow.left { left: 10px; }
-    .carousel-arrow.right { right: 10px; }
+
+    .next {
+      right: 0;
+      border-radius: 3px 0 0 3px;
+    }
+
+    .prev:hover, .next:hover {
+      background-color: rgba(0,0,0,0.8);
+    }
   </style>
 </head>
 <body>
-
   <div class="cover">
-    <button id="cabinetButton">☰</button>
-    <img src="francentgazette-svsfhs-head-cover.png" alt="Cover Image" style="width: 65%; height: auto;">
-    <button id="searchBtn">
-      <img src="search-icon-gui.png" alt="Search">
-    </button>
+    <img src="logo.png" alt="Logo">
+    <h1>Francent Gazette</h1>
+    <p>School Publication of SVSFHS</p>
   </div>
 
-  <div id="cabinet">
-    <div>
-      <button id="closeCabinet"><strong>×</strong></button>
-      <img src="orawco-club-svsfhs.png" alt="Cabinet Logo" style="width: 75%; height: auto; margin-bottom: -70px;">
-      <a href="index.html">Home</a>
-      <a href="category-section.html">Categories</a>
-      <a href="news-section.html">News</a>
-      <a href="news-section.html#sports">Sports</a>
-      <a href="juanmazing-section.html#agham">Agham</a>
-      <a href="juanmazing-section.html#historya">Historya</a>
-      <a href="about_us.html">About Us</a>
-      <a href="feedback.html">Feedback</a>
-    </div>
-  </div>
-
-  <div id="searchSection">
-    <input type="text" id="searchBox" placeholder="Search...">
-    <div id="results"></div>
-  </div>
-
-  <p class="latest"><strong>Latest Articles:</strong></p>
-
-  <!-- NEW CAROUSEL -->
+  <!-- CAROUSEL -->
   <section id="carousel">
     <div class="carousel-slide">
       <a href=".html"><img src="test.png" alt="Slide 1"></a>
@@ -231,69 +103,15 @@
       <a href=".html"><img src="test.png" alt="Slide 4"></a>
     </div>
 
-    <!-- ARROW BUTTONS -->
-    <button class="carousel-arrow left">&#10094;</button>
-    <button class="carousel-arrow right">&#10095;</button>
+    <!-- OLD STYLE ARROWS -->
+    <a class="prev">&#10094;</a>
+    <a class="next">&#10095;</a>
   </section>
 
   <script>
-    const cabinetButton = document.getElementById("cabinetButton");
-    const cabinet = document.getElementById("cabinet");
-    const closeCabinet = document.getElementById("closeCabinet");
-    const body = document.body;
-
-    cabinetButton.addEventListener("click", () => {
-      cabinet.classList.add("open");
-      body.classList.add("lock-scroll");
-      cabinetButton.style.display = "none";
-    });
-
-    closeCabinet.addEventListener("click", () => {
-      cabinet.classList.remove("open");
-      body.classList.remove("lock-scroll");
-      cabinetButton.style.display = "block";
-    });
-
-    document.getElementById("searchBtn").onclick = () => {
-      const searchSection = document.getElementById("searchSection");
-      searchSection.style.display = (searchSection.style.display === "block") ? "none" : "block";
-    };
-
-    const data = [
-      { type: "FEATURE", text: "tricycle is a students' cycle", link: "feature-tricycle.html", image: "https://via.placeholder.com/60?text=Tricycle" },
-      { type: "NEWS", text: "tripod that cost $300 USD", link: "news-tripod.html", image: "https://via.placeholder.com/60?text=Tripod" },
-      { type: "FEATURE", text: "train systems in the city", link: "feature-train.html", image: "https://via.placeholder.com/60?text=Train" },
-      { type: "NEWS", text: "tree planting event this weekend", link: "news-tree.html", image: "https://via.placeholder.com/60?text=Tree" }
-    ];
-
-    function searchFunction() {
-      let input = document.getElementById("searchBox").value.toLowerCase();
-      let resultsDiv = document.getElementById("results");
-      resultsDiv.innerHTML = "";
-
-      if (input.length === 0) return;
-
-      let matches = data.filter(item => item.text.toLowerCase().includes(input));
-
-      matches.forEach(item => {
-        let div = document.createElement("div");
-        div.className = "searchResult";
-        div.innerHTML = `
-          <img src="${item.image}" alt="">
-          <div>
-            <strong>${item.type}:</strong><br>${item.text}
-          </div>
-        `;
-        div.onclick = () => window.location.href = item.link;
-        resultsDiv.appendChild(div);
-      });
-    }
-    document.getElementById("searchBox").addEventListener("keyup", searchFunction);
-
-    /* CAROUSEL ARROWS */
     const carousel = document.getElementById("carousel");
-    const leftArrow = document.querySelector(".carousel-arrow.left");
-    const rightArrow = document.querySelector(".carousel-arrow.right");
+    const prevBtn = document.querySelector(".prev");
+    const nextBtn = document.querySelector(".next");
 
     let slideWidth = carousel.offsetWidth;
 
@@ -302,11 +120,11 @@
     }
     window.addEventListener("resize", updateSlideWidth);
 
-    leftArrow.addEventListener("click", () => {
+    prevBtn.addEventListener("click", () => {
       carousel.scrollBy({ left: -slideWidth, behavior: "smooth" });
     });
 
-    rightArrow.addEventListener("click", () => {
+    nextBtn.addEventListener("click", () => {
       carousel.scrollBy({ left: slideWidth, behavior: "smooth" });
     });
   </script>
