@@ -200,6 +200,8 @@
 
   <!-- NEW CAROUSEL -->
   <section id="carousel">
+    <button class="btn prev" onclick="moveSlide(-1)">&#10094;</button>
+    <button class="btn next" onclick="moveSlide(1)">&#10095;</button>
     <div class="carousel-slide">
       <a href=".html"><img src="test.png" alt="Slide 1"></a>
     </div>
@@ -212,8 +214,6 @@
     <div class="carousel-slide">
       <a href=".html"><img src="test.png" alt="Slide 4"></a>
     </div>
-    <button class="btn prev" onclick="moveSlide(-1)">&#10094;</button>
-    <button class="btn next" onclick="moveSlide(1)">&#10095;</button>
   </section>
 
   <script>
@@ -269,13 +269,6 @@
       });
     }
     document.getElementById("searchBox").addEventListener("keyup", searchFunction);
-    let slideIndex = 0;
-    const slide = document.getElementById("carouselSlide");
-    const totalSlides = slide.children.length;
-
-    function moveSlide(n) {
-      slideIndex = (slideIndex + n + totalSlides) % totalSlides;
-      slide.style.transform = `translateX(${-600 * slideIndex}px)`;
   </script>
 </body>
 </html>
