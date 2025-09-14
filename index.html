@@ -136,54 +136,55 @@
       margin: 20px;
     }
 
-#carousel {  
-  position: relative;  
-  width: 100%;  
-  max-width: 800px;  
-  margin: 20px auto;  
-  overflow: hidden;  
-  border-radius: 10px;  
-}  
+    /* Carousel */
+    #carousel {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: 20px auto;
+      overflow: hidden;
+      border-radius: 10px;
+    }
 
-.carousel-slide {  
-  width: 100%;  
-  aspect-ratio: 16 / 9;  
-  display: none;  
-}  
+    .carousel-slide {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      display: none;
+    }
 
-.carousel-slide img {  
-  width: 100%;  
-  height: 100%;  
-  object-fit: cover;  
-  border-radius: 10px;  
-}  
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+    }
 
-.carousel-slide.active {  
-  display: block;  
-}  
+    .carousel-slide.active {
+      display: block;
+    }
 
-/* square green buttons */  
-#carousel .btn {  
-  position: absolute;  
-  top: 50%;  
-  transform: translateY(-50%);  
-  background-color: #00B200; /* same as cover */  
-  color: white;  
-  border: none;  
-  padding: 12px 16px;  
-  cursor: pointer;  
-  font-size: 28px;  
-  border-radius: 4px; /* square edges */  
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);  
-  transition: background 0.2s;  
-}  
+    /* square green buttons */
+    #carousel .btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: #00B200;
+      color: white;
+      border: none;
+      padding: 12px 16px;
+      cursor: pointer;
+      font-size: 28px;
+      border-radius: 4px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      transition: background 0.2s;
+    }
 
-#carousel .btn:hover {  
-  background-color: #009600; /* darker on hover */  
-}  
+    #carousel .btn:hover {
+      background-color: #009600;
+    }
 
-#carousel .prev { left: 15px; }  
-#carousel .next { right: 15px; }
+    #carousel .prev { left: 15px; }
+    #carousel .next { right: 15px; }
   </style>
 </head>
 <body>
@@ -196,6 +197,7 @@
     </button>
   </div>
 
+  <!-- Cabinet -->
   <div id="cabinet">
     <div>
       <button id="closeCabinet"><strong>×</strong></button>
@@ -206,34 +208,42 @@
       <a href="francent-gazette-opinion.html">Opinion</a>
       <a href="francent-gazette-sci-tech.html">Science and Technology</a>
       <a href="francent-gazette-entertainment.html">Entertainment</a>
-      <a href="francent-gazette-arts.html">Entertainment</a>
+      <a href="francent-gazette-arts.html">Arts</a>
       <a href="about-francent-gazette.html">About Us</a>
       <a href="gazette-feedback.html">Feedback</a>
     </div>
   </div>
 
+  <!-- Search -->
   <div id="searchSection">
     <input type="text" id="searchBox" placeholder="Search...">
     <div id="results"></div>
   </div>
 
-  <p class="latest"><strong>Latest Articles:</strong></p>    <!-- FIXED CAROUSEL -->    <section id="carousel">  
-    <div class="carousel-slide">  
-      <a href=".html"><img src="test.png" alt="Slide 1"></a>  
-    </div>  
-    <div class="carousel-slide">  
-      <a href=".html"><img src="test.png" alt="Slide 2"></a>  
-    </div>  
-    <div class="carousel-slide">  
-      <a href=".html"><img src="test.png" alt="Slide 3"></a>  
-    </div>  
-    <div class="carousel-slide">  
-      <a href=".html"><img src="test.png" alt="Slide 4"></a>  
-    </div>  <!-- LEFT/RIGHT BUTTONS -->  
-<button class="btn prev" onclick="moveSlide(-1)">&#10094;</button>  
-<button class="btn next" onclick="moveSlide(1)">&#10095;</button>
+  <p class="latest"><strong>Latest Articles:</strong></p>
+
+  <!-- Carousel -->
+  <section id="carousel">
+    <div class="carousel-slide active">
+      <a href="article1.html"><img src="test.png" alt="Slide 1"></a>
+    </div>
+    <div class="carousel-slide">
+      <a href="article2.html"><img src="test.png" alt="Slide 2"></a>
+    </div>
+    <div class="carousel-slide">
+      <a href="article3.html"><img src="test.png" alt="Slide 3"></a>
+    </div>
+    <div class="carousel-slide">
+      <a href="article4.html"><img src="test.png" alt="Slide 4"></a>
+    </div>
+
+    <!-- Buttons -->
+    <button class="btn prev" onclick="moveSlide(-1)">&#10094;</button>
+    <button class="btn next" onclick="moveSlide(1)">&#10095;</button>
+  </section>
 
   <script>
+    // Cabinet
     const cabinetButton = document.getElementById("cabinetButton");
     const cabinet = document.getElementById("cabinet");
     const closeCabinet = document.getElementById("closeCabinet");
@@ -251,6 +261,7 @@
       cabinetButton.style.display = "block";
     });
 
+    // Search
     document.getElementById("searchBtn").onclick = () => {
       const searchSection = document.getElementById("searchSection");
       searchSection.style.display = (searchSection.style.display === "block") ? "none" : "block";
@@ -286,23 +297,29 @@
       });
     }
     document.getElementById("searchBox").addEventListener("keyup", searchFunction);
+
+    // Carousel
+    let slideIndex = 0;
+    const slides = document.querySelectorAll(".carousel-slide");
+
+    function showSlide(n) {
+      slides.forEach(slide => slide.classList.remove("active"));
+      slideIndex = (n + slides.length) % slides.length;
+      slides[slideIndex].classList.add("active");
+    }
+
+    function moveSlide(step) {
+      showSlide(slideIndex + step);
+    }
   </script>
-<hr>
+
+  <hr>
   <p style="font-size: 13px; font-family: Arial;">NEWS</p>
-    <a href=".html">
-      <img src=".png">
-    </a>
-    <a href=".html">
-      <img src=".png">
-    </a>
-    <a href=".html">
-      <img src=".png">
-    </a>
-    <a href=".html">
-      <img src=".png">
-    </a>
-    <a href=".html">
-      <img src=".png">
-    </a>
+  <a href="news1.html"><img src="news1.png" alt="News 1"></a>
+  <a href="news2.html"><img src="news2.png" alt="News 2"></a>
+  <a href="news3.html"><img src="news3.png" alt="News 3"></a>
+  <a href="news4.html"><img src="news4.png" alt="News 4"></a>
+  <a href="news5.html"><img src="news5.png" alt="News 5"></a>
+
 </body>
 </html>
