@@ -85,7 +85,7 @@
 
     #closeCabinet {
       padding: 10px 15px;
-      background: #004390;
+      background: #008200;
       color: white;
       border: none;
       cursor: pointer;
@@ -97,7 +97,7 @@
 
     #searchSection {
       display: none;
-      padding: 15px;
+      padding: 10px;
       background: #f9f9f9;
       border-bottom: 1px solid #ccc;
     }
@@ -136,24 +136,20 @@
       margin: 20px;
     }
 
-    /* NEW CAROUSEL */
+    /* FIXED CAROUSEL */
     #carousel {
       position: relative;
       width: 100%;
       max-width: 800px;
       margin: 20px auto;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      display: flex;
+      overflow: hidden;
       border-radius: 10px;
-      -webkit-overflow-scrolling: touch;
     }
 
     .carousel-slide {
-      flex: 0 0 100%;
+      width: 100%;
       aspect-ratio: 16 / 9;
-      scroll-snap-align: center;
-      position: relative;
+      display: none;
     }
 
     .carousel-slide img {
@@ -163,7 +159,32 @@
       border-radius: 10px;
     }
 
-    #carousel::-webkit-scrollbar { display: none; }
+    .carousel-slide.active {
+      display: block;
+    }
+
+    /* square green buttons */
+    #carousel .btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: #00B200; /* same as cover */
+      color: white;
+      border: none;
+      padding: 12px 16px;
+      cursor: pointer;
+      font-size: 28px;
+      border-radius: 4px; /* square edges */
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      transition: background 0.2s;
+    }
+
+    #carousel .btn:hover {
+      background-color: #009600; /* darker on hover */
+    }
+
+    #carousel .prev { left: 15px; }
+    #carousel .next { right: 15px; }
   </style>
 </head>
 <body>
@@ -198,11 +219,9 @@
 
   <p class="latest"><strong>Latest Articles:</strong></p>
 
-  <!-- NEW CAROUSEL -->
+  <!-- FIXED CAROUSEL -->
   <section id="carousel">
     <div class="carousel-slide">
-    <button class="btn prev" onclick="moveSlide(-1)">&#10094;</button>
-    <button class="btn next" onclick="moveSlide(1)">&#10095;</button>
       <a href=".html"><img src="test.png" alt="Slide 1"></a>
     </div>
     <div class="carousel-slide">
@@ -214,6 +233,10 @@
     <div class="carousel-slide">
       <a href=".html"><img src="test.png" alt="Slide 4"></a>
     </div>
+
+    <!-- LEFT/RIGHT BUTTONS -->
+    <button class="btn prev" onclick="moveSlide(-1)">&#10094;</button>
+    <button class="btn next" onclick="moveSlide(1)">&#10095;</button>
   </section>
 
   <script>
@@ -269,6 +292,25 @@
       });
     }
     document.getElementById("searchBox").addEventListener("keyup", searchFunction);
+
+    /* CAROUSEL SCRIPT */
+    let currentIndex = 0;
+    const slides = document.querySelectorAll(".carousel-slide");
+
+    function showSlide(index) {
+      slides.forEach(slide => slide.classList.remove("active"));
+      if (index < 0) currentIndex = slides.length - 1;
+      else if (index >= slides.length) currentIndex = 0;
+      else currentIndex = index;
+      slides[currentIndex].classList.add("active");
+    }
+
+    function moveSlide(step) {
+      showSlide(currentIndex + step);
+    }
+
+    // show first slide initially
+    showSlide(0);
   </script>
 </body>
 </html>
