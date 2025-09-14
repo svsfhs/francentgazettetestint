@@ -3,140 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Francent Gazette: School Publication of SVSFHS</title>
-  <link rel="icon" href="favicon.png" type="image/png">
+  <title>Francent Gazette</title>
   <style>
     body {
-      margin: 0;
       font-family: Arial, sans-serif;
-    }
-
-    .cover {
-      width: 100%;
-      aspect-ratio: 16 / 5;
-      background-color: #00B200;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    /* FIXED alignment for cabinet + search buttons */
-    #cabinetButton,
-    #searchBtn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      z-index: 1001;
-    }
-
-    #cabinetButton {
-      left: 20px;
-      color: white;
-      font-size: 30px;
-    }
-
-    #searchBtn {
-      right: 20px;
-    }
-
-    #searchBtn img {
-      width: 32px;
-      height: 32px;
-    }
-
-    .cover img {
-      max-height: 80%;
-      max-width: 80%;
-      object-fit: contain;
-    }
-
-    #cabinet {
-      position: fixed;
-      top: 0;
-      left: -60%;
-      width: 45%;
-      max-width: 300px;
-      height: 100vh;
-      background: #004390;
-      color: white;
-      padding: 20px;
-      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
-      transition: left 0.3s ease;
-      z-index: 1000;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    #cabinet.open { left: 0; }
-    body.lock-scroll { overflow: hidden; }
-
-    #cabinet a {
-      display: block;
-      margin: 10px 0;
-      text-decoration: none;
-      color: white;
-      font-size: 18px;
-    }
-
-    #closeCabinet {
-      padding: 10px 15px;
-      background: #008200;
-      color: white;
-      border: none;
-      cursor: pointer;
-      margin-top: auto;
-      width: 100%;
-      text-align: center;
-      font-size: 50px;
-    }
-
-    #searchSection {
-      display: none;
-      padding: 10px;
-      background: #f9f9f9;
-      border-bottom: 1px solid #ccc;
-    }
-
-    #searchSection input {
-      padding: 8px;
-      width: 100%;
-      max-width: 400px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    .searchResult {
-      border: 1px solid #ccc;
-      margin: 8px 0;
-      padding: 10px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      border-radius: 8px;
+      margin: 0;
+      padding: 0;
       background: #fff;
     }
 
-    .searchResult:hover { background: #eee; }
+    header {
+      background: #00B200;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-    .searchResult img {
-      width: 50px;
+    header img {
       height: 50px;
-      border-radius: 6px;
     }
 
-    p.latest {
-      font-family: Arial;
-      font-size: 23px;
-      margin: 20px;
+    header h1 {
+      font-size: 20px;
+      margin: 0;
     }
 
-    /* FIXED CAROUSEL */
+    /* carousel section */
     #carousel {
       position: relative;
       width: 100%;
@@ -147,9 +41,9 @@
     }
 
     .carousel-slide {
+      display: none;
       width: 100%;
       aspect-ratio: 16 / 9;
-      display: none;
     }
 
     .carousel-slide img {
@@ -163,137 +57,94 @@
       display: block;
     }
 
-    /* square green buttons */
+    /* force carousel buttons to be square green */
     #carousel .btn {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background-color: #00B200; /* same as cover */
-      color: white;
+      background-color: #00B200 !important;
+      color: white !important;
       border: none;
-      padding: 12px 16px;
+      padding: 14px 18px;
       cursor: pointer;
       font-size: 28px;
-      border-radius: 4px; /* square edges */
+      border-radius: 6px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.3);
       transition: background 0.2s;
+      z-index: 10;
     }
 
     #carousel .btn:hover {
-      background-color: #009600; /* darker on hover */
+      background-color: #009600 !important;
     }
 
     #carousel .prev { left: 15px; }
     #carousel .next { right: 15px; }
+
+    section {
+      padding: 20px;
+    }
+
+    h2 {
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+
+    .articles {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .articles div {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .articles img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .articles p {
+      margin: 10px;
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
+  <header>
+    <img src="fglogo.png" alt="Logo">
+    <h1>Francent Gazette</h1>
+    <span>&#128269;</span>
+  </header>
 
-  <div class="cover">
-    <button id="cabinetButton">☰</button>
-    <img src="francentgazette-svsfhs-head-cover.png" alt="Cover Image" style="width: 65%; height: auto;">
-    <button id="searchBtn">
-      <img src="search-icon-gui.png" alt="Search">
-    </button>
-  </div>
+  <section>
+    <h2>Latest Articles:</h2>
 
-  <div id="cabinet">
-    <div>
-      <button id="closeCabinet"><strong>×</strong></button>
-      <img src="orawco-club-svsfhs.png" alt="Cabinet Logo" style="width: 75%; height: auto; margin-bottom: -70px;">
-      <a href="index.html">Home</a>
-      <a href="category-section.html">Categories</a>
-      <a href="news-section.html">News</a>
-      <a href="news-section.html#sports">Sports</a>
-      <a href="juanmazing-section.html#agham">Agham</a>
-      <a href="juanmazing-section.html#historya">Historya</a>
-      <a href="about_us.html">About Us</a>
-      <a href="feedback.html">Feedback</a>
+    <div id="carousel">
+      <div class="carousel-slide">
+        <a href="#"><img src="test.png" alt="Slide 1"></a>
+      </div>
+      <div class="carousel-slide">
+        <a href="#"><img src="test.png" alt="Slide 2"></a>
+      </div>
+      <div class="carousel-slide">
+        <a href="#"><img src="test.png" alt="Slide 3"></a>
+      </div>
+      <div class="carousel-slide">
+        <a href="#"><img src="test.png" alt="Slide 4"></a>
+      </div>
+
+      <!-- buttons -->
+      <button class="btn prev" onclick="moveSlide(-1)">&#10094;</button>
+      <button class="btn next" onclick="moveSlide(1)">&#10095;</button>
     </div>
-  </div>
-
-  <div id="searchSection">
-    <input type="text" id="searchBox" placeholder="Search...">
-    <div id="results"></div>
-  </div>
-
-  <p class="latest"><strong>Latest Articles:</strong></p>
-
-  <!-- FIXED CAROUSEL -->
-  <section id="carousel">
-    <div class="carousel-slide">
-      <a href=".html"><img src="test.png" alt="Slide 1"></a>
-    </div>
-    <div class="carousel-slide">
-      <a href=".html"><img src="test.png" alt="Slide 2"></a>
-    </div>
-    <div class="carousel-slide">
-      <a href=".html"><img src="test.png" alt="Slide 3"></a>
-    </div>
-    <div class="carousel-slide">
-      <a href=".html"><img src="test.png" alt="Slide 4"></a>
-    </div>
-
-    <!-- LEFT/RIGHT BUTTONS -->
-    <button class="btn prev" onclick="moveSlide(-1)">&#10094;</button>
-    <button class="btn next" onclick="moveSlide(1)">&#10095;</button>
   </section>
 
   <script>
-    const cabinetButton = document.getElementById("cabinetButton");
-    const cabinet = document.getElementById("cabinet");
-    const closeCabinet = document.getElementById("closeCabinet");
-    const body = document.body;
-
-    cabinetButton.addEventListener("click", () => {
-      cabinet.classList.add("open");
-      body.classList.add("lock-scroll");
-      cabinetButton.style.display = "none";
-    });
-
-    closeCabinet.addEventListener("click", () => {
-      cabinet.classList.remove("open");
-      body.classList.remove("lock-scroll");
-      cabinetButton.style.display = "block";
-    });
-
-    document.getElementById("searchBtn").onclick = () => {
-      const searchSection = document.getElementById("searchSection");
-      searchSection.style.display = (searchSection.style.display === "block") ? "none" : "block";
-    };
-
-    const data = [
-      { type: "FEATURE", text: "tricycle is a students' cycle", link: "feature-tricycle.html", image: "https://via.placeholder.com/60?text=Tricycle" },
-      { type: "NEWS", text: "tripod that cost $300 USD", link: "news-tripod.html", image: "https://via.placeholder.com/60?text=Tripod" },
-      { type: "FEATURE", text: "train systems in the city", link: "feature-train.html", image: "https://via.placeholder.com/60?text=Train" },
-      { type: "NEWS", text: "tree planting event this weekend", link: "news-tree.html", image: "https://via.placeholder.com/60?text=Tree" }
-    ];
-
-    function searchFunction() {
-      let input = document.getElementById("searchBox").value.toLowerCase();
-      let resultsDiv = document.getElementById("results");
-      resultsDiv.innerHTML = "";
-
-      if (input.length === 0) return;
-
-      let matches = data.filter(item => item.text.toLowerCase().includes(input));
-
-      matches.forEach(item => {
-        let div = document.createElement("div");
-        div.className = "searchResult";
-        div.innerHTML = `
-          <img src="${item.image}" alt="">
-          <div>
-            <strong>${item.type}:</strong><br>${item.text}
-          </div>
-        `;
-        div.onclick = () => window.location.href = item.link;
-        resultsDiv.appendChild(div);
-      });
-    }
-    document.getElementById("searchBox").addEventListener("keyup", searchFunction);
-
-    /* CAROUSEL SCRIPT */
     let currentIndex = 0;
     const slides = document.querySelectorAll(".carousel-slide");
 
@@ -309,7 +160,7 @@
       showSlide(currentIndex + step);
     }
 
-    // show first slide initially
+    // init first slide
     showSlide(0);
   </script>
 </body>
