@@ -57,8 +57,8 @@
     #cabinet {
       position: fixed;
       top: 0;
-      left: -60%;
-      width: 45%;
+      left: -100%;
+      width: 80%;
       max-width: 300px;
       height: 100vh;
       background: #008200;
@@ -79,8 +79,12 @@
       display: block;
       margin: 10px 0;
       text-decoration: none;
-      color: #008200;
+      color: white;
       font-size: 18px;
+    }
+
+    #cabinet a:hover {
+      text-decoration: underline;
     }
 
     #closeCabinet {
@@ -156,7 +160,7 @@
       height: 100%;  
       object-fit: cover;  
       border-radius: 10px;  
-      pointer-events: none; /* block right-click drag */
+      pointer-events: none;
     }  
 
     .carousel-slide.active {  
@@ -168,7 +172,7 @@
       position: absolute;  
       top: 50%;  
       transform: translateY(-50%);  
-      background-color: transparent; /* same as cover */  
+      background-color: transparent;  
       color: white;  
       border: none;  
       width: 50px;
@@ -181,7 +185,7 @@
     }  
 
     #carousel .btn:hover {  
-      background-color: transparent; /* darker on hover */  
+      background-color: rgba(0, 0, 0, 0.3);  
     }  
 
     #carousel .prev { left: 15px; }  
@@ -191,23 +195,23 @@
 <body>
 
   <div class="cover">
-    <button id="cabinetButton">☰</button>
-    <img src="francentgazette-svsfhs-head-cover.png" alt="Cover Image" style="width: 65%; height: auto;">
-    <button id="searchBtn">
-      <img src="search-icon-gui.png" alt="Search">
+    <button id="cabinetButton" aria-label="Open menu">☰</button>
+    <img src="francentgazette-svsfhs-head-cover.png" alt="Cover Image" style="width: 65%; height: auto;" oncontextmenu="return false;">
+    <button id="searchBtn" aria-label="Search">
+      <img src="search-icon-gui.png" alt="Search" oncontextmenu="return false;">
     </button>
   </div>
 
   <div id="cabinet">
       <button id="closeCabinet"><strong>×</strong></button>
-      <img src="orawco-club-svsfhs.png" alt="Cabinet Logo" style="width: 75%; height: auto; margin-bottom: -70px;">
+      <img src="orawco-club-svsfhs.png" alt="Cabinet Logo" style="width: 75%; height: auto; margin-bottom: -70px;" oncontextmenu="return false;">
       <a href="https://svsfhs.github.io/francentgazette/">Home</a>
       <a href="francent-gazette-news.html">News</a>
       <a href="francent-gazette-feature.html">Feature</a>
       <a href="francent-gazette-opinion.html">Opinion</a>
       <a href="francent-gazette-sci-tech.html">Science and Technology</a>
       <a href="francent-gazette-entertainment.html">Entertainment</a>
-      <a href="francent-gazette-arts.html">Entertainment</a>
+      <a href="francent-gazette-arts.html">Arts</a>
       <a href="about-francent-gazette.html">About Us</a>
       <a href="gazette-feedback.html">Feedback</a>
   </div>
@@ -278,11 +282,15 @@
 
       let matches = data.filter(item => item.text.toLowerCase().includes(input));
 
+      if (matches.length === 0) {
+        resultsDiv.innerHTML = "<p>No results found</p>";
+      }
+
       matches.forEach(item => {
         let div = document.createElement("div");
         div.className = "searchResult";
         div.innerHTML = `
-          <img src="${item.image}" alt="">
+          <img src="${item.image}" alt="" oncontextmenu="return false;">
           <div>
             <strong>${item.type}:</strong><br>${item.text}
           </div>
@@ -308,28 +316,25 @@
       currentSlide = (currentSlide + step + slides.length) % slides.length;
       showSlide(currentSlide);
     }
-
-    // disable right-click globally
-    document.addEventListener("contextmenu", event => event.preventDefault());
   </script>
 
   <hr>
   <div>
   <p style="font-family: Arial; font-size: 23px;"><strong>NEWS</strong></p>
     <a href=".html">
-      <img src=".png">
+      <img src=".png" oncontextmenu="return false;">
     </a>
     <a href=".html">
-      <img src=".png">
+      <img src=".png" oncontextmenu="return false;">
     </a>
     <a href=".html">
-      <img src=".png">
+      <img src=".png" oncontextmenu="return false;">
     </a>
     <a href=".html">
-      <img src=".png">
+      <img src=".png" oncontextmenu="return false;">
     </a>
     <a href=".html">
-      <img src=".png">
+      <img src=".png" oncontextmenu="return false;">
     </a>
   </div>
 </body>
