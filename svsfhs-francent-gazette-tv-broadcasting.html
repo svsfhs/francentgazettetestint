@@ -24,31 +24,31 @@
     <span id="time-posted1" style="font-size: 11.5px; color: #999999;"></span>
     </p>
       <script>
-  const postDate1 = new Date("2025-08-31T11:11");
+    const postDate1 = new Date("2025-08-31T11:11");
 
-function timeAgo(date) {
-  const seconds = Math.floor((new Date() - date) / 1000);
+  function timeAgo(date) {
+    const seconds = Math.floor((new Date() - date) / 1000);
+    let interval = Math.floor(seconds / 31536000);
+    if (interval >= 1) return interval + " year" + (interval > 1 ? "s" : "") + " ago";
+    interval = Math.floor(seconds / 2592000);
+    if (interval >= 1) return interval + " month" + (interval > 1 ? "s" : "") + " ago";
+    interval = Math.floor(seconds / 604800);
+    if (interval >= 1) return interval + " week" + (interval > 1 ? "s" : "") + " ago";
+    interval = Math.floor(seconds / 86400);
+    if (interval >= 1) return interval + " day" + (interval > 1 ? "s" : "") + " ago";
+    interval = Math.floor(seconds / 3600);
+    if (interval >= 1) return interval + " hour" + (interval > 1 ? "s" : "") + " ago";
+    interval = Math.floor(seconds / 60);
+    if (interval >= 1) return interval + " minute" + (interval > 1 ? "s" : "") + " ago";
+    return "just now";
+  }
 
-  let interval = Math.floor(seconds / 31536000);
-  if (interval >= 1) return interval + " year" + (interval > 1 ? "s" : "") + " ago";
-  interval = Math.floor(seconds / 2592000);
-  if (interval >= 1) return interval + " month" + (interval > 1 ? "s" : "") + " ago";
-  interval = Math.floor(seconds / 604800);
-  if (interval >= 1) return interval + " week" + (interval > 1 ? "s" : "") + " ago";
-  interval = Math.floor(seconds / 86400);
-  if (interval >= 1) return interval + " day" + (interval > 1 ? "s" : "") + " ago";
-  interval = Math.floor(seconds / 3600);
-  if (interval >= 1) return interval + " hour" + (interval > 1 ? "s" : "") + " ago";
-  interval = Math.floor(seconds / 60);
-  if (interval >= 1) return interval + " minute" + (interval > 1 ? "s" : "") + " ago";
-  return "just now";
-}
-function updateTime1() {
-  document.getElementById("time-posted1").innerText = "About " + timeAgo(postDate1);
-}
+  function updateTime1() {
+    document.getElementById("time-posted1").innerText = "About " + timeAgo(postDate1);
+  }
 
-updateTime1();
-setInterval(updateTime1, 60000);
-  </a>
+  updateTime1();
+  setInterval(updateTime1, 
+ </script>
 </body>
 </html>
