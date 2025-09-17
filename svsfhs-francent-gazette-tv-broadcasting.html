@@ -16,11 +16,37 @@
 <div style="position: relative;">
   <a href="svsfhs-francent-gazette-tv-broadcasting-video-01.html" style="text-decoration: none; color: inherit;">
     <img src="haha.png" style="width: 100%; height: auto;">
-      <span style="position: absolute; bottom: 55; right: 10; background-color: rgba(0, 0, 0, 0.7); color: white; font-size: 10px; padding: 5px;">
+      <span style="position: absolute; bottom: 60; right: 10; background-color: rgba(0, 0, 0, 0.7); color: white; font-size: 10px; padding: 5px;">
    1:56:28 
    </span>
     <p style="font-family: Calibri; font-size: 15px; margin-bottom: -10;"><strong>SVSF HS Francent Gazette - TV Broadcasting #01</strong></p>
-    <p style="color: #999999; font-family: Arial; font-size: 12px;">Published on November 28, 2025 at 7:28 AM | Francent Gazette</p>
+    <p style="color: #999999; font-family: Arial; font-size: 12px;">Published on November 28, 2025 at 7:28 AM |
+      <script>
+  const postDate1 = new Date("2025-08-31T11:11");
+
+  function timeAgo(date) {
+    const seconds = Math.floor((new Date() - date) / 1000);
+    let interval = Math.floor(seconds / 31536000);
+    if (interval >= 1) return interval + " year" + (interval > 1 ? "s" : "") + " ago";
+    interval = Math.floor(seconds / 2592000);
+    if (interval >= 1) return interval + " month" + (interval > 1 ? "s" : "") + " ago";
+    interval = Math.floor(seconds / 86400);
+    if (interval >= 1) return interval + " day" + (interval > 1 ? "s" : "") + " ago";
+    interval = Math.floor(seconds / 3600);
+    if (interval >= 1) return interval + " hour" + (interval > 1 ? "s" : "") + " ago";
+    interval = Math.floor(seconds / 60);
+    if (interval >= 1) return interval + " minute" + (interval > 1 ? "s" : "") + " ago";
+    return "just now";
+  }
+
+  function updateTime1() {
+    document.getElementById("time-posted1").innerText = "About " + timeAgo(postDate1);
+  }
+
+  updateTime1();
+  setInterval(updateTime1, 60000);
+      </script>
+    </p>
   </a>
 </body>
 </html>
