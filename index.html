@@ -21,13 +21,22 @@
       align-items: center;
     }
 
-    .news-container {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      margin: 20px auto;
-      max-width: 600px;
-    }
+.news-container {
+  display: flex;
+  flex-direction: column; /* stack vertically */
+  gap: 15px; /* spacing between cards */
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.news-card {
+  display: flex;
+  align-items: flex-start;
+  border: 1px solid #ddd;
+  padding: 10px;
+  background: #fff;
+  border-radius: 8px;
+}
     
     #cabinetButton,
     #searchBtn {
@@ -196,12 +205,12 @@
     #carousel .next { right: 15px; }
 
     .news-card {
-      display: flex;
-      align-items: flex-start;
-      border: 1px solid #ddd;
-      max-width: 550px;
-      padding: 10px;
-      font-family: Arial, sans-serif;
+  display: flex;
+  align-items: flex-start;
+  border: 1px solid #ddd;
+  padding: 10px;
+  background: #fff;
+  border-radius: 8px;
     }
 
     .news-card a {
@@ -445,45 +454,43 @@
   </script>
 
 <div class="news-container">
- <div class="news-card">
-  <a href="article.html">
-    <img src="news-ni-akesha.png" alt="BASTA ARTICLE NI LANCE TO!!!" class="news-img">
-  </a>
   
-  <div class="news-content">
-    <div class="news-category">
-      <a href="weather.html">NEWS</a>
-    </div>
-    
-    <div class="news-title">
-      <a href="article.html">SVSFHS studes learn vital earthquake preparedness skills</a>
-    </div>
-    
-    <div class="news-author">
-      By <a href="author.html">Akesha Loraine Alip</a>
+  <!-- NEWS -->
+  <div class="news-card">
+    <a href="article.html">
+      <img src="news-ni-akesha.png" alt="Earthquake preparedness" class="news-img">
+    </a>
+    <div class="news-content">
+      <div class="news-category">
+        <a href="weather.html">NEWS</a>
+      </div>
+      <div class="news-title">
+        <a href="article.html">SVSFHS studes learn vital earthquake preparedness skills</a>
+      </div>
+      <div class="news-author">
+        By <a href="author.html">Akesha Loraine Alip</a>
+      </div>
     </div>
   </div>
 
-<div class="news-card1">
-  <a href="article.html">
-    <img src="news-ni-akesha.png" alt="BASTA ARTICLE NI LANCE TO!!!" class="news-img">
-  </a>
-  
-  <div class="news-content1">
-    <div class="news-category">
-      <a href="weather.html">COLUMN</a>
+  <!-- COLUMN -->
+  <div class="news-card">
+    <a href="article.html">
+      <img src="news-ni-akesha.png" alt="Mendiola fire" class="news-img">
+    </a>
+    <div class="news-content">
+      <div class="news-category">
+        <a href="weather.html">COLUMN</a>
+      </div>
+      <div class="news-title">
+        <a href="article.html">The fire in Mendiola rages—the anger of the masses</a>
+      </div>
+      <div class="news-author">
+        By <a href="author.html">Juan Emmanuel Castro</a>
+      </div>
     </div>
-    
-    <div class="news-title1">
-      <a href="article.html">The fire in Mendiola rages—the anger of the masses</a>
-    </div>
-    
-    <div class="news-author1">
-      By <a href="author.html">Juan Emmanuel Castro</a>
-    </div>
-    
   </div>
- </div>
- </div>
+
+</div>
 </body>
 </html>
