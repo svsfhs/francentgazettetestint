@@ -1,0 +1,305 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Francent Gazette: School Publication of SVSFHS</title>
+  <link rel="icon" href="favicon.png" type="image/png">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .cover {
+      width: 100%;
+      aspect-ratio: 16 / 5;
+      background-color: #09039B;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #cabinetButton,
+    #searchBtn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    #cabinetButton {
+      left: 20px;
+      color: white;
+      font-size: 30px;
+    }
+
+    #searchBtn {
+      right: 20px;
+    }
+
+    #searchBtn img {
+      width: 32px;
+      height: 32px;
+    }
+
+    .cover img {
+      max-height: 80%;
+      max-width: 80%;
+      object-fit: contain;
+    }
+
+    #cabinet {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 80%;
+      max-width: 300px;
+      height: 100vh;
+      background: #09039B;
+      color: white;
+      padding: 20px;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+      transition: left 0.3s ease;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    #cabinet.open { left: 0; }
+    body.lock-scroll { overflow: hidden; }
+
+    #cabinet a {
+      display: block;
+      margin: 10px 0;
+      text-decoration: none;
+      color: white;
+      font-size: 18px;
+    }
+
+    #cabinet a:hover {
+      text-decoration: underline;
+    }
+
+    #closeCabinet {
+      padding: 10px 15px;
+      background: #09039B;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: auto;
+      width: 100%;
+      text-align: center;
+      font-size: 50px;
+    }
+
+    #searchSection {
+      display: none;
+      padding: 10px;
+      background: #09039B;
+      border-bottom: 1px solid #ccc;
+    }
+
+    #searchSection input {
+      padding: 8px;
+      width: 95%;
+      max-width: 365px;
+      border: 1px solid #09039B;
+    }
+
+    .searchResult {
+      border: 1px solid #ccc;
+      margin: 8px 0;
+      padding: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .searchResult:hover { background: #eee; }
+
+    .searchResult img {
+      width: 50px;
+      height: 50px;
+      border-radius: 6px;
+    }
+
+    p.latest {
+      font-family: Arial;
+      font-size: 23px;
+      margin: 20px;
+    }
+
+.byline {
+  font-family: Arial;
+  font-size: 12px;
+}
+
+.byline-author {
+  text-decoration: none;
+  color: inherit;
+}
+.byline-author:hover {
+  text-decoration: underline;
+}
+
+  </style>
+</head>
+<body>
+
+  <div class="cover">
+    <button id="cabinetButton" aria-label="Open menu">☰</button>
+    <img src="francentgazette-svsfhs-head-cover.png" alt="Cover Image" style="width: 65%; height: auto;" oncontextmenu="return false;">
+    <button id="searchBtn" aria-label="Search">
+      <img src="search-icon-gui.png" alt="Search" oncontextmenu="return false;">
+    </button>
+  </div>
+
+<div id="cabinet">  
+  <div>  
+    <button id="closeCabinet" style="font-size: 50px; text-align: left;"><strong>×</strong></button>  
+    <img src="orawco-club-svsfhs.png" alt="basta picture ng gazette" style="width: 75%; height: auto; margin-bottom: -70px;">  
+      <a href="https://svsfhs.github.io/francentgazette/">Home</a>
+      <a href="francent-gazette-news.html">News</a>
+      <a href="francent-gazette-feature.html">Feature</a>
+      <a href="francent-gazette-opinion.html">Opinion</a>
+      <a href="francent-gazette-sci-tech.html">Science and Technology</a>
+      <a href="francent-gazette-entertainment.html">Entertainment</a>
+      <a href="francent-gazette-arts.html">Arts</a>
+      <a href="about-francent-gazette.html">About Us</a>
+      <a href="gazette-feedback.html">Feedback</a>
+    </div>  
+</div>  
+
+  <div id="searchSection">
+    <input type="text" id="searchBox" placeholder="Search...">
+    <div id="results"></div>
+  </div>
+
+  <script>
+    const cabinetButton = document.getElementById("cabinetButton");
+    const cabinet = document.getElementById("cabinet");
+    const closeCabinet = document.getElementById("closeCabinet");
+    const body = document.body;
+
+    cabinetButton.addEventListener("click", () => {
+      cabinet.classList.add("open");
+      body.classList.add("lock-scroll");
+      cabinetButton.style.display = "none";
+    });
+
+    closeCabinet.addEventListener("click", () => {
+      cabinet.classList.remove("open");
+      body.classList.remove("lock-scroll");
+      cabinetButton.style.display = "block";
+    });
+
+    document.getElementById("searchBtn").onclick = () => {
+      const searchSection = document.getElementById("searchSection");
+      searchSection.style.display = (searchSection.style.display === "block") ? "none" : "block";
+    };
+
+    const data = [
+      { type: "SCI-TECH", text: "tricycle is a students' cycle", link: "feature-tricycle.html", image: "https://via.placeholder.com/60?text=Tricycle" },
+      { type: "NEWS", text: "tripod that cost $300 USD", link: "news-tripod.html", image: "https://via.placeholder.com/60?text=Tripod" },
+      { type: "COLUMN", text: "train systems in the city", link: "feature-train.html", image: "https://via.placeholder.com/60?text=Train" },
+      { type: "NEWS", text: "tree planting event this weekend", link: "news-tree.html", image: "https://via.placeholder.com/60?text=Tree" }
+    ];
+
+    function searchFunction() {
+      let input = document.getElementById("searchBox").value.toLowerCase();
+      let resultsDiv = document.getElementById("results");
+      resultsDiv.innerHTML = "";
+
+      if (input.length === 0) return;
+
+      let matches = data.filter(item => item.text.toLowerCase().includes(input));
+
+      if (matches.length === 0) {
+        resultsDiv.innerHTML = "<p>No results found</p>";
+      }
+
+      matches.forEach(item => {
+        let div = document.createElement("div");
+        div.className = "searchResult";
+        div.innerHTML = `
+          <img src="${item.image}" alt="" oncontextmenu="return false;">
+          <div>
+            <strong>${item.type}:</strong><br>${item.text}
+          </div>
+        `;
+        div.onclick = () => window.location.href = item.link;
+        resultsDiv.appendChild(div);
+      });
+    }
+    document.getElementById("searchBox").addEventListener("keyup", searchFunction);
+
+</script>
+
+ <a href="#" 
+    style="font-family: calibri.ttf; 
+           font-size: 16px; 
+           color: #000; 
+           text-decoration: none; 
+           margin-top: 20px; 
+           margin-bottom: -20px; 
+           display: inline-block;">
+   <strong>COLUMN</strong>
+ </a>
+
+<p style="font-family: Arial; font-size: 24px;"><strong>SVSFHS studes learn vital earthquake preparedness skills</strong></p>
+
+<hr>
+  <img src="francent-gazette-article-id-0024.png" style="width; 100%; height: auto;">
+<hr>
+
+<p class="byline">
+  By <a href="#" class="byline-author">Juan Emmanuel C. Castro</a> | Published on September 20, 2025
+</p>
+<span id="time-posted1" style="font-size: 12px; color: gray;"></span>
+
+<script>
+  const postDate1 = new Date("2025-09-22T21:36:00");
+
+  function timeAgo(date) {
+    const seconds = Math.floor((new Date() - date) / 1000);
+    let interval = Math.floor(seconds / 31536000);
+    if (interval >= 1) return interval + " year" + (interval > 1 ? "s" : "") + " ago";
+    interval = Math.floor(seconds / 2592000);
+    if (interval >= 1) return interval + " month" + (interval > 1 ? "s" : "") + " ago";
+    interval = Math.floor(seconds / 604800);
+    if (interval >= 1) return interval + " week" + (interval > 1 ? "s" : "") + " ago";
+    interval = Math.floor(seconds / 86400);
+    if (interval >= 1) return interval + " day" + (interval > 1 ? "s" : "") + " ago";
+    interval = Math.floor(seconds / 3600);
+    if (interval >= 1) return interval + " hour" + (interval > 1 ? "s" : "") + " ago";
+    interval = Math.floor(seconds / 60);
+    if (interval >= 1) return interval + " minute" + (interval > 1 ? "s" : "") + " ago";
+    return "just now";
+  }
+
+  function updateTime1() {
+    document.getElementById("time-posted1").innerText = "About " + timeAgo(postDate1);
+  }
+
+  updateTime1();
+  setInterval(updateTime1, 60000);
+</script>
+     <p style="font-family: Arial, font-size: 12px; text-align: justify;">Hanap ang paglaya sa daang Mendiola.-- "Awit ng Mendiola" (Song of Mendiola)</p>
+     <p style="font-family: Arial, font-size: 12px; text-align: justify;">In the desperate attempt of the people to achieve accountability, blood boils like fire as the House and the Senate continue to plunder the wealth of the masses.</p>
+     <p style="font-family: Arial, font-size: 12px; text-align: justify;">The fire in Mendiola is the epitome of rage--a prelude to the never-ending gnashing of the working class, tiring their hands until calluses shape their once-soft skin. In their struggle, the elite, politicians, and contractors feast on billions of pesos from supposed flood-control projects that should have alleviated the lives of the simple working Filipino. Instead, preachers of theft spread anomalous lies so vile that even the devil cannot fathom them--betraying the people beyond measure. And so the people cry out against the "buwayas" who flood us with a greater threat than water itself: the self-degrading corruption that rots our democracy.</p>
+     <p style="font-family: Arial, font-size: 12px; text-align: justify;">In the light of the protests of the past few days, organized by the people angered by corruption and betrayal of trust, the streets echoed with shouts for accountability, imprisonment for corrupt politicians and contractors, and demands for the return of the billions that should have been spent on the countless dreams of the people. Yet instead of facing the people's anger and answering for their crimes, the politicians condemn the small acts of violence in Mendiola.</p>
+     <p style="font-family: Arial, font-size: 12px; text-align: justify;">I recall the quote: "When the oppressed fight back, it's called violence. When the oppressor uses violence, it's called maintaining order." If anyone deserves condemnation, it is those who sit in their high chairs, squandering the people's money.</p>
+     <p style="font-family: Arial, font-size: 12px; text-align: justify;">I urge and challenge the people to be fueled with greater anger--for if we turn indifferent to silencing and arrest, we will never achieve the freedom long sought in Mendiola. I call for national unity in defiance of the kleptocracy that rules us.</p>
+     <p style="font-family: Arial, font-size: 12px; text-align: justify;">Let the fire rage and burn like purgatory, for this is the judgment of the proletariat angered by corruption. Let it rage like the ocean that will sweep away the old world until we stand upon our own Ararat--where the fertile land of the future will spring forth in the very streets, fought for by the people on the boulevards where our destiny is steered.</p>
+     <p style="font-family: Arial, font-size: 12px; text-align: justify;">To condemn the anger of the people is a shameless act of a state protecting the corrupt and the thieves. Let the protest of the 21st forever live on--a step toward a future where our children may run free on dry land.</p>
+</body>
+</html>
