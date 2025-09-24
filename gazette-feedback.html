@@ -177,6 +177,27 @@
       color: #ffffff;
     }
 
+  .Box {
+    width: 75%;
+    max-width: 400px;
+    padding: 10px;
+    margin: 20px auto;
+    text-align: center;
+    color: #ffffff;
+    background: #0702AF;
+    border-radius: 8px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.5s ease;
+    pointer-events: none;
+  }
+
+  .Box.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
   </style>
 </head>
 <body>
@@ -269,6 +290,17 @@
     document.getElementById("searchBox").addEventListener("keyup", searchFunction);
 
 </script>
+
+  <script>
+  function showMessage() {
+    let box = document.getElementById("popup");
+    box.classList.add("show");
+
+    setTimeout(() => {
+      box.classList.remove("show");
+    }, 3000);
+  }
+  </script>
 
 <img src="francent-gazette-pfp.png" class="about-us">
   <p class="title-about-us">
