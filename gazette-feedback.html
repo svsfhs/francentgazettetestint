@@ -406,25 +406,30 @@
 
   <script>
   const slides = document.querySelectorAll('.carousel-slide');
-  const prevBtn = document.querySelector('.prev');
-  const nextBtn = document.querySelector('.next');
-  let current = 0;
+const prevBtn = document.querySelector('.prev');
+const nextBtn = document.querySelector('.next');
+let current = 0;
 
-  function showSlide(index) {
-    slides.forEach((slide, i) => {
-      slide.classList.toggle('active', i === index);
-    });
-  }
-
-  prevBtn.addEventListener('click', () => {
-    current = (current - 1 + slides.length) % slides.length;
-    showSlide(current);
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.classList.toggle('active', i === index);
   });
+}
 
-  nextBtn.addEventListener('click', () => {
-    current = (current + 1) % slides.length;
-    showSlide(current);
-  });
+// Previous button
+prevBtn.addEventListener('click', () => {
+  current = (current - 1 + slides.length) % slides.length;
+  showSlide(current);
+});
+
+// Next button
+nextBtn.addEventListener('click', () => {
+  current = (current + 1) % slides.length;
+  showSlide(current);
+});
+
+// Show the first slide initially
+showSlide(current);
   </script>
 
     <p class="credit">© The Francent Gazette of San Vicente - San Francisco High School. All copyrights reserved.</p>
