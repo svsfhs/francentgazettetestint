@@ -310,5 +310,44 @@
   <p class="p1">With the power of journalism, we can amplify the unheard voice of individuals who seek truth, freedom, and justice.</p>
   <p class="p1">Serving towards learners with news, opinions, thoughts, and knowledge that can change their whole identity.</p>
   <p class="credit">© The Francent Gazette of San Vicente - San Francisco High School. All copyrights reserved.</p>
+  <section id="carousel">
+    <div class="carousel-slide active">
+      <a href="https://www.facebook.com/profile.php?id=100083604259082&mibextid=ZbWKwL
+        <img src="svsfhs-our-ticking-clock-published-on-sep-20-2025.png" alt="Slide 1" oncontextmenu="return false;">
+      </a>
+    </div>
+    <div class="carousel-slide">
+      <a href="https://www.facebook.com/profile.php?id=61561406581186&mibextid=ZbWKwL">
+        <img src="test.png" alt="Slide 2" oncontextmenu="return false;">
+      </a>
+    </div>
+    <div class="carousel-slide">
+      <a href="#">
+        <img src="test.png" alt="Slide 2" oncontextmenu="return false;">
+      </a>
+    </div>
+    
+    <button class="btn prev" onclick="moveSlide(-1)">&#10094;</button>
+    <button class="btn next" onclick="moveSlide(1)">&#10095;</button>
+  </section>
+
+  <script>
+    const cabinetButton = document.getElementById("cabinetButton");
+    const cabinet = document.getElementById("cabinet");
+    const closeCabinet = document.getElementById("closeCabinet");
+    const body = document.body;
+
+    cabinetButton.addEventListener("click", () => {
+      cabinet.classList.add("open");
+      body.classList.add("lock-scroll");
+      cabinetButton.style.display = "none";
+    });
+
+    closeCabinet.addEventListener("click", () => {
+      cabinet.classList.remove("open");
+      body.classList.remove("lock-scroll");
+      cabinetButton.style.display = "block";
+    });
+    
 </body>
 </html>
