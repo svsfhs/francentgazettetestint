@@ -182,23 +182,25 @@
   width: 100%;
   max-width: 800px;
   margin: 50px auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   overflow: hidden;
 }
 
 .carousel-track {
-  display: flex;
-  gap: 20px;       /* space between slides */
+  display: block; /* NOT flex */
+  position: relative;
 }
 
 .carousel-slide {
-  width: 250px;      /* square size */
-  aspect-ratio: 1/1; /* 9:9 square */
-  flex-shrink: 0;    /* prevent shrinking */
+  width: 250px;
+  aspect-ratio: 1/1;
   border-radius: 8px;
   overflow: hidden;
+  display: none; /* hide by default */
+  margin: 0 auto; /* center the slide */
+}
+
+.carousel-slide.active {
+  display: block; /* show only active */
 }
 
 .carousel-slide img {
@@ -222,9 +224,8 @@
 }
 
 .prev { left: 10px; }
-.next { right: 10px; }      color: #ffffff;
-    }
-
+.next { right: 10px; }
+    
   .Box {
     width: 75%;
     max-width: 400px;
@@ -245,9 +246,6 @@
     transform: translateY(0);
     pointer-events: auto;
   }
-
-#carousel {
-
 
   </style>
 </head>
