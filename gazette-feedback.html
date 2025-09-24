@@ -177,55 +177,6 @@
       color: #ffffff;
     }
     
-#carousel {
-  position: relative;
-  width: 100%;
-  max-width: 800px;
-  margin: 50px auto;
-  overflow: hidden;
-}
-
-.carousel-track {
-  display: block; /* NOT flex */
-  position: relative;
-}
-
-.carousel-slide {
-  width: 250px;
-  aspect-ratio: 1/1;
-  border-radius: 8px;
-  overflow: hidden;
-  display: none; /* hide by default */
-  margin: 0 auto; /* center the slide */
-}
-
-.carousel-slide.active {
-  display: block; /* show only active */
-}
-
-.carousel-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0,0,0,0.3);
-  color: white;
-  border: none;
-  width: 50px;
-  height: 50px;
-  font-size: 28px;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-.prev { left: 10px; }
-.next { right: 10px; }
-    
   .Box {
     width: 75%;
     max-width: 400px;
@@ -337,31 +288,6 @@
       });
     }
     document.getElementById("searchBox").addEventListener("keyup", searchFunction);
-    
-let currentSlide = 0;
-const slides = document.querySelectorAll(".carousel-slide");
-const prevBtn = document.querySelector(".prev");
-const nextBtn = document.querySelector(".next");
-
-function showSlide(index) {
-  slides.forEach((slide, i) => {
-    slide.style.display = i === index ? "block" : "none";
-  });
-}
-
-// Buttons
-prevBtn.addEventListener("click", () => {
-  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-  showSlide(currentSlide);
-});
-
-nextBtn.addEventListener("click", () => {
-  currentSlide = (currentSlide + 1) % slides.length;
-  showSlide(currentSlide);
-});
-
-// Initialize first slide
-showSlide(currentSlide);
   </script>
 
   <script>
@@ -382,30 +308,6 @@ showSlide(currentSlide);
   <p class="p1">The School Publication Gazette of San Vicente - San Francisco High School, a group of Francent journalists—open-minded, open-eyed, and open ears.</p>
   <p class="p1">With the power of journalism, we can amplify the unheard voice of individuals who seek truth, freedom, and justice.</p>
   <p class="p1">Serving towards learners with news, opinions, thoughts, and knowledge that can change their whole identity.</p>
-
-<section id="carousel">
-  <button class="btn prev">&#10094;</button>
-
-  <div class="carousel-track">
-    <div class="carousel-slide active">
-      <a href="https://www.facebook.com/profile.php?id=100083604259082&mibextid=ZbWKwL">
-        <img src="svsfhs-fb-page.png" alt="Slide 1" oncontextmenu="return false;">
-      </a>
-    </div>
-    <div class="carousel-slide">
-      <a href="https://www.facebook.com/profile.php?id=61561406581186&mibextid=ZbWKwL">
-        <img src="francentgazette-fb-page.png" alt="Slide 2" oncontextmenu="return false;">
-      </a>
-    </div>
-    <div class="carousel-slide">
-      <a href="#">
-        <img src="fg-editorial-board.png" alt="Slide 3" oncontextmenu="return false;">
-      </a>
-    </div>
-  </div>
-
-  <button class="btn next">&#10095;</button>
-</section>
 
   <script>
     const cabinetButton = document.getElementById("cabinetButton");
