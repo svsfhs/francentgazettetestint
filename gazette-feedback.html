@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Francent Gazette: School Publication of SVSFHS</title>
-  <link rel="icon" href="favicon.png" type="image/png">
-  <body background="francent-gazette-special-bg.png">
+  <link rel="icon" href="favicon.png" type="image/png" />
   <style>
+    /* --- page styles (kept from your file) --- */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
+      /* background attribute replaced by CSS for modern compatibility */
+      background-image: url('francent-gazette-special-bg.png');
+      background-size: cover;
+      background-repeat: no-repeat;
     }
-
     .cover {
       width: 100%;
       aspect-ratio: 16 / 5;
@@ -21,7 +24,6 @@
       justify-content: center;
       align-items: center;
     }
-
     #cabinetButton,
     #searchBtn {
       position: absolute;
@@ -32,27 +34,10 @@
       cursor: pointer;
       z-index: 1001;
     }
-
-    #cabinetButton {
-      left: 20px;
-      color: white;
-      font-size: 30px;
-    }
-
-    #searchBtn {
-      right: 20px;
-    }
-
-    #searchBtn img {
-      width: 32px;
-      height: 32px;
-    }
-
-    .cover img {
-      max-height: 80%;
-      max-width: 80%;
-      object-fit: contain;
-    }
+    #cabinetButton { left: 20px; color: white; font-size: 30px; }
+    #searchBtn { right: 20px; }
+    #searchBtn img { width: 32px; height: 32px; }
+    .cover img { max-height: 80%; max-width: 80%; object-fit: contain; }
 
     #cabinet {
       position: fixed;
@@ -64,28 +49,17 @@
       background: #09039B;
       color: white;
       padding: 20px;
-      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+      box-shadow: 2px 0 10px rgba(0,0,0,0.5);
       transition: left 0.3s ease;
       z-index: 1000;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
-
     #cabinet.open { left: 0; }
     body.lock-scroll { overflow: hidden; }
-
-    #cabinet a {
-      display: block;
-      margin: 10px 0;
-      text-decoration: none;
-      color: white;
-      font-size: 18px;
-    }
-
-    #cabinet a:hover {
-      text-decoration: underline;
-    }
+    #cabinet a { display:block; margin:10px 0; text-decoration:none; color:white; font-size:18px;}
+    #cabinet a:hover { text-decoration: underline; }
 
     #closeCabinet {
       padding: 10px 15px;
@@ -105,7 +79,6 @@
       background: #09039B;
       border-bottom: 1px solid #ccc;
     }
-
     #searchSection input {
       padding: 8px;
       width: 95%;
@@ -124,14 +97,8 @@
       border-radius: 8px;
       background: #fff;
     }
-
     .searchResult:hover { background: #eee; }
-
-    .searchResult img {
-      width: 50px;
-      height: 50px;
-      border-radius: 6px;
-    }
+    .searchResult img { width: 50px; height: 50px; border-radius: 6px; }
 
     .about-us {
       width: 75%;
@@ -143,114 +110,98 @@
       left: 45px;
       margin-top: 15px;
     }
+    .title-about-us { font-family: Arial; font-size: 20px; font-weight:700; color:#ffffff; }
+    .svsfhs { font-family: Arial; font-size: 20px; font-weight:700; color:#ffffff; }
 
-    .title-about-us {
-      font-family: Arial;
-      font-size: 20px;
-      font-weight: 700;
-      text-decoration: none;
-      color: #ffffff;
-    }
+    @font-face { font-family: "Calibri"; src: url("calibri.ttf") format("truetype"); }
+    .p1 { font-family: "Calibri", sans-serif; font-size: 12px; color: #ffffff; }
+    .credit { font-size: 8px; text-align:center; color:#ffffff; }
 
-    .svsfhs {
-      font-family: Arial;
-      font-size: 20px;
-      font-weight: 700;
-      text-decoration: none;
-      color: #ffffff;
-    }
-
-    @font-face {
-      font-family: "Calibri"; 
-      src: url("calibri.ttf") format("truetype");
-    }
-
-    .p1 {
-      font-family: "Calibri", sans-serif; 
-      font-size: 12px;
-      color: #ffffff;
-    }
-
-    .credit {
-      font-size: 8px;
+    .Box {
+      width: 75%;
+      max-width: 400px;
+      padding: 10px;
+      margin: 20px auto;
       text-align: center;
       color: #ffffff;
+      background: #0702AF;
+      border-radius: 8px;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: all 0.5s ease;
+      pointer-events: none;
     }
-    
-  .Box {
-    width: 75%;
-    max-width: 400px;
-    padding: 10px;
-    margin: 20px auto;
-    text-align: center;
-    color: #ffffff;
-    background: #0702AF;
-    border-radius: 8px;
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: all 0.5s ease;
-    pointer-events: none;
-  }
+    .Box.show { opacity:1; transform: translateY(0); pointer-events: auto; }
 
-  .Box.show {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
+    /* --- CAROUSEL: wrapper + inner carousel --- */
+    .carousel-wrapper {
+      position: relative;           /* parent for buttons */
+      width: 75%;
+      max-width: 800px;
+      margin: 20px auto;
+      /* allow buttons to stick out */
+      overflow: visible;
+    }
 
-  /* ✅ Fixed Carousel */
-  #carousel1 {    
-    position: relative;    
-    width: 75%;
-    margin: 20px auto;    
-    overflow: visible;    
-  }    
+    /* inner carousel that clips images but keeps wrapper visible */
+    #carousel1 {
+      width: 100%;
+      overflow: hidden;
+      border-radius: 6px;
+      background: #000; /* in case image loads slowly */
+    }
 
-  .carousel-slide {    
-    width: 100%;    
-    aspect-ratio: 1 / 1; /* Square */  
-    display: none;    
-  }    
+    .carousel-slide {
+      width: 100%;
+      aspect-ratio: 1 / 1; /* square */
+      display: none;
+    }
 
-  .carousel-slide img {    
-    width: 100%;    
-    height: 100%;    
-    object-fit: cover;    
-    pointer-events: none;  
-  }    
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      pointer-events: none;
+    }
 
-  .carousel-slide.active {    
-    display: block;    
-  }    
+    .carousel-slide.active { display: block; }
 
-  /* ✅ Arrows */
-  #carousel1 .carousel-btn {    
-    position: absolute;    
-    top: 50%;    
-    transform: translateY(-50%);    
-    background: rgba(0, 0, 0, 0.4);    
-    color: white;    
-    border: none;    
-    width: 50px;  
-    height: 50px;  
-    cursor: pointer;    
-    font-size: 28px;    
-    font-weight: bold;  
-    border-radius: 50%;    
-    z-index: 1000;   /* Keep above images */  
-    transition: background 0.2s;    
-  }    
+    /* arrows (unique class names to avoid conflicts) */
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(0,0,0,0.45);
+      color: #fff;
+      font-size: 28px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000; /* above images and other elements */
+      transition: background 0.15s;
+    }
+    .carousel-btn:hover { background: rgba(0,0,0,0.7); }
 
-  #carousel1 .carousel-btn:hover {    
-    background: rgba(0, 0, 0, 0.6);    
-  }    
+    /* POSITION the arrows OUTSIDE the image but still visible.
+       Adjust the negative offset to move them farther out. */
+    .carousel-prev { left: -64px; }   /* left arrow sits outside left edge */
+    .carousel-next { right: -64px; }  /* right arrow sits outside right edge */
 
-  #carousel1 .carousel-prev { left: -60px; }    
-  #carousel1 .carousel-next { right: -60px; }  
+    /* small-screen tweak so arrows don't go too far outside */
+    @media (max-width: 480px) {
+      .carousel-prev { left: -36px; }
+      .carousel-next { right: -36px; }
+      .carousel-btn { width: 42px; height: 42px; font-size: 22px; }
+    }
   </style>
 </head>
 <body>
-
   <div class="cover">
     <button id="cabinetButton" aria-label="Open menu">☰</button>
     <img src="francentgazette-svsfhs-head-cover.png" alt="Cover Image" style="width: 65%; height: auto;" oncontextmenu="return false;">
@@ -259,10 +210,10 @@
     </button>
   </div>
 
-<div id="cabinet">  
-  <div>  
-    <button id="closeCabinet" style="font-size: 50px; text-align: left;"><strong>×</strong></button>  
-    <img src="orawco-club-svsfhs.png" alt="basta picture ng gazette" style="width: 75%; height: auto; margin-bottom: -70px;">  
+  <div id="cabinet">
+    <div>
+      <button id="closeCabinet" style="font-size:50px; text-align:left;"><strong>×</strong></button>
+      <img src="orawco-club-svsfhs.png" alt="basta picture ng gazette" style="width:75%; height:auto; margin-bottom:-70px;">
       <a href="https://svsfhs.github.io/francentgazette/">Home</a>
       <a href="francent-gazette-news.html">News</a>
       <a href="francent-gazette-feature.html">Feature</a>
@@ -272,90 +223,16 @@
       <a href="francent-gazette-arts.html">Arts</a>
       <a href="about-francent-gazette.html">About Us</a>
       <a href="gazette-feedback.html">Feedback</a>
-    </div>  
-</div>  
+    </div>
+  </div>
 
   <div id="searchSection">
     <input type="text" id="searchBox" placeholder="Search...">
     <div id="results"></div>
   </div>
 
-  <script>
-    const cabinetButton = document.getElementById("cabinetButton");
-    const cabinet = document.getElementById("cabinet");
-    const closeCabinet = document.getElementById("closeCabinet");
-    const body = document.body;
-
-    cabinetButton.addEventListener("click", () => {
-      cabinet.classList.add("open");
-      body.classList.add("lock-scroll");
-      cabinetButton.style.display = "none";
-    });
-
-    closeCabinet.addEventListener("click", () => {
-      cabinet.classList.remove("open");
-      body.classList.remove("lock-scroll");
-      cabinetButton.style.display = "block";
-    });
-
-    document.getElementById("searchBtn").onclick = () => {
-      const searchSection = document.getElementById("searchSection");
-      searchSection.style.display = (searchSection.style.display === "block") ? "none" : "block";
-    };
-
-    const data = [
-      { type: "SCI-TECH", text: "tricycle is a students' cycle", link: "feature-tricycle.html", image: "https://via.placeholder.com/60?text=Tricycle" },
-      { type: "NEWS", text: "tripod that cost $300 USD", link: "news-tripod.html", image: "https://via.placeholder.com/60?text=Tripod" },
-      { type: "COLUMN", text: "train systems in the city", link: "feature-train.html", image: "https://via.placeholder.com/60?text=Train" },
-      { type: "NEWS", text: "tree planting event this weekend", link: "news-tree.html", image: "https://via.placeholder.com/60?text=Tree" }
-    ];
-
-    function searchFunction() {
-      let input = document.getElementById("searchBox").value.toLowerCase();
-      let resultsDiv = document.getElementById("results");
-      resultsDiv.innerHTML = "";
-
-      if (input.length === 0) return;
-
-      let matches = data.filter(item => item.text.toLowerCase().includes(input));
-
-      if (matches.length === 0) {
-        resultsDiv.innerHTML = "<p>No results found</p>";
-      }
-
-      matches.forEach(item => {
-        let div = document.createElement("div");
-        div.className = "searchResult";
-        div.innerHTML = `
-          <img src="${item.image}" alt="" oncontextmenu="return false;">
-          <div>
-            <strong>${item.type}:</strong><br>${item.text}
-          </div>
-        `;
-        div.onclick = () => window.location.href = item.link;
-        resultsDiv.appendChild(div);
-      });
-    }
-    document.getElementById("searchBox").addEventListener("keyup", searchFunction);
-
-    let currentSlide = 0;  
-    const slides = document.querySelectorAll(".carousel-slide");  
-
-    function showSlide(index) {  
-      slides.forEach((slide, i) => {  
-        slide.classList.remove("active");  
-        if (i === index) slide.classList.add("active");  
-      });  
-    }  
-
-    function moveSlide(step) {  
-      currentSlide = (currentSlide + step + slides.length) % slides.length;  
-      showSlide(currentSlide);  
-    }  
-    
-  </script>
-
-<img src="francent-gazette-pfp.png" class="about-us">
+  <!-- --- other page content above carousel --- -->
+  <img src="francent-gazette-pfp.png" class="about-us" oncontextmenu="return false;">
   <p class="title-about-us">
     The Francent Gazette of <a href="https://www.facebook.com/profile.php?id=100083604259082&mibextid=ZbWKwL" class="svsfhs">San Vicente - San Francisco High School</a>
   </p>
@@ -363,25 +240,113 @@
   <p class="p1">With the power of journalism, we can amplify the unheard voice of individuals who seek truth, freedom, and justice.</p>
   <p class="p1">Serving towards learners with news, opinions, thoughts, and knowledge that can change their whole identity.</p>
 
-    <div id="carousel1">  
-      <div class="carousel-slide active">  
-        <a href=".html">  
-          <img src="svsfhs-our-ticking-clock-published-on-sep-20-2025.png" alt="Slide 1" oncontextmenu="return false;">  
-        </a>  
-      </div>  
+  <!-- ===== CAROUSEL START ===== -->
+  <div class="carousel-wrapper" aria-label="Image carousel">
+    <div id="carousel1" role="region" aria-roledescription="carousel">
+      <div class="carousel-slide active">
+        <a href=".html">
+          <img src="svsfhs-our-ticking-clock-published-on-sep-20-2025.png" alt="Slide 1" oncontextmenu="return false;">
+        </a>
+      </div>
+      <div class="carousel-slide">
+        <a href=".html">
+          <img src="test.png" alt="Slide 2" oncontextmenu="return false;">
+        </a>
+      </div>
+    </div>
 
-      <div class="carousel-slide">  
-        <a href=".html">  
-          <img src="test.png" alt="Slide 2" oncontextmenu="return false;">  
-        </a>  
-      </div>  
+    <!-- arrows placed as siblings of the inner carousel so wrapper can show them -->
+    <button class="carousel-btn carousel-prev" aria-label="Previous slide">&#10094;</button>
+    <button class="carousel-btn carousel-next" aria-label="Next slide">&#10095;</button>
+  </div>
+  <!-- ===== CAROUSEL END ===== -->
 
-      <!-- LEFT/RIGHT BUTTONS -->  
-      <button class="carousel-btn carousel-prev" onclick="moveSlide(-1)">&#10094;</button>  
-      <button class="carousel-btn carousel-next" onclick="moveSlide(1)">&#10095;</button>  
-    </div>  
+  <p class="credit">© The Francent Gazette of San Vicente - San Francisco High School. All copyrights reserved.</p>
 
-    <p class="credit">© The Francent Gazette of San Vicente - San Francisco High School. All copyrights reserved.</p>
-    
+  <script>
+    /* ---------- single, cleaned script block ---------- */
+    document.addEventListener('DOMContentLoaded', () => {
+      // CABINET (menu)
+      const cabinetButton = document.getElementById("cabinetButton");
+      const cabinet = document.getElementById("cabinet");
+      const closeCabinet = document.getElementById("closeCabinet");
+
+      cabinetButton && cabinetButton.addEventListener("click", () => {
+        cabinet.classList.add("open");
+        document.body.classList.add("lock-scroll");
+        cabinetButton.style.display = "none";
+      });
+      closeCabinet && closeCabinet.addEventListener("click", () => {
+        cabinet.classList.remove("open");
+        document.body.classList.remove("lock-scroll");
+        cabinetButton.style.display = "block";
+      });
+
+      // SEARCH
+      document.getElementById("searchBtn").onclick = () => {
+        const searchSection = document.getElementById("searchSection");
+        searchSection.style.display = (searchSection.style.display === "block") ? "none" : "block";
+      };
+      const data = [
+        { type: "SCI-TECH", text: "tricycle is a students' cycle", link: "feature-tricycle.html", image: "https://via.placeholder.com/60?text=Tricycle" },
+        { type: "NEWS", text: "tripod that cost $300 USD", link: "news-tripod.html", image: "https://via.placeholder.com/60?text=Tripod" },
+        { type: "COLUMN", text: "train systems in the city", link: "feature-train.html", image: "https://via.placeholder.com/60?text=Train" },
+        { type: "NEWS", text: "tree planting event this weekend", link: "news-tree.html", image: "https://via.placeholder.com/60?text=Tree" }
+      ];
+      function searchFunction() {
+        let input = document.getElementById("searchBox").value.toLowerCase();
+        let resultsDiv = document.getElementById("results");
+        resultsDiv.innerHTML = "";
+        if (input.length === 0) return;
+        let matches = data.filter(item => item.text.toLowerCase().includes(input));
+        if (matches.length === 0) resultsDiv.innerHTML = "<p>No results found</p>";
+        matches.forEach(item => {
+          let div = document.createElement("div");
+          div.className = "searchResult";
+          div.innerHTML = `
+            <img src="${item.image}" alt="" oncontextmenu="return false;">
+            <div>
+              <strong>${item.type}:</strong><br>${item.text}
+            </div>
+          `;
+          div.onclick = () => window.location.href = item.link;
+          resultsDiv.appendChild(div);
+        });
+      }
+      document.getElementById("searchBox").addEventListener("keyup", searchFunction);
+
+      // CAROUSEL
+      const slides = Array.from(document.querySelectorAll('.carousel-slide'));
+      let currentSlide = slides.findIndex(s => s.classList.contains('active'));
+      if (currentSlide === -1) currentSlide = 0;
+
+      const prevBtn = document.querySelector('.carousel-prev');
+      const nextBtn = document.querySelector('.carousel-next');
+
+      function showSlide(index) {
+        if (!slides.length) return;
+        slides.forEach((s, i) => s.classList.toggle('active', i === index));
+      }
+
+      prevBtn && prevBtn.addEventListener('click', () => {
+        if (!slides.length) return;
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+      });
+
+      nextBtn && nextBtn.addEventListener('click', () => {
+        if (!slides.length) return;
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+      });
+
+      // (optional) set initial visible slide
+      showSlide(currentSlide);
+
+      // If you want autoplay, uncomment below (5s):
+      // let autoplay = setInterval(()=> { currentSlide=(currentSlide+1)%slides.length; showSlide(currentSlide); }, 5000);
+      // and to pause on hover, you can attach mouseenter/mouseleave to the wrapper.
+    });
+  </script>
 </body>
 </html>
