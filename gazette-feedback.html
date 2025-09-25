@@ -232,16 +232,32 @@
   <div class="carousel-wrapper" aria-label="Image carousel">
     <div id="carousel1" role="region" aria-roledescription="carousel">
       <div class="carousel-slide active">
-        <a href=".html">
-          <img src="svsfhs-our-ticking-clock-published-on-sep-20-2025.png" alt="Slide 1" oncontextmenu="return false;">
+        <a href="https://www.facebook.com/profile.php?id=100083604259082">
+          <img src="svsfhs-carousel.png" alt="miss" oncontextmenu="return false;">
         </a>
       </div>
       <div class="carousel-slide">
-        <a href=".html">
-          <img src="test.png" alt="Slide 2" oncontextmenu="return false;">
+        <a href="https://www.facebook.com/profile.php?id=61561406581186">
+          <img src="fg-carousel.png" alt="ko na" oncontextmenu="return false;">
         </a>
       </div>
     </div>
+<a href="javascript:void(0)" onclick="showMessage()">
+  <img src="editorialboard-carousel.png" alt="sya T-T">
+</a>
+
+<p class="Box" id="popup">This section is not available for now!</p>
+
+<script>
+  function showMessage() {
+    let box = document.getElementById("popup");
+    box.classList.add("show");
+
+    setTimeout(() => {
+      box.classList.remove("show");
+    }, 3000);
+  }
+</script>
 
     <button class="carousel-btn carousel-prev" aria-label="Previous slide">&#10094;</button>
     <button class="carousel-btn carousel-next" aria-label="Next slide">&#10095;</button>
