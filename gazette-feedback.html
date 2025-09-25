@@ -131,27 +131,24 @@
     }
     .Box.show { opacity:1; transform: translateY(0); pointer-events: auto; }
 
-    /* --- CAROUSEL: wrapper + inner carousel --- */
     .carousel-wrapper {
-      position: relative;           /* parent for buttons */
+      position: relative;
       width: 75%;
       max-width: 800px;
       margin: 20px auto;
-      /* allow buttons to stick out */
       overflow: visible;
     }
 
-    /* inner carousel that clips images but keeps wrapper visible */
     #carousel1 {
       width: 100%;
       overflow: hidden;
       border-radius: 6px;
-      background: #000; /* in case image loads slowly */
+      background: #000;
     }
 
     .carousel-slide {
       width: 100%;
-      aspect-ratio: 1 / 1; /* square */
+      aspect-ratio: 1 / 1;
       display: none;
     }
 
@@ -165,7 +162,6 @@
 
     .carousel-slide.active { display: block; }
 
-    /* arrows (unique class names to avoid conflicts) */
     .carousel-btn {
       position: absolute;
       top: 50%;
@@ -186,12 +182,9 @@
     }
     .carousel-btn:hover { background: rgba(0,0,0,0.7); }
 
-    /* POSITION the arrows OUTSIDE the image but still visible.
-       Adjust the negative offset to move them farther out. */
-    .carousel-prev { left: -54px; }   /* left arrow sits outside left edge */
-    .carousel-next { right: -54px; }  /* right arrow sits outside right edge */
+    .carousel-prev { left: -54px; }
+    .carousel-next { right: -54px; }
 
-    /* small-screen tweak so arrows don't go too far outside */
     @media (max-width: 480px) {
       .carousel-prev { left: -36px; }
       .carousel-next { right: -36px; }
@@ -231,12 +224,9 @@
 
   <!-- --- other page content above carousel --- -->
   <img src="francent-gazette-pfp.png" class="about-us" oncontextmenu="return false;">
-  <p class="title-about-us">
-    The Francent Gazette of <a href="https://www.facebook.com/profile.php?id=100083604259082&mibextid=ZbWKwL" class="svsfhs">San Vicente - San Francisco High School</a>
-  </p>
+  <p class="title-about-us">The Francent Gazette of San Vicente - San Francisco High School</p>
   <p class="p1">The School Publication Gazette of San Vicente - San Francisco High School, a group of Francent journalists—open-minded, open-eyed, and open ears.</p>
   
-  <!-- ===== CAROUSEL START ===== -->
   <div class="carousel-wrapper" aria-label="Image carousel">
     <div id="carousel1" role="region" aria-roledescription="carousel">
       <div class="carousel-slide active">
@@ -251,18 +241,15 @@
       </div>
     </div>
 
-    <!-- arrows placed as siblings of the inner carousel so wrapper can show them -->
     <button class="carousel-btn carousel-prev" aria-label="Previous slide">&#10094;</button>
     <button class="carousel-btn carousel-next" aria-label="Next slide">&#10095;</button>
   </div>
-  <!-- ===== CAROUSEL END ===== -->
 
   <p class="credit">© The Francent Gazette of San Vicente - San Francisco High School. All copyrights reserved.</p>
 
   <script>
-    /* ---------- single, cleaned script block ---------- */
+
     document.addEventListener('DOMContentLoaded', () => {
-      // CABINET (menu)
       const cabinetButton = document.getElementById("cabinetButton");
       const cabinet = document.getElementById("cabinet");
       const closeCabinet = document.getElementById("closeCabinet");
@@ -278,7 +265,6 @@
         cabinetButton.style.display = "block";
       });
 
-      // SEARCH
       document.getElementById("searchBtn").onclick = () => {
         const searchSection = document.getElementById("searchSection");
         searchSection.style.display = (searchSection.style.display === "block") ? "none" : "block";
@@ -311,7 +297,6 @@
       }
       document.getElementById("searchBox").addEventListener("keyup", searchFunction);
 
-      // CAROUSEL
       const slides = Array.from(document.querySelectorAll('.carousel-slide'));
       let currentSlide = slides.findIndex(s => s.classList.contains('active'));
       if (currentSlide === -1) currentSlide = 0;
@@ -336,12 +321,8 @@
         showSlide(currentSlide);
       });
 
-      // (optional) set initial visible slide
       showSlide(currentSlide);
 
-      // If you want autoplay, uncomment below (5s):
-      // let autoplay = setInterval(()=> { currentSlide=(currentSlide+1)%slides.length; showSlide(currentSlide); }, 5000);
-      // and to pause on hover, you can attach mouseenter/mouseleave to the wrapper.
     });
   </script>
 </body>
