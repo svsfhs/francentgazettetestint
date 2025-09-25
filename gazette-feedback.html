@@ -6,11 +6,9 @@
   <title>Francent Gazette: School Publication of SVSFHS</title>
   <link rel="icon" href="favicon.png" type="image/png" />
   <style>
-    /* --- page styles (kept from your file) --- */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      /* background attribute replaced by CSS for modern compatibility */
       background-image: url('francent-gazette-special-bg.png');
       background-size: cover;
       background-repeat: no-repeat;
@@ -114,7 +112,7 @@
     .svsfhs { font-family: Arial; font-size: 20px; font-weight:700; color:#ffffff; }
 
     @font-face { font-family: "Calibri"; src: url("calibri.ttf") format("truetype"); }
-    .p1 { font-family: "Calibri", sans-serif; font-size: 12px; color: #ffffff; }
+    .p1 { font-family: "Calibri", sans-serif; font-size: 14px; color: #ffffff; }
     .credit { font-size: 8px; text-align:center; color:#ffffff; }
 
     .Box {
@@ -174,24 +172,24 @@
       transform: translateY(-50%);
       width: 52px;
       height: 52px;
-      border-radius: 50%;
+      border-radius: 0%;
       border: none;
-      background: rgba(0,0,0,0.45);
+      background: transparent;
       color: #fff;
       font-size: 28px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 2000; /* above images and other elements */
+      z-index: 2000;
       transition: background 0.15s;
     }
     .carousel-btn:hover { background: rgba(0,0,0,0.7); }
 
     /* POSITION the arrows OUTSIDE the image but still visible.
        Adjust the negative offset to move them farther out. */
-    .carousel-prev { left: -64px; }   /* left arrow sits outside left edge */
-    .carousel-next { right: -64px; }  /* right arrow sits outside right edge */
+    .carousel-prev { left: -54px; }   /* left arrow sits outside left edge */
+    .carousel-next { right: -54px; }  /* right arrow sits outside right edge */
 
     /* small-screen tweak so arrows don't go too far outside */
     @media (max-width: 480px) {
@@ -237,9 +235,7 @@
     The Francent Gazette of <a href="https://www.facebook.com/profile.php?id=100083604259082&mibextid=ZbWKwL" class="svsfhs">San Vicente - San Francisco High School</a>
   </p>
   <p class="p1">The School Publication Gazette of San Vicente - San Francisco High School, a group of Francent journalists—open-minded, open-eyed, and open ears.</p>
-  <p class="p1">With the power of journalism, we can amplify the unheard voice of individuals who seek truth, freedom, and justice.</p>
-  <p class="p1">Serving towards learners with news, opinions, thoughts, and knowledge that can change their whole identity.</p>
-
+  
   <!-- ===== CAROUSEL START ===== -->
   <div class="carousel-wrapper" aria-label="Image carousel">
     <div id="carousel1" role="region" aria-roledescription="carousel">
