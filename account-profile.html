@@ -98,21 +98,32 @@
     .searchResult:hover { background: #eee; }
     .searchResult img { width: 50px; height: 50px; border-radius: 6px; }
     }
-    
-    .bg-pfp {
-      width: 50%;
-      aspect-ratio: 9 / 2;
+
+	.profile-section {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
       position: relative;
-	  display: flex;
-      justify-content: center;
-      align-items: center;
+      text-align: center;
     }
 
-    .bg-pfp img {
-      width: 100%;
-      height: auto;
-      z-index: 10;
-    }
+.bg-pfp {
+  width: 100%;
+  aspect-ratio: 9 / 2;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bg-pfp img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  max-width: 100%;
+}
+
 
     .profile-picture {
       width: 100px;
@@ -136,7 +147,7 @@
      font-size: 10px;
      text-align: center;
      color: #404040;
-     font-weight: 200; /* Removed "px" again */
+     font-weight: 200;
     }
 
 	
@@ -171,8 +182,9 @@
     <input type="text" id="searchBox" placeholder="Search...">
     <div id="results"></div>
   </div>
-  
-    <div id="bg-pfp">
+
+<div class="profile-section">
+    <div class="bg-pfp">
 	  <img src="fg-cover-photo.png">
 	</div>
 	<div class="profile-picture">
@@ -180,6 +192,7 @@
 	</div>
 	<p class="username">Juan Emmanuel C. Castro</p>
 	<p class="journo-category">COLUMN WRITING</p>
+</div>
   
   <p class="credit">© The Francent Gazette of San Vicente - San Francisco High School. All copyrights reserved.</p>
 
@@ -238,6 +251,7 @@
 </body>
 
 </html>
+
 
 
 
