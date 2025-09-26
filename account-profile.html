@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Francent Gazette: School Publication of SVSFHS</title>
+  <link rel="icon" href="favicon.png" type="image/png" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('francent-gazette-special-bg.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+    .cover {
+      width: 100%;
+      aspect-ratio: 16 / 5;
+      background-color: #09039B;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #cabinetButton,
+    #searchBtn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 1001;
+    }
+    #cabinetButton { left: 20px; color: white; font-size: 30px; }
+    #searchBtn { right: 20px; }
+    #searchBtn img { width: 32px; height: 32px; }
+    .cover img { max-height: 80%; max-width: 80%; object-fit: contain; }
+
+    #cabinet {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 80%;
+      max-width: 300px;
+      height: 100vh;
+      background: #09039B;
+      color: white;
+      padding: 20px;
+      box-shadow: 2px 0 10px rgba(0,0,0,0.5);
+      transition: left 0.3s ease;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    #cabinet.open { left: 0; }
+    body.lock-scroll { overflow: hidden; }
+    #cabinet a { display:block; margin:10px 0; text-decoration:none; color:white; font-size:18px;}
+    #cabinet a:hover { text-decoration: underline; }
+
+    #closeCabinet {
+      padding: 10px 15px;
+      background: #09039B;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: auto;
+      width: 100%;
+      text-align: center;
+      font-size: 50px;
+    }
+
+    #searchSection {
+      display: none;
+      padding: 10px;
+      background: #09039B;
+      border-bottom: 1px solid #ccc;
+    }
+    #searchSection input {
+      padding: 8px;
+      width: 95%;
+      max-width: 365px;
+      border: 1px solid #09039B;
+    }
+
+    .searchResult {
+      border: 1px solid #ccc;
+      margin: 8px 0;
+      padding: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: 8px;
+      background: #fff;
+    }
+    .searchResult:hover { background: #eee; }
+    .searchResult img { width: 50px; height: 50px; border-radius: 6px; }
+    }
+    
+	.cover-photo {
+	  width: 100%;
+	  height: auto;
+	  aspect-ratio: 16 / 9;
+	  border-radius: 0px;
+	}
+	
+	.profile-picture {
+	  width: 80%;
+	  height: auto;
+	  aspect-ratio: 1 / 1
+	  border-radius: 50%;
+	  border: 6px #ffffff;
+	}
+	
+	.username {
+	  font-size: 14px;
+	  text-align: center;
+	  margin: 2px;
+	  font-weight: 700px;
+	}
+	
+	.journo-category {
+	  font-size: 10px;
+	  text-align: center;
+	  color: #252525;
+	  font-weight: 200px;
+	}
+	
+  </style>
+</head>
+<body>
+  <div class="cover">
+    <button id="cabinetButton" aria-label="Open menu">☰</button>
+    <img src="francentgazette-svsfhs-head-cover.png" alt="Cover Image" style="width: 65%; height: auto;" oncontextmenu="return false;">
+    <button id="searchBtn" aria-label="Search">
+      <img src="search-icon-gui.png" alt="Search" oncontextmenu="return false;">
+    </button>
+  </div>
+
+  <div id="cabinet">
+    <div>
+      <button id="closeCabinet" style="font-size:50px; text-align:left;"><strong>×</strong></button>
+      <img src="orawco-club-svsfhs.png" alt="basta picture ng gazette" style="width:75%; height:auto; margin-bottom:-70px;">
+      <a href="https://svsfhs.github.io/francentgazette/">Home</a>
+      <a href="francent-gazette-news.html">News</a>
+      <a href="francent-gazette-feature.html">Feature</a>
+      <a href="francent-gazette-opinion.html">Opinion</a>
+      <a href="francent-gazette-sci-tech.html">Science and Technology</a>
+      <a href="francent-gazette-entertainment.html">Entertainment</a>
+      <a href="francent-gazette-arts.html">Arts</a>
+      <a href="about-francent-gazette.html">About Us</a>
+      <a href="gazette-feedback.html">Feedback</a>
+    </div>
+  </div>
+
+  <div id="searchSection">
+    <input type="text" id="searchBox" placeholder="Search...">
+    <div id="results"></div>
+  </div>
+  
+    <div class="cover-photo">
+	  <img src="fg-cover-photo.png">
+	</div>
+	<div class="profile-picture">
+	  <img src="juam-emmanuel-1x1.png">
+	</div>
+	<p class="username">Juan Emmanuel C. Castro</p>
+	<p class="journo-category">COLUMN WRITING</p>
+  
+  <p class="credit">© The Francent Gazette of San Vicente - San Francisco High School. All copyrights reserved.</p>
+
+  <script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const cabinetButton = document.getElementById("cabinetButton");
+      const cabinet = document.getElementById("cabinet");
+      const closeCabinet = document.getElementById("closeCabinet");
+
+      cabinetButton && cabinetButton.addEventListener("click", () => {
+        cabinet.classList.add("open");
+        document.body.classList.add("lock-scroll");
+        cabinetButton.style.display = "none";
+      });
+      closeCabinet && closeCabinet.addEventListener("click", () => {
+        cabinet.classList.remove("open");
+        document.body.classList.remove("lock-scroll");
+        cabinetButton.style.display = "block";
+      });
+
+      document.getElementById("searchBtn").onclick = () => {
+        const searchSection = document.getElementById("searchSection");
+        searchSection.style.display = (searchSection.style.display === "block") ? "none" : "block";
+      };
+      const data = [
+        { type: "ABOUT US", text: "Editorial Board", link: "about-francent-gazette.html", image: "fg-about-us.png" },
+        { type: "ABOUT US", text: "Transparency", link: "about-francent-gazette#Transparency", image: "fg-about-us.png" },
+        { type: "ABOUT US", text: "Background", link: "feature-train.html", image: "fg-about-us.png" },
+        { type: "ABOUT US", text: "Francent Account", link: "https://www.facebook.com/profile.php?id=61561406581186&mibextid=ZbWKwL", image: "about-francent-gazette.png" }
+      ];
+      function searchFunction() {
+        let input = document.getElementById("searchBox").value.toLowerCase();
+        let resultsDiv = document.getElementById("results");
+        resultsDiv.innerHTML = "";
+        if (input.length === 0) return;
+        let matches = data.filter(item => item.text.toLowerCase().includes(input));
+        if (matches.length === 0) resultsDiv.innerHTML = "<p>No results found</p>";
+        matches.forEach(item => {
+          let div = document.createElement("div");
+          div.className = "searchResult";
+          div.innerHTML = `
+            <img src="${item.image}" alt="" oncontextmenu="return false;">
+            <div>
+              <strong>${item.type}:</strong><br>${item.text}
+            </div>
+          `;
+          div.onclick = () => window.location.href = item.link;
+          resultsDiv.appendChild(div);
+        });
+      }
+      document.getElementById("searchBox").addEventListener("keyup", searchFunction);
+    });
+  </script>
+  
+</body>
+</html>
