@@ -99,48 +99,45 @@
     .searchResult img { width: 50px; height: 50px; border-radius: 6px; }
     }
     
-.bg-pfp {
-  width: 100%;
-  aspect-ratio: 9 / 2;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center; /* Added to help center content vertically if needed */
-}
+    .bg-pfp {
+      width: 50%;
+      aspect-ratio: 9 / 2;
+      position: relative;
+	  display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-.bg-pfp img {
-  width: 100%;
-  height: auto;
-  z-index: 10;
-}
+    .bg-pfp img {
+      width: 100%;
+      height: auto;
+      z-index: 10;
+    }
 
-/* Important: Make sure this element is positioned absolutely if you want it to layer on top */
-.profile-picture {
-  width: 100px;
-  height: 100px; /* Fixed height so it's a perfect circle */
-  border-radius: 50%;
-  border: 6px solid #ffffff;
-  position: absolute; /* Added so it can be placed correctly */
-  bottom: -50px; /* Adjust as needed to overlap the banner */
-  left: 45px;
-  z-index: 11;
-  background-color: #ffffff; /* Optional: Helps if image has transparency */
-}
+    .profile-picture {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      position: absolute;
+      bottom: -50px;
+      left: 45px;
+      z-index: 11;
+    }
 
-.username {
-  font-size: 14px;
-  text-align: center;
-  margin: 2px;
-  font-weight: 700; /* Removed "px", font-weight uses numeric values */
-  color: #ffffff;
-}
+    .username {
+     font-size: 14px;
+     text-align: center;
+     margin: 2px;
+     font-weight: 700;
+     color: #ffffff;
+    }
 
-.journo-category {
-  font-size: 10px;
-  text-align: center;
-  color: #404040;
-  font-weight: 200; /* Removed "px" again */
-}
+    .journo-category {
+     font-size: 10px;
+     text-align: center;
+     color: #404040;
+     font-weight: 200; /* Removed "px" again */
+    }
 
 	
   </style>
@@ -241,6 +238,7 @@
 </body>
 
 </html>
+
 
 
 
