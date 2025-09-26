@@ -177,6 +177,35 @@
 	  margin-bottom: 20px;
 	}
 
+    .accordion {
+      background-color: transparent;
+      cursor: pointer;
+      padding: 10px;
+      width: 200px;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    .accordion:after {
+      content: '\25BC';
+      float: right;
+    }
+
+    .accordion.active:after {
+      content: '\25B2';
+    }
+
+    .panel {
+      padding: 0 10px;
+      display: none;
+      background-color: #fafafa;
+      border-left: 2px solid #ccc;
+      margin-top: 5px;
+	}
+
     @font-face { font-family: "Calibri"; src: url("calibri.ttf") format("truetype"); }
     .credit { font-size: 8px; text-align:center; color:#ffffff; }
 	  
@@ -225,6 +254,12 @@
 <hr style="color: #ffffff; margin: 10px;">
   <p style="font-size: 20px; text-align: center; color: #ffffff;">LATEST ARTICLES</p>
 <hr style="color: #ffffff; margin: 10px;">
+</div>
+
+<p style="font-size: 16px; color: #ffffff;">BACKGROUND</p>
+	<button class="accordion">About Us</button>
+<div class="panel">
+  <p>Juan Emmanuel C. Castro, an inspiring and empowering columnist/editorial writer in the Francent Gazette of San Vicente - San Francisco High School. He bestows his excellence and integrity as a journalist to serve and amplify the voices of Filipinos.</p>
 </div>
   
   <p class="credit">© The Francent Gazette of San Vicente - San Francisco High School. All copyrights reserved.</p>
@@ -280,10 +315,26 @@
       document.getElementById("searchBox").addEventListener("keyup", searchFunction);
     });
   </script>
+
+<script>
+  const acc = document.querySelectorAll(".accordion");
+  acc.forEach(button => {
+    button.addEventListener("click", function() {
+      this.classList.toggle("active");
+      const panel = this.nextElementSibling;
+      if (panel.style.display === "block") {
+        panel.style.display = "none";
+      } else {
+        panel.style.display = "block";
+      }
+    });
+  });
+</script>
   
 </body>
 
 </html>
+
 
 
 
