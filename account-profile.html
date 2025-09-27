@@ -194,6 +194,61 @@
 	  margin-bottom: 40px;
 	}
 
+    .carousel-wrapper {
+      position: relative;
+      width: 80%;
+      max-width: 800px;
+      margin: 20px auto;
+      overflow: visible;
+      left: 30px;
+    }
+
+    #carousel1 {
+      width: 80%;
+      overflow: hidden;
+      border-radius: 6px;
+      background: #000;
+      left: 40px;
+    }
+
+    .carousel-slide {
+      width: 85%;
+      aspect-ratio: 30 / 20;
+      display: none;
+    }
+
+    .carousel-slide img {
+      width: 120%;
+      height: 130%;
+      display: block;
+      pointer-events: none;
+      left: 40px;
+    }
+
+    .carousel-slide.active { display: block; }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 62px;
+      height: 62px;
+      border-radius: 0%;
+      border: none;
+      background: transparent;
+      color: #fff;
+      font-size: 28px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      transition: background 0.15s;
+    }
+
+    .carousel-prev { left: -58px; }
+    .carousel-next { right: -78px; }
+
     @font-face { font-family: "Calibri"; src: url("calibri.ttf") format("truetype"); }
     .credit { font-size: 8px; text-align:center; color:#ffffff; }
 	  
@@ -303,6 +358,7 @@
   
 </body>
 </html>
+
 
 
 
