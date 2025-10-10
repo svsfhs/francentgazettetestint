@@ -1,449 +1,230 @@
-<!DOCTYPE html>
-<html lang="en">
+<DOCTYPE html>
+<html lang=""en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Francent Gazette: School Publication of SVSFHS</title>
-  <link rel="icon" href="favicon.png" type="image/png" />
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-image: url('francent-gazette-special-bg.png');
-      background-size: cover;
-      background-repeat: no-repeat;
-    }
-    .cover {
-      width: 100%;
-      aspect-ratio: 16 / 5;
-      background-color: #09039B;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    #cabinetButton,
-    #searchBtn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      z-index: 1001;
-    }
-    #cabinetButton { left: 20px; color: white; font-size: 30px; }
-    #searchBtn { right: 20px; }
-    #searchBtn img { width: 32px; height: 32px; }
-    .cover img { max-height: 80%; max-width: 80%; object-fit: contain; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        background-color: aquamarine;
+        background-size: cover;
+        background-position: center;
+      }
 
-    #cabinet {
-      position: fixed;
-      top: 0;
-      left: -100%;
-      width: 80%;
-      max-width: 300px;
-      height: 100vh;
-      background: #09039B;
-      color: white;
-      padding: 20px;
-      box-shadow: 2px 0 10px rgba(0,0,0,0.5);
-      transition: left 0.3s ease;
-      z-index: 1000;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    #cabinet.open { left: 0; }
-    body.lock-scroll { overflow: hidden; }
-    #cabinet a { display:block; margin:10px 0; text-decoration:none; color:white; font-size:18px;}
-    #cabinet a:hover { text-decoration: underline; }
+      .homeRETURN {
+        display: flex;
+        text-decoration: none;
+        margin-top: 90px;
+        align-items: center;
+        justify-content: center;
+      }
 
-    #closeCabinet {
-      padding: 10px 15px;
-      background: #09039B;
-      color: white;
-      border: none;
-      cursor: pointer;
-      margin-top: auto;
-      width: 100%;
-      text-align: center;
-      font-size: 50px;
-    }
+      .homepage {
+        font-size: 10px;
+        color: white;
+        font-family:Arial, Helvetica, sans-serif;
+      }
 
-    #searchSection {
-      display: none;
-      padding: 10px;
-      background: #09039B;
-      border-bottom: 1px solid #ccc;
-    }
-    #searchSection input {
-      padding: 8px;
-      width: 95%;
-      max-width: 365px;
-      border: 1px solid #09039B;
-    }
+      .formInput {
+        margin: 20px;
+        margin-top: 100px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        left: 20px;
+      }
 
-    .searchResult {
-      border: 1px solid #ccc;
-      margin: 8px 0;
-      padding: 10px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      border-radius: 8px;
-      background: #fff;
-    }
-    .searchResult:hover { background: #eee; }
-    .searchResult img { width: 50px; height: 50px; border-radius: 6px; }
-    }
+      .fglogo {
+        margin-top: 30px;
+        margin-bottom: -20px;
+        align-items: center;
+        justify-content: center;
+      }
 
-	.profile-section {
-      width: 100%;
-      max-width: 100px;
-      margin: 0 auto;
-      position: relative;
-      text-align: center;
-	  text-decoration: none;
-    }
+      .fg {
+        width: 80%;
+        height: auto;
+      }
 
-	.bg-pfp {
-	  width: 100%;
-  	  overflow: hidden;
-  	  position: relative;
-  	  display: flex;
- 	  justify-content: center;
- 	  align-items: center;
-	}
+      .nameInput {
+        width: 80%;
+        height: 25px;
+        background: transparent;
+        backdrop-filter: blur(20px);
+        color: #ffffff;
+        font-size: 14px;
+        margin-top: 20px;
+        border-radius: 5px;
+        border-color: #0088ff;
+        box-shadow: none;
+        left: 25px;
+      }
 
-	.bg-pfp img {
-	  width: 100%;
-	  height: auto;
-	  max-width: 100%;
-	}
+      .nameInput::placeholder {
+        color: rgb(214, 214, 214);
+      }
 
-    .profile-picture {
-      width: 70%;
-      height: auto;
-      position: absolute;
-      left: 90px;
-	  bottom: 320px;
-      z-index: 11;
-	}
+      .textInput {
+        width: 80%;
+        max-width: 100%;
+        height: 25px;
+        background: transparent;
+        backdrop-filter: blur(20px);
+        color: #ffffff;
+        font-size: 14px;
+        margin-top: 20px;
+        border-radius: 5px;
+        border-color: #0088ff;
+        box-shadow: none;
+      }
 
-    .profile-picture img {
-	  border-radius: 100%;
-	  width: 70%;
-	  height: auto;
-	  box-shadow: 0px 2px 2px #000000;
-    }
+      .textInput::placeholder {
+        color: rgb(214, 214, 214);
+      }
 
-    .username {
-     font-size: 20px;
-     text-align: center;
-     margin-top: 40px;
-	 margin-bottom: 10px;
-     font-weight: 700;
-     color: #ffffff;
-    }
+      .categoryOption {
+        width: 80%;
+        height: 25px;
+        background: transparent;
+        backdrop-filter: blur(20px);
+        color: #ffffff;
+        font-size: 14px;
+        margin-top: 20px;
+        border-radius: 5px;
+        border-color: #0088ff;
+      }
 
-	.background-descript {
-	  font-family: Arial;
-	  font-size: 10px;
-	  color: #ffffff;
-	  text-align: left;
-	  font-weight: 100;
-	  margin-bottom: 15px;
-	  margin-left: 15px;
-	  margin-right: 15px
-	}
+      option {
+        color: #000000;
+      }
 
-    .journo-category {
-     font-size: 16px;
-     text-align: center;
-     color: #E5E4E4;
-     font-weight: 200;
-    }
+      .titleOpt {
+        left: 45px;
+        font-size: 14px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: white;
+        font-weight: 700;
+        margin-bottom: -5px;
+      }
 
-	.quote-mark {
-	  font-size: 60px;
-	  text-align: center;
-	  color: #ffffff;
-	  font-weight: 700;
-	  margin-bottom: 40px;
-	}
+      button {
+        width: 60%;
+        height: 25px;
+        color:#ffffff;
+        background-color: #0088ff;
+        font-size: 15px;
+        border-radius: 5px;
+        margin-top: 20px;
+        border-color: transparent;
+        margin-left: 25px;
+      }
 
-	.motto {
-	  font-size: 15px;
-	  text-align: center;
-	  color: #ffffff;
-	  font-weight: 100;
-	}
+      .credit {
+        font-size: 8px;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+        color:#ffffff;
+      }
 
-    .gen-position {
-	  font-size: 20px;
-	  text-align: center;
-	  color: #ffffff;
-	  font-weight: 700;
-	  margin-bottom: 20px;
-	}
+      .presscon {
+        text-align: center;
+        font-size: 19px;
+        color: white;
+        font-weight: 570;
+        font-family:Arial, Helvetica, sans-serif;
+        margin-top: 50px;
+        margin-left: 20px;
+        margin-right: 20px;
+      }
 
-	.background-title {
-	  font-size: 23px;
-	  color: #ffffff;
-	  text-align: center;
-	  font-weight: 700;
-	  margin-top: 40px;
-	  margin-bottom: 40px;
-	}
+      .sy {
+        margin-top: -20px;
+        margin-bottom: -50px;
+        text-align: center;
+        font-size: 15px;
+        color: white;
+        font-weight: 170px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      }
 
-    .carousel-wrapper {
-      position: relative;
-      width: 80%;
-      max-width: 800px;
-      margin: 20px auto;
-      overflow: visible;
-      left: 30px;
-    }
+    </style>
 
-    #carousel1 {
-      width: 80%;
-      overflow: hidden;
-      border-radius: 6px;
-      background: #000;
-      left: 40px;
-    }
+<div class="fglogo">
+ <p  class="fg">
+  <img src="francentgazette-svsfhs-head-cover.png">
+ </p>
+</div>
+  
+ <p class="presscon">CAMPUS-BASED PRESS CONFERENCE IN SVSF HS</p>
+ <p class="sy">S.Y. 2025 - 2026</p>
 
-    .carousel-slide {
-      width: 85%;
-      aspect-ratio: 30 / 20;
-      display: none;
-    }
-
-    .carousel-slide img {
-      width: 120%;
-      height: 130%;
-      display: block;
-      pointer-events: none;
-      left: 40px;
-    }
-
-    .carousel-slide.active { display: block; }
-
-    .carousel-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 62px;
-      height: 62px;
-      border-radius: 0%;
-      border: none;
-      background: transparent;
-      color: #fff;
-      font-size: 28px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 2000;
-      transition: background 0.15s;
-    }
-
-    .carousel-prev { left: -58px; }
-    .carousel-next { right: -6px; }
-
-    @font-face { font-family: "Calibri"; src: url("calibri.ttf") format("truetype"); }
-    .credit { font-size: 8px; text-align:center; color:#ffffff; }
-	.latest { font-size: 20px; text-align: center; color: #ffffff; }
-	  
-  </style>
 </head>
 <body>
-  <div class="cover">
-    <button id="cabinetButton" aria-label="Open menu">☰</button>
-    <img src="francentgazette-svsfhs-head-cover.png" alt="Cover Image" style="width: 65%; height: auto;" oncontextmenu="return false;">
-    <button id="searchBtn" aria-label="Search">
-      <img src="search-icon-gui.png" alt="Search" oncontextmenu="return false;">
-    </button>
-  </div>
 
-  <div id="cabinet">
-    <div>
-      <button id="closeCabinet" style="font-size:50px; text-align:left;"><strong>×</strong></button>
-      <img src="orawco-club-svsfhs.png" alt="basta picture ng gazette" style="width:75%; height:auto; margin-bottom:-70px;">
-      <a href="https://svsfhs.github.io/francentgazette/">Home</a>
-      <a href="francent-gazette-news.html">News</a>
-      <a href="francent-gazette-feature.html">Feature</a>
-      <a href="francent-gazette-opinion.html">Opinion</a>
-      <a href="francent-gazette-sci-tech.html">Science and Technology</a>
-      <a href="francent-gazette-entertainment.html">Entertainment</a>
-      <a href="francent-gazette-arts.html">Arts</a>
-      <a href="about-francent-gazette.html">About Us</a>
-      <a href="gazette-feedback.html">Feedback</a>
-    </div>
-  </div>
+<div class="formInput">
+ <form action="https://formspree.io/f/xeorlblo" method="POST">
+ <p class="titleOpt">LEARNER'S NAME</p>
+ <label>
+  <input required
+    type="text"
+    placeholder="DELA ROSA, JERSEY LOIS M."
+    required name="category"
+    class="nameInput"
+  />
+ </label>
 
-  <div id="searchSection">
-    <input type="text" id="searchBox" placeholder="Search...">
-    <div id="results"></div>
-  </div>
+ <p class="titleOpt">GRADE LEVEL & SECTION</p>
+  <input required
+    type="text"
+    placeholder="12 - Corporators"
+    required name="category"
+    class="textInput"
+  />
+ </label>
 
-<div class="profile-section">
-    <div class="bg-pfp">
-	  <img src="fg-cover-photo.png">
-	</div>
-	<div class="profile-picture">
-	  <img src="fg-no-pfp.png">
-	</div>
-	<p class="username">Juan Emmanuel C. Castro</p>
-	<p class="journo-category">MANAGING EDITOR/LITERARY EDITOR</p>
-	<p class="background-descript">Juan Emmanuel C. Castro, an inspiring and empowering columnist/editorial writer in the Francent Gazette of San Vicente - San Francisco High School. He bestows his excellence and integrity as a journalist to serve and amplify the voices of Filipinos.</p>
-<hr style="color: #ffffff; margin: 10px;">
-  <p class="latest">LATEST ARTICLES</p>
-	
-  <div class="carousel-wrapper" aria-label="Image carousel">
-    <div id="carousel1" role="region" aria-roledescription="carousel">
-      <div class="carousel-slide active">
-        <a href="https://www.facebook.com/profile.php?id=100083604259082">
-          <img src="juan-emmanuel-mendiola-rages-fg.png" alt="miss" oncontextmenu="return false;">
-        </a>
-      </div>
-      
-    <button class="carousel-btn carousel-prev" aria-label="Previous slide">&#10094;</button>
-    <button class="carousel-btn carousel-next" aria-label="Next slide">&#10095;</button>
-  </div>
-  </div>
-<hr style="color: #ffffff; margin: 10px;">
+<p class="titleOpt">CATEGORY</p>
+  <label>
+   <select required name="category" class="categoryOption">
+      <option disabled selected hidden>Category</option>
+      <option>News Writing</option>
+      <option>Feature Writing</option>
+      <option>Sports Writing</option>
+      <option>Column Writing</option>
+      <option>Editorial Writing</option>
+      <option>Science and Technology Writing</option>
+      <option>Copyreading and Headline Writing</option>
+      <option>Editorial Cartooning</option>
+      <option>Photojournalism</option>
+      <option>Collaborative Desktop Publishing</option>
+      <option>Online Publishing</option>
+      <option>Radio Broadcasting</option>
+      <option>Television Broadcasting</option>
+   </select>
+ </label>
+
+ <label>
+
+ <p class="titleOpt">LANGUAGE</p>
+   <select required name="category" class="categoryOption">
+      <option disabled selected hidden>Language</option>
+      <option>English</option>
+      <option>Filipino</option>
+  </select>
+ </label>
+
+  <button type="submit">Enter</button>
+ </form>
 </div>
 
-<p class="background-title">SUGGESTED AUTHORS:</p>
-	
+<div class="homeRETURN">
+  <a href="svsfhs.github.io/francentgazette/" class="homepage">Return to Homepage</a>
+</div>
+  
+<hr style="margin: 10px; color: #ffffff;">
+  
   <p class="credit">© The Francent Gazette of San Vicente - San Francisco High School. All copyrights reserved.</p>
 
-  <script>
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const cabinetButton = document.getElementById("cabinetButton");
-      const cabinet = document.getElementById("cabinet");
-      const closeCabinet = document.getElementById("closeCabinet");
-
-      cabinetButton && cabinetButton.addEventListener("click", () => {
-        cabinet.classList.add("open");
-        document.body.classList.add("lock-scroll");
-        cabinetButton.style.display = "none";
-      });
-      closeCabinet && closeCabinet.addEventListener("click", () => {
-        cabinet.classList.remove("open");
-        document.body.classList.remove("lock-scroll");
-        cabinetButton.style.display = "block";
-      });
-
-      document.getElementById("searchBtn").onclick = () => {
-        const searchSection = document.getElementById("searchSection");
-        searchSection.style.display = (searchSection.style.display === "block") ? "none" : "block";
-      };
-      const data = [
-        { type: "ABOUT US", text: "Editorial Board", link: "about-francent-gazette.html", image: "fg-about-us.png" },
-        { type: "ABOUT US", text: "Transparency", link: "about-francent-gazette#Transparency", image: "fg-about-us.png" },
-        { type: "ABOUT US", text: "Background", link: "feature-train.html", image: "fg-about-us.png" },
-        { type: "ABOUT US", text: "Francent Account", link: "https://www.facebook.com/profile.php?id=61561406581186&mibextid=ZbWKwL", image: "about-francent-gazette.png" }
-      ];
-      function searchFunction() {
-        let input = document.getElementById("searchBox").value.toLowerCase();
-        let resultsDiv = document.getElementById("results");
-        resultsDiv.innerHTML = "";
-        if (input.length === 0) return;
-        let matches = data.filter(item => item.text.toLowerCase().includes(input));
-        if (matches.length === 0) resultsDiv.innerHTML = "<p>No results found</p>";
-        matches.forEach(item => {
-          let div = document.createElement("div");
-          div.className = "searchResult";
-          div.innerHTML = `
-            <img src="${item.image}" alt="" oncontextmenu="return false;">
-            <div>
-              <strong>${item.type}:</strong><br>${item.text}
-            </div>
-          `;
-          div.onclick = () => window.location.href = item.link;
-          resultsDiv.appendChild(div);
-        });
-      }
-      document.getElementById("searchBox").addEventListener("keyup", searchFunction);
-
-      const slides = Array.from(document.querySelectorAll('.carousel-slide'));
-      let currentSlide = slides.findIndex(s => s.classList.contains('active'));
-      if (currentSlide === -1) currentSlide = 0;
-
-      const prevBtn = document.querySelector('.carousel-prev');
-      const nextBtn = document.querySelector('.carousel-next');
-
-      function showSlide(index) {
-        if (!slides.length) return;
-        slides.forEach((s, i) => s.classList.toggle('active', i === index));
-      }
-
-      prevBtn && prevBtn.addEventListener('click', () => {
-        if (!slides.length) return;
-        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-        showSlide(currentSlide);
-      });
-
-      nextBtn && nextBtn.addEventListener('click', () => {
-        if (!slides.length) return;
-        currentSlide = (currentSlide + 1) % slides.length;
-        showSlide(currentSlide);
-      });
-
-      showSlide(currentSlide);
-    });
-  </script>
-  
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
