@@ -93,12 +93,6 @@
         object-fit: cover;
         aspect-ratio: 16/9;
       }
-
-      @font-face {
-        font-family: "Montserrat";
-        src: url("Montserrat.ttf");
-        format("truetype");
-      }
   
       .titleA1 {
         position: absolute;
@@ -120,13 +114,62 @@
         left: 15px;
       }
 
+      .article2 {
+        position: relative;
+        width: 90%;
+        max-width: 450px;
+        height: 15.70rem;
+        max-height: auto;
+        background-color: #ffffff;
+        border-radius: 10px;
+        margin: 25px auto 0 auto;
+        overflow: hidden;
+        box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+      }
+  
+      .ArtPNG2 {
+        width: 100%;
+        max-width: 450px;
+        height: auto;
+        max-height: auto;
+        object-fit: cover;
+        aspect-ratio: 16/9;
+      }
+  
+      .titleA2 {
+        position: absolute;
+        color: #000000;
+        font-size: 0.95rem;
+        font-weight: 500;
+        font-family: Montserrat;
+        bottom: 16px;
+        left: 15px;
+      }
+      
+      .bylineA2 {
+        position: absolute;
+        color: #454545;
+        font-size: 0.75rem;
+        font-weight: 500;
+        font-family: Arial;
+        bottom: 3px;
+        left: 15px;
+      }
+      
+      
       @media screen and (min-width: 1024px) {
-        .titleA1 {
+        .titleA1, .titleA2 {
           color: #ffffff !important;
         }
-        .bylineA1 {
+        .bylineA1, .bylineA2 {
           color: #ffffff !important;
         }
+      }
+
+      @font-face {
+        font-family: "Montserrat";
+        src: url("Montserrat.ttf");
+        format("truetype");
       }
   
     </style>
@@ -147,6 +190,14 @@
     <img src="feature-stuck-in-a-paradigm-until-i-grow-wings.png" class="ArtPNG1">
     <p class="titleA1">Stuck In A Paradigm Until I Grow Wings</p>
     <p class="bylineA1">Published on October 27, 2025 | 11:31 AM
+  </div>
+  </a>
+
+  <a href="#">
+  <div class="article2">
+    <img src="feature-stuck-in-a-paradigm-until-i-grow-wings.png" class="ArtPNG2">
+    <p class="titleA2">Stuck In A Paradigm Until I Grow Wings</p>
+    <p class="bylineA2">Published on October 27, 2025 | 11:31 AM
   </div>
   </a>
   
