@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body {
+        background-color: #EAEAEA;
+      }
+      
+      .profile {
+        width: 100%;
+        max-width: 750px;
+        height: 12rem;
+        margin: 0 auto;
+        background-color: #000D85;
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-image: url("pfpBG.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+  
+      .coverPfp {
+        position: absolute;
+        width: 100%;
+        max-width: 750px;
+        height: auto;
+        top: 0;
+        left: 0;
+        object-fit: cover;
+        aspect-ratio: 16/9;
+        z-index: 1;
+      }
+  
+      .profilepicture {
+        position: absolute;
+        width: 75%;
+        max-width: 750px;
+        height: auto;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+        z-index: 2;
+        border-radius: 100%;
+      }
+  
+      .name {
+        font-family: Arial;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #ffffff;
+      }
+  
+      .position {
+        font-family: Arial;
+        font-size: 1rem;
+        font-weight: 500;
+        color: #ffffff;
+        margin: -12px 0 0 0;
+      }
+  
+      .article1 {
+        position: relative;
+        width: 90%;
+        max-width: 750px;
+        height: 12rem;
+        background-color: #ffffff;
+        border-radius: 10px;
+        margin: 25px auto 0 auto;
+        overflow: hidden;
+        box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+      }
+  
+      .ArtPNG1 {
+        width: 100%;
+        max-width: 750px;
+        height: auto;
+        object-fit: cover;
+        aspect-ratio: 16/9;
+      }
+  
+      .titleA1 {
+        position: absolute;
+        color: #000000;
+        font-size: 0.85rem;
+        font-weight: 500;
+        font-family: Arial;
+        bottom: 105px;
+        left: 15px;
+      }
+  
+    </style>
+</head>
+<body>
+  <div class="profile">
+    <img src="jersey-1x1-fg.png" class="profilepicture">
+    <img src="cover-photo-fg.png" class="coverPfp">
+    <p class="name">JERSEY LOIS DELA ROSA</p>
+    <p class="position">EDITOR-IN-CHIEF</p>
+  </div>
+  
+  <div class="article1">
+    <img src="feature-stuck-in-a-paradigm-until-i-grow-wings.png" class="ArtPNG1">
+    <p class="titleA1">Stuck In A Paradigm Until I Grow Wings</p>
+  </div>
+</body>
+</html>
