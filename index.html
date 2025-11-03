@@ -73,11 +73,20 @@
       top: 360px;
     }
 
+    .con {
+      display: flex;
+      flex-dirction: column;
+      position: relative;
+      align-items: center;
+      justify-content: center;
+    }
+
     .container {
       position: relative;
-      width: 90%;
+      width: 60%;
       max-width: 450px;
       height: 13rem;
+      object-fit: cover;
       max-height: auto;
       background-color: #ffffff;
       border-radius: 10px;
@@ -127,6 +136,7 @@
 
   <p class="discover">Check us out!</p>
 
+<div class="con">
   <a href="https://www.facebook.com/share/p/16dnczutaU/">
     <img src="fg-carousel.png" class="container">
   </a>
@@ -138,5 +148,6 @@
   <a href="https://www.facebook.com/share/p/16dnczutaU/">
     <img src="editorialboard-carousel.png" class="container">
   </a>
+</div>
     
 </body>
