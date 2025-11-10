@@ -5,7 +5,165 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
       body {
-        background-color: #EAEAEA;
+        margin: 0;
+      }
+
+      .coverTitle {
+        width: 100%;
+        height: 5rem;
+        aspect-ratio: 16 / 5;
+        background-color: #ffffff;
+        box-shadow: 2px 1px 1px rgba(0,0,0, 0.1);
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+  
+      #cabinetButton {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        z-index: 1001;
+      }
+  
+      #cabinetButton {
+        left: 20px;
+        color: #404040;
+        font-size: 30px;
+      }
+
+      #cabinet {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 60%;
+        max-width: 300px;
+        height: 100vh;
+        background: none;
+        color: #000000;
+        padding: 20px;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.5);
+        transition: left 0.3s ease;
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        gap: 70px;
+        background-color: #DDDDDD;
+      }
+  
+      #cabinet.open {
+        left: 0;
+      }
+  
+      body.lock-scroll {
+        overflow: hidden;
+      }
+  
+      #cabinet a {
+        display: block;
+        margin: -5px 0 15px 20px;
+        text-decoration: none;
+        color: #000000;
+        font-size: 18px;
+        font-family: Montserrat;
+      }
+
+      #closeCabinet {
+        padding: 2vw -6vw;
+        color: #000000;
+        background-color: #DDDDDD;
+        border: none;
+        cursor: pointer;
+        width: 15%;
+        height: auto;
+        font-size: 50px;
+        margin: 0 0 -100px 0;
+      }
+  
+      #cabinet hr {
+        margin: 5px auto;
+      }
+  
+      .logoBtn {
+        display: flex;
+        align-items: center;
+        vertical-align: center;
+      }
+  
+      .btnImg {
+        width: 10%;
+        height: 10%;
+        margin-right: 5px;
+        object-fit: contain;
+        z-index: 1001;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        pointer-events: none;
+        -webkit-user-drag: none;
+        user-drag: none;
+      }
+  
+      .banner {
+        width: 80%;
+        height: auto;
+        margin: 10px 0 5px 0;
+        position: absolute;
+        top: 50px;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        pointer-events: none;
+        -webkit-user-drag: none;
+        user-drag: none;
+      }
+  
+      .cabOpt {
+        margin-top: 70px;
+      }
+  
+      .cabOpt1 {
+        display: flex;
+        flex-direction: column;
+        top: 425px;
+        left: 0;
+        justify-content: space-evenly;
+        position: absolute;
+      }
+  
+      .im1 {
+        font-size: 0.8rem;
+        font-family: Arial;
+        font-weight: 500;
+        width: auto;
+        height: auto;
+        margin: 5px 5px;
+      }
+  
+      .coverImg {
+        width: 60%;
+        height: auto;
+        margin: 2px auto 0 auto;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        pointer-events: none;
+        -webkit-user-drag: none;
+        user-drag: none;
       }
       
       .profile {
@@ -350,12 +508,23 @@
         z-index: 2;
       }
 
-      hr {
-        width: 100%;
-        align-self: center;
-        margin: 20px auto 5px auto;
-        border: none;
-        border-top: 2px solid #00079D;
+      .border {
+        width: 90%;
+        margin: 10px auto 10px auto;
+      }
+  
+      .cabBor {
+        display: flex;
+        position: absolute;
+        width: 80%;
+        top: 100px;
+      }
+  
+      .cabBor1 {
+        display: flex;
+        position: absolute;
+        width: 80%;
+        top: 400px;
       }
 
       .titlefeatureworks {
@@ -465,8 +634,70 @@
           font-size: 1.30rem;
           font-weight: 700;
         }
+
+        .coverImg {
+          width: 30%;
+        }
+
+        .logoBadge {
+          width: 5%;
+        }
+
+        .section {
+          font-size: 1.2rem;
+          font-weight: 500;
+          text-align: justify;
+        }
+
+        .article {
+          margin: 0 90px 0 90px;
+        }
+
+        .articleTitle {
+          font-size: 1.5rem;
+          font-family: Arial;
+          font-weight: 700;
+          margin: 20px 90px 0 90px;
+          text-align: justify;
+        }
+
+        .notice {
+          font-size: 1rem;
+          font-family: Arial;
+          font-weight: 300;
+          text-align: center;
+          margin: -20px 30px 0 30px;
+        }
+
+        .cabOpt {
+          margin-top: 70px;
+        }
+
+        .cabOpt1 {
+          margin-top: 85px;
+        }
+
+        .cabBor {
+          display: flex;
+          position: absolute;
+          width: 80%;
+          top: 110px;
+        }
+
+        .cabBor1 {
+          display: flex;
+          position: absolute;
+          width: 80%;
+          top: 475px;
+        }
       }
       
+      @font-face {
+        font-family: "Montserrat";
+        src: url("Montserrat.ttf");
+        format("truetype");
+      }
+
       @font-face {
         font-family: "Montserrat";
         src: url("Montserrat.ttf");
@@ -476,6 +707,88 @@
     </style>
 </head>
 <body>
+  <div class="coverTitle">
+    <img src="fg-banner.png" class="coverImg">
+    <button id="cabinetButton" aria-label="Open menu">☰</button>
+  </div>
+  
+  <div id="cabinet">
+    <button id="closeCabinet">×</button>
+    <img src="fg-banner.png" class="banner">
+    
+    <hr class="cabBor">
+    
+    <div class="cabOpt">
+      <div class="logoBtn">
+        <a href="https://svsfhs.github.io/francentgazette/">
+          <img src="home.png" class="btnImg">HOME
+        </a>
+      </div>
+      
+      <div class="logoBtn">
+        <a href="francent-gazette-news.html">
+          <img src="news.png" class="btnImg">NEWS
+        </a>
+      </div>
+      
+      <div class="logoBtn">
+        <a href="francent-gazette-feature.html">
+          <img src="feature.png" class="btnImg">FEATURE
+        </a>
+      </div>
+      
+      <div class="logoBtn">
+        <a href="francent-gazette-opinion.html">
+          <img src="opinion.png" class="btnImg">OPINION
+        </a>
+      </div>
+      
+      <div class="logoBtn">
+        <a href="francent-gazette-sci-tech.html">
+          <img src="scitech.png" class="btnImg">SCIENCE AND TECHNOLOGY
+        </a>
+      </div>
+      
+      <div class="logoBtn">
+        <a href="francent-gazette-entertainment.html">
+          <img src="literary.png" class="btnImg">LITERARY
+        </a>
+      </div>
+    
+      <div class="logoBtn">
+        <a href="francent-gazette-arts.html">
+          <img src="media-photo.png" class="btnImg">MEDIA PHOTOS
+        </a>
+      </div>
+      
+      <div class="logoBtn">
+        <a href="about-francent-gazette.html">
+          <img src="about.png" class="btnImg">ABOUT US
+        </a>
+      </div>
+    </div>
+    
+    <hr class="cabBor1">
+    
+    <div class="cabOpt1">
+      <a href="feedback.html">
+        <p class="im1">Feedback</p>
+      </a>
+      
+      <a href="help-center.html">
+        <p class="im1">Help Center</p>
+      </a>
+      
+      <a href="privacy-policy.html">
+        <p class="im1">Privacy Policy</p>
+      </a>
+      
+      <a href="copyrights.html">
+        <p class="im1">Copyrights</p>
+      </a>
+    </div>
+  </div>
+  
   <div class="profile">
     <img src="jersey-1x1-fg.png" class="profilepicture">
   </div>
