@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body {
+        margin: 0;
+      }
+    
+      .helpTitle {
+        font-size: 1.2rem;
+        font-family: Montserrat;
+        font-weight: 700;
+        text-align: center;
+        margin: 100px 0 35px 0;
+      }
+  
+      a {
+        text-decoration: none;
+      }
+  
+      .border {
+        width: 90%;
+        margin: 10px auto 10px auto;
+      }
+  
+      .cabBor {
+        display: flex;
+        position: absolute;
+        width: 80%;
+        top: 100px;
+      }
+  
+      .cabBor1 {
+        display: flex;
+        position: absolute;
+        width: 80%;
+        top: 400px;
+      }
+  
+      .articleTi {
+        font-size: 1rem;
+        font-family: Arial;
+        font-weight: 500;
+        margin: -10px 30px 0 30px;
+        text-align: justify;
+      }
+  
+      .articleTitle {
+        font-size: 1rem;
+        font-family: Arial;
+        font-weight: 500;
+        margin: 20px 30px 0 30px;
+        text-align: justify;
+      }
+  
+      .article {
+        display: inline-block;
+        margin: 0 30px 0 30px;
+      }
+  
+      .section {
+        font-size: 0.80rem;
+        font-family: Arial;
+        font-weight: 300;
+        text-align: justify;
+      }
+  
+      .branch1 {
+        font-size: 0.80rem;
+        margin: 10px 0 10px 20px;
+        font-weight: 200;
+        text-align: justify;
+      }
+  
+      .branch2 {
+        font-size: 0.80rem;
+        margin: 10px 0 10px 40px;
+        font-weight: 200;
+        text-align: justify;
+      }
+  
+      .outerOpt {
+        display: flex;
+        position: relative;
+        align-items: center;
+        justify-content: space-evenly;
+      }
+  
+      .optionOuter {
+        font-size: 0.65rem;
+        font-weight: 300;
+        color: #A6A6A6;
+        text-decoration: none;
+        font-family: Montserrat;
+        width: auto;
+      }
+  
+      .copyrightsOutro {
+        font-size: 10px;
+        font-weight: 300px;
+        color: #A6A6A6;
+        text-align: center;
+        font-family: Arial;
+      }
+  
+      .coverTitle {
+        width: 100%;
+        height: 5rem;
+        aspect-ratio: 16 / 5;
+        background-color: #ffffff;
+        box-shadow: 2px 1px 1px rgba(0,0,0, 0.1);
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+  
+      #cabinetButton {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        z-index: 1001;
+      }
+  
+      #cabinetButton {
+        left: 20px;
+        color: #404040;
+        font-size: 30px;
+      }
+
+      #cabinet {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 60%;
+        max-width: 300px;
+        height: 100vh;
+        background: none;
+        color: #000000;
+        padding: 20px;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.5);
+        transition: left 0.3s ease;
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        gap: 70px;
+        background-color: #DDDDDD;
+      }
+  
+      #cabinet.open {
+        left: 0;
+      }
+  
+      body.lock-scroll {
+        overflow: hidden;
+      }
+  
+      #cabinet a {
+        display: block;
+        margin: -5px 0 15px 20px;
+        text-decoration: none;
+        color: #000000;
+        font-size: 18px;
+        font-family: Montserrat;
+      }
+
+      #closeCabinet {
+        padding: 2vw -6vw;
+        color: #000000;
+        background-color: #DDDDDD;
+        border: none;
+        cursor: pointer;
+        width: 15%;
+        height: auto;
+        font-size: 50px;
+        margin: 0 0 -100px 0;
+      }
+  
+      #cabinet hr {
+        margin: 5px auto;
+      }
+  
+      .logoBtn {
+        display: flex;
+        align-items: center;
+        vertical-align: center;
+      }
+  
+      .btnImg {
+        width: 10%;
+        height: 10%;
+        margin-right: 5px;
+        object-fit: contain;
+      }
+  
+      .banner {
+        width: 80%;
+        height: auto;
+        margin: 10px 0 5px 0;
+        position: absolute;
+        top: 50px;
+      }
+  
+      .cabOpt {
+        margin-top: 70px;
+      }
+  
+      .cabOpt1 {
+        display: flex;
+        flex-direction: column;
+        top: 425px;
+        left: 0;
+        justify-content: space-evenly;
+        position: absolute;
+      }
+  
+      .im1 {
+        font-size: 0.8rem;
+        font-family: Arial;
+        font-weight: 500;
+        width: auto;
+        height: auto;
+        margin: 5px 5px;
+      }
+  
+      .coverImg {
+        width: 60%;
+        height: auto;
+        margin: 2px auto 0 auto;
+      }
+  
+      @font-face {
+        font-family: "Montserrat";
+        src: url("Montserrat.ttf");
+        format("truetype");
+      }
+  
+      @font-face {
+        font-family: "Calibri";
+        src: url("calibri.ttf");
+        format("truetype");
+      }
+  
+    </style>
+</head>
+<body>
+  <div class="coverTitle">
+    <img src="fg-banner.png" class="coverImg">
+    <button id="cabinetButton" aria-label="Open menu">☰</button>
+  </div>
+  
+  <div id="cabinet">
+    <button id="closeCabinet">×</button>
+    <img src="fg-banner.png" class="banner">
+    
+    <hr class="cabBor">
+    
+    <div class="cabOpt">
+      <div class="logoBtn">
+        <a href="https://svsfhs.github.io/francentgazette/">
+          <img src="home.png" class="btnImg">HOME
+        </a>
+      </div>
+      
+      <div class="logoBtn">
+        <a href="francent-gazette-news.html">
+          <img src="news.png" class="btnImg">NEWS
+        </a>
+      </div>
+      
+      <div class="logoBtn">
+        <a href="francent-gazette-feature.html">
+          <img src="feature.png" class="btnImg">FEATURE
+        </a>
+      </div>
+      
+      <div class="logoBtn">
+        <a href="francent-gazette-opinion.html">
+          <img src="opinion.png" class="btnImg">OPINION
+        </a>
+      </div>
+      
+      <div class="logoBtn">
+        <a href="francent-gazette-sci-tech.html">
+          <img src="scitech.png" class="btnImg">SCIENCE AND TECHNOLOGY
+        </a>
+      </div>
+      
+      <div class="logoBtn">
+        <a href="francent-gazette-entertainment.html">
+          <img src="literary.png" class="btnImg">LITERARY
+        </a>
+      </div>
+    
+      <div class="logoBtn">
+        <a href="francent-gazette-arts.html">
+          <img src="media-photo.png" class="btnImg">MEDIA PHOTOS
+        </a>
+      </div>
+      
+      <div class="logoBtn">
+        <a href="about-francent-gazette.html">
+          <img src="about.png" class="btnImg">ABOUT US
+        </a>
+      </div>
+    </div>
+    
+    <hr class="cabBor1">
+    
+    <div class="cabOpt1">
+      <a href="feedback.html">
+        <p class="im1">Feedback</p>
+      </a>
+      
+      <a href="help-center.html">
+        <p class="im1">Help Center</p>
+      </a>
+      
+      <a href="privacy-policy.html">
+        <p class="im1">Privacy Policy</p>
+      </a>
+      
+      <a href="copyrights.html">
+        <p class="im1">Copyrights</p>
+      </a>
+    </div>
+  </div>
+  
+  <div class="logos">
+    <img src="svsfhs.png" class="logoBadge">
+    <img src="francentgazette.png" class="logoBadge">
+  </div>
+  
+  <p class="helpTitle">HELP CENTER</p>
+  
+  <p class="articleTi">TECHNICAL/FUNCTIONCAL ISSUES</p>
+  <div class="article">
+    <p class="section">1. ) Issues or bugs is one of the major enemies in every media, particularly to our website. This occurs when the coding is irresponsive or not properly reviewed. If any issues or bugs occurs, please directly message us via form on <a href="feedback.html">Feedback</a>. Include pictures to help us easily detect the problem, such as issues or bugs.</p>
+
+    <p class="branch1">A. If you encounter webs that says “404 error” or doesn't open, the functionality of the hyperlinks doesn't work: faulty coding, links don't match, or unavailability of the webpage. It often happens when the webpage is not refreshed or still searching for updates.</p>
+
+    <p class="branch1">B. If elements won't show, it might be caused by unmatched names of files to show, unavailability of the element links from the media, or removed from the source. It can also happen when the device can't handle such higher resolution or beyond the limit. Try to refresh or reopen the webpage, it often happens when the webpage is not refreshed or still updating.</p>
+
+    <p class="branch1">C. If freezing, there are several factors why it happen. It is possible for low/weak internet speed or connection, high graphics, or outdated devices. If none of these is the reason, try to refresh your browser or reopen the webpage, it took several times for the webpage to search for updates from the source itself.</p>
+
+    <p class="branch1">D. Outplaced buttons, hyperlinks, elements, or selections are caused by irresponsive code structure or device's pixel ratio. There are only few chronic solution for this matter, but reaching us can help the website to fix the problem immediately.</p>
+
+    <p class="branch1">E. Buttons won't response? Maybe scripts are not responding very well. It is either caused by flawed hyperlinking or misplaced or typo in code structures. This caused the buttons not to respond very well or worse.</p>
+  </div>
+  
+  <p class="articleTitle">II. USER EXPERIENCE</p>
+  <div class="article">
+    <p class="section">1. ) After or when visiting our website, it contain various features and interactions for the users to check out. The users can comply depending on that they need to be change:</p>
+
+    <p class="branch1">A. Despite its contents, this may be confusing for others. Suggestion(s) can shapes the flow and accessibility of our website for users. This can help us to determine whether our website needs renovation or improvements:</p>
+      <p class="branch2">a. Too many interactive thingies</p>
+      <p class="branch2">b. Overwhelming when visiting</p>
+      <p class="branch2">c. Looks simple yet boring</p>
+      <p class="branch2">d. Large quantity of elements used in webs</p>
+
+    <p class="branch1">B. Overwhelming designs, such as large/wide elements, complexities, effects, and many more.</p>
+
+    <p class="branch1">C. Lack of designs, designs help the users to engage themselves to visit our website more often. This illuminates people to visit the website more. Nonetheless, there are users who are not satisfied with such minimal or maximal designs. As soon as possible, we're trying to sustain the designs to reduce complex, overwhelming, and confusing objects.</p>
+  </div>
+  
+  <p class="articleTitle">III. “HOW TO” REQUEST HELP</p>
+  <div class="article">
+    <p class="section">1. ) How to join the Francent Gazette?</p>
+    <p class="branch1">• Apparently, the Francent Gazette doesn't have any memorandum to declare itself as a public journalism group for anyone to join in. However, if you're an SVSF student, you can follow our Facebook page or use our Help Center for compliances.</p>
+
+    <p class="section">2. ) How to send feedback?</p>
+      <p class="branch1">• There are three ways to send feedback(s) just in case:</p>
+      <p class="branch2">a. Upper left button “☰“→Choose the “Feedback” option below→Write your reason(s)→Hit “Send”</p>
+      <p class="branch2">b. Scroll from the bottom→Choose “Contact Us”→Write your reason(s)→Hit “Send”</p>
+      <p class="branch2">c. Similarly to Article III (2)(a), Upper left button “☰”→Choose “Help Center” below→Find if any of your compliances matches→Every article provides “Feedback” option; choose anything→Write your reason(s)→Hit “Send”</p>
+
+    <p class="section">3. ) How to interact on Francent journalists' account profile?</p>
+      <p class="branch2">a. You cannot follow any journalists you like inside our web. This is a static website, not a dynamic website to avail login authentication for users and journalists to interact to each other.</p>
+
+      <p class="branch2">b. Nor send likes or comments regarding their articles.</p>
+
+    <p class="section">4. ) How to upload photo(s)/video(s) in feedback?</p>
+      <p class="branch2">a. Visit the “Feedback” section→look for “Upload image/video” option</p>
+
+      <p class="branch2">b. Not showing? Try to refresh your webpage, this happens because it is mostly outdated. However, if it still won't work, try to use desktop mode (for mobile) or use another device. This happens when the device ratio affects the padding, spacing, and position of the button.</p>
+
+    <p class="section">5. ) How to use features?</p>
+      <p class="branch1">A. The cabinet button “☰” is a quick option settings for users to interact easily in every webpage (e.g., journo categories, help center, top stories, etc.)</p>
+      <p class="branch2">a. News, Feature, Opinion, Literary, Science and Technology, Sports, Media Photos, and About us - each category option are determined based on its purpose. This help both users and developers to secularized the other categories of every articles.</p>
+      <p class="branch2">b. Additional options in cabinet (Feedback, Help Center, Privacy Policy, and Copyrights) - These are mainly essential for this website, each category contains articles with accordance of laws for protection, safety, concern, or compliances.</p>
+
+    <p class="branch1">B. Journalist section is where you can visit the accounts of the authors in Francent Gazette.</p>
+  </div>
+  
+  <p class="articleTitle">IV. SECURITY AND PRIVACY CONCERN</p>
+  <div class="article">
+    <p class="section">1. ) Every information from user's are reliably sealed, we ensure that their privacy is protected under the law of <a href="https://privacy.gov.ph/data-privacy-act/">Republic Act 10173</a>, known as the “Data Privacy Act of 2012.”</p>
+      <p class="branch2">a. What kind of user information are protected? Feedbacks, terms and conditions, agreement, etc.</p>
+
+    <p class="section">2. ) In addition, we are deeply concern about the Francent journalists' information against the cyber attacks or online exploits. These two laws help us to ensure the safety of their privacy: <a href="https://privacy.gov.ph/data-privacy-act/">RA 10173</a>, <a href="https://lawphil.net/statutes/repacts/ra2012/ra_10175_2012.html">RA 10175</a>;</p>
+      <p class="branch2">a. Profile pictures - websites offer an option where users are blocked by dragging, right-clicking, using the copy-and-paste image copy/link method, or downloading the profile picture of the journalist.</p>
+      <p class="branch2">b. Name - the journalist have the rights to stay anonymous (private) or not:</p>
+      <p class="branch2">- use alias names</p>
+      <p class="branch2">- ask for legal name (not full)</p>
+
+    <p class="section">3. ) Since login authentication is not available to our website, any inappropriate or suspicious activities won't happen, such as fraud, spams, abuse, shared explicit contents, or unauthorized access.</p>
+
+    <p class="section">• Visit the <a href="privacy-policy.html">Privacy Policy</a> for further details.</p>
+  </div>
+  
+  <p class="articleTitle">V. LEGAL/POLICY QUESTIONS</p>
+  <div class="article">
+    <p class="section">1. )  The user have legal and fair rights to use any of our property with an accordance to <a href="https://elibrary.judiciary.gov.ph/thebookshelf/showdocs/2/4371">Republic Act 10175, Section 185</a>: giving proper credits or informing us about the usage of our properties for reasonable purposes.</p>
+
+    <p class="section">2. ) We consider for such matter as our properties will be used for inspirations, basis, sources, kr references. Thus, we are inquiring users about their purpose of using our properties. You can read the <a href="copyrights.html">Copyrights</a> for further details.</p>
+  </div>
+  
+  <hr class="border">
+
+  <div class="outerOpt">
+   <a href="svsfhs.github.io/francentgazette" class="optionOuter">
+     <p class="Home">Home</p>
+   </a>
+  
+   <a href="svsfhs.github.io/francentgazette/about-us.html" class="optionOuter">
+     <p class="Home">About us</p>
+   </a>
+  
+   <a href="svsfhs.github.io/francentgazette/contact-us.html" class="optionOuter">
+     <p class="Home">Contact us</p>
+   </a>
+  
+   <a href="svsfhs.github.io/francentgazette/privacy-policy.html" class="optionOuter">
+     <p class="Home">Privacy Policy</p>
+   </a>
+   
+   <a href="svsfhs.github.io/francentgazette/copyrights-policy.html" class="optionOuter">
+     <p class="Home">Copyrights</p>
+   </a>
+  </div>
+  
+  <p class="copyrightsOutro">Copyrights © 2025 Francent Gazette of SVSF HS. All rights reserved.</p>
+</body>
+<script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const cabinetButton = document.getElementById("cabinetButton");
+      const cabinet = document.getElementById("cabinet");
+      const closeCabinet = document.getElementById("closeCabinet");
+
+      cabinetButton && cabinetButton.addEventListener("click", () => {
+        cabinet.classList.add("open");
+        document.body.classList.add("lock-scroll");
+        cabinetButton.style.display = "none";
+      });
+      closeCabinet && closeCabinet.addEventListener("click", () => {
+        cabinet.classList.remove("open");
+        document.body.classList.remove("lock-scroll");
+        cabinetButton.style.display = "block";
+      });
+   });
+
+</script>
+</html>
