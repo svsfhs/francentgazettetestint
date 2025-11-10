@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body {
+        margin: 0;
+      }
+  
+      .logos {
+        display: flex;
+        position: relative;
+        align-items: center;
+        justify-content: center;
+      }
+  
+      .logoBadge {
+        width: 15%;
+        height: auto;
+        aspect-ratio: 1/1;
+        border-color: none;
+        margin: 100px 0 15px 0;
+      }
+  
+      .fgTitle {
+        font-size: 1rem;
+        font-family: Montserrat;
+        font-weight: 700;
+        text-align: center;
+        margin: 0 0 10px 0;
+      }
+    
+      .copyrightsTitle {
+        font-size: 1.2rem;
+        font-family: Montserrat;
+        font-weight: 700;
+        text-align: center;
+        margin: 0 0 35px 0;
+      }
+  
+      .copyrightsNotice {
+        font-size: 0.8rem;
+        font-family: Montserrat;
+        font-weight: 500;
+        text-align: center;
+        margin: 2px 50px 50px 50px;
+      }
+  
+      .notice {
+        font-size: 0.8rem;
+        font-family: Arial;
+        font-weight: 300;
+        text-align: justify;
+        margin: -20px 30px 0 30px;
+      }
+  
+      a {
+        text-decoration: none;
+      }
+  
+      .border {
+        width: 90%;
+        margin: 10px auto 10px auto;
+      }
+  
+      .cabBor {
+        display: flex;
+        position: absolute;
+        width: 80%;
+        top: 100px;
+      }
+  
+      .cabBor1 {
+        display: flex;
+        position: absolute;
+        width: 80%;
+        top: 400px;
+      }
+  
+      .articleTitle {
+        font-size: 1.2rem;
+        font-family: Arial;
+        font-weight: 700;
+        margin: 20px 30px 0 30px;
+        text-align: justify;
+      }
+  
+      .article {
+        display: inline-block;
+        margin: 0 30px 0 30px;
+      }
+  
+      .section {
+        font-size: 0.80rem;
+        font-family: Arial;
+        font-weight: 300;
+        text-align: justify;
+      }
+  
+      .outerOpt {
+        display: flex;
+        position: relative;
+        align-items: center;
+        justify-content: space-evenly;
+      }
+  
+      .optionOuter {
+        font-size: 0.65rem;
+        font-weight: 300;
+        color: #A6A6A6;
+        text-decoration: none;
+        font-family: Montserrat;
+        width: auto;
+      }
+  
+      .copyrightsOutro {
+        font-size: 10px;
+        font-weight: 300px;
+        color: #A6A6A6;
+        text-align: center;
+        font-family: Arial;
+      }
+  
+      .coverTitle {
+        width: 100%;
+        height: 5rem;
+        aspect-ratio: 16 / 5;
+        background-color: #ffffff;
+        box-shadow: 2px 1px 1px rgba(0,0,0, 0.1);
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+  
+      #cabinetButton {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        z-index: 1001;
+      }
+  
+      #cabinetButton {
+        left: 20px;
+        color: #404040;
+        font-size: 30px;
+      }
+
+      #cabinet {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 60%;
+        max-width: 300px;
+        height: 100vh;
+        background: none;
+        color: #000000;
+        padding: 20px;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.5);
+        transition: left 0.3s ease;
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        gap: 70px;
+        background-color: #DDDDDD;
+      }
+  
+      #cabinet.open {
+        left: 0;
+      }
+  
+      body.lock-scroll {
+        overflow: hidden;
+      }
+  
+      #cabinet a {
+        display: block;
+        margin: -5px 0 15px 20px;
+        text-decoration: none;
+        color: #000000;
+        font-size: 18px;
+        font-family: Montserrat;
+      }
+
+      #closeCabinet {
+        padding: 2vw -6vw;
+        color: #000000;
+        background-color: #DDDDDD;
+        border: none;
+        cursor: pointer;
+        width: 15%;
+        height: auto;
+        font-size: 50px;
+        margin: 0 0 -100px 0;
+      }
+  
+      #cabinet hr {
+        margin: 5px auto;
+      }
+  
+      .logoBtn {
+        display: flex;
+        align-items: center;
+        vertical-align: center;
+      }
+  
+      .btnImg {
+        width: 10%;
+        height: 10%;
+        margin-right: 5px;
+        object-fit: contain;
+      }
+  
+      .banner {
+        width: 80%;
+        height: auto;
+        margin: 10px 0 5px 0;
+        position: absolute;
+        top: 50px;
+      }
+  
+      .cabOpt {
+        margin-top: 70px;
+      }
+  
+      .cabOpt1 {
+        display: flex;
+        flex-direction: column;
+        top: 425px;
+        left: 0;
+        justify-content: space-evenly;
+        position: absolute;
+      }
+  
+      .im1 {
+        font-size: 0.8rem;
+        font-family: Arial;
+        font-weight: 500;
+        width: auto;
+        height: auto;
+        margin: 5px 5px;
+      }
+  
+      .coverImg {
+        width: 60%;
+        height: auto;
+        margin: 2px auto 0 auto;
+      }
+  
+      @font-face {
+        font-family: "Montserrat";
+        src: url("Montserrat.ttf");
+        format("truetype");
+      }
+  
+      @font-face {
+        font-family: "Calibri";
+        src: url("calibri.ttf");
+        format("truetype");
+      }
+  
+    </style>
+</head>
+<body>
+  <div class="coverTitle">
+    <img src="fg-banner.png" class="coverImg">
+    <button id="cabinetButton" aria-label="Open menu">☰</button>
+  </div>
+  
+  <div id="cabinet">
+    <button id="closeCabinet">×</button>
+    <img src="fg-banner.png" class="banner">
+    
+    <hr class="cabBor">
+    
+    <div class="cabOpt">
+      <div class="logoBtn">
+        <a href="https://svsfhs.github.io/francentgazette/">
+          <img src="home.png" class="btnImg">HOME
+        </a>
+      </div>
+      
+      <div class="logoBtn">
+        <a href="francent-gazette-news.html">
+          <img src="news.png" class="btnImg">NEWS
+        </a>
+      </div>
+      
+      <div class="logoBtn">
+        <a href="francent-gazette-feature.html">
+          <img src="feature.png" class="btnImg">FEATURE
+        </a>
+      </div>
+      
+      <div class="logoBtn">
+        <a href="francent-gazette-opinion.html">
+          <img src="opinion.png" class="btnImg">OPINION
+        </a>
+      </div>
+      
+      <div class="logoBtn">
+        <a href="francent-gazette-sci-tech.html">
+          <img src="scitech.png" class="btnImg">SCIENCE AND TECHNOLOGY
+        </a>
+      </div>
+      
+      <div class="logoBtn">
+        <a href="francent-gazette-entertainment.html">
+          <img src="literary.png" class="btnImg">LITERARY
+        </a>
+      </div>
+    
+      <div class="logoBtn">
+        <a href="francent-gazette-arts.html">
+          <img src="media-photo.png" class="btnImg">MEDIA PHOTOS
+        </a>
+      </div>
+      
+      <div class="logoBtn">
+        <a href="about-francent-gazette.html">
+          <img src="about.png" class="btnImg">ABOUT US
+        </a>
+      </div>
+    </div>
+    
+    <hr class="cabBor1">
+    
+    <div class="cabOpt1">
+      <a href="feedback.html">
+        <p class="im1">Feedback</p>
+      </a>
+      
+      <a href="help-center.html">
+        <p class="im1">Help Center</p>
+      </a>
+      
+      <a href="privacy-policy.html">
+        <p class="im1">Privacy Policy</p>
+      </a>
+      
+      <a href="copyrights.html">
+        <p class="im1">Copyrights</p>
+      </a>
+    </div>
+  </div>
+  
+  <div class="logos">
+    <img src="svsfhs.png" class="logoBadge">
+    <img src="francentgazette.png" class="logoBadge">
+  </div>
+  
+  <p class="fgTitle">FRANCENT GAZETTE - SVSF HS</p>
+  <p class="copyrightsTitle">COPYRIGHTS</p>
+    <p class="copyrightsNotice">REVIEWED AND PREPARED BY THE FRANCENT GAZETTE IN HONOR OF EXTENDING THEIR VALUES AND GRATITUDE AMONG PROPRIETORS</a>
+  
+  <p class="notice">All articles below are supported by the Philippine Republic Act for basis, supporting evidence, and rights: provided along with its sources.</p>
+  
+  <p class="articleTitle">I. RIGHTS ON PROPERTY USAGE</p>
+  <div class="article">
+    <p class="section">All used properties (e.g., pictures, videos, information, data, etc.) are required with inquiring and seeking consideration from the rightful owners. According to the <a href="https://elibrary.judiciary.gov.ph/thebookshelf/showdocs/2/4371">Republic Act No. 8293</a>, known as the “Intellectual Property Code of 1997,” under Section 185, we can fairly use other properties by giving proper and rightful credit for the holder. Hence, providing/marking credits by imprinting the rightful proprietor's name or source of the used properties can help us to sustain the copyright strikes from the holders and avoid takedowns or tags from the media platform source.</p>
+  </div>
+  
+  <p class="articleTitle">II. USER'S COMPLIANCES FOR PROPERTY USAGE</p>
+  <div class="article">
+    <p class="section">The user can use any of our property if directly contacting our <a href="help-center.html">Help Center</a> for concerns, updates, or further details for rights to use any of our properties. However, if not, the user must take it immediately for not contacting us directly to ensure their rights for property usage or writing proper credits to the Francent Gazette: consideration in terms of giving credits after using any of our properties for rightful purposes in accordance with <a href="https://elibrary.judiciary.gov.ph/thebookshelf/showdocs/2/4371">Republic Act No. 8293, Section 185.</a></p>
+  </div>
+  
+  <p class="articleTitle">III. INTEGRATED VALUES AND RIGHTS</p>
+  <div class="article">
+    <p class="section">As for our rights about our properties, the <a href="https://elibrary.judiciary.gov.ph/thebookshelf/showdocs/2/4371">Republic Act No. 8293</a> integrated our values and rights regarding the protection and safety of our properties: articles, pictures, videos, elements, etc. If not obeyed, we do hereby bestow our rights for the property of Francent Gazette under R.A. 8293 and <a href="https://lawphil.net/statutes/repacts/ra2012/ra_10175_2012.html">R.A. 10175, under Section 4(b)(3)</a>. All plagiarism shall not be tolerated and must be punished.</p>
+  </div>
+  
+  <p class="articleTitle">IV. PROVIDING EQUAL AND FAIR RIGHTS FOR USER'S PROPERTY USAGE</p>
+  <div class="article">
+    <p class="section">Regarding our intellectual properties, such as articles, pictures, medium, etc., we give fair and equal rights for users to use our properties for such matters as inspiration, sources, references, and so forth.</p>
+  </div>
+  
+  <p class="articleTitle">V. REFERENCES FOR SOURCES, IMAGES, PROPERTY USAGES</p>
+  <div class="article">
+    <p class="section">We, the Francent Gazette, created a section where all used properties for our articles, specifically sources/references, pictures, and videos, are imprinted publicly with the author's/holder's name, source link, and date when it was used for transparency. If you want to visit, please tap the “references” text to directly visit the references section: <a href="references">References.</a></p>
+  </div>
+  
+  <hr class="border">
+
+  <div class="outerOpt">
+   <a href="svsfhs.github.io/francentgazette" class="optionOuter">
+     <p class="Home">Home</p>
+   </a>
+  
+   <a href="svsfhs.github.io/francentgazette/about-us.html" class="optionOuter">
+     <p class="Home">About us</p>
+   </a>
+  
+   <a href="svsfhs.github.io/francentgazette/contact-us.html" class="optionOuter">
+     <p class="Home">Contact us</p>
+   </a>
+  
+   <a href="svsfhs.github.io/francentgazette/privacy-policy.html" class="optionOuter">
+     <p class="Home">Privacy Policy</p>
+   </a>
+   
+   <a href="svsfhs.github.io/francentgazette/copyrights-policy.html" class="optionOuter">
+     <p class="Home">Copyrights</p>
+   </a>
+  </div>
+  
+  <p class="copyrightsOutro">Copyrights © 2025 Francent Gazette of SVSF HS. All rights reserved.</p>
+</body>
+<script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const cabinetButton = document.getElementById("cabinetButton");
+      const cabinet = document.getElementById("cabinet");
+      const closeCabinet = document.getElementById("closeCabinet");
+
+      cabinetButton && cabinetButton.addEventListener("click", () => {
+        cabinet.classList.add("open");
+        document.body.classList.add("lock-scroll");
+        cabinetButton.style.display = "none";
+      });
+      closeCabinet && closeCabinet.addEventListener("click", () => {
+        cabinet.classList.remove("open");
+        document.body.classList.remove("lock-scroll");
+        cabinetButton.style.display = "block";
+      });
+   });
+
+</script>
+</html>
