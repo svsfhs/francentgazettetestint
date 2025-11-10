@@ -172,7 +172,7 @@
         height: 12rem;
         background-color: #000D85;
         display: flex;
-        margin: 0;
+        margin: 100px auto 0 auto;
         position: relative;
         flex-direction: column;
         align-items: center;
@@ -871,4 +871,24 @@
   <p class="copyrightsOutro">Copyrights © 2025 Francent Gazette of SVSF HS. All rights reserved.</p>
   
 </body>
+<script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const cabinetButton = document.getElementById("cabinetButton");
+      const cabinet = document.getElementById("cabinet");
+      const closeCabinet = document.getElementById("closeCabinet");
+
+      cabinetButton && cabinetButton.addEventListener("click", () => {
+        cabinet.classList.add("open");
+        document.body.classList.add("lock-scroll");
+        cabinetButton.style.display = "none";
+      });
+      closeCabinet && closeCabinet.addEventListener("click", () => {
+        cabinet.classList.remove("open");
+        document.body.classList.remove("lock-scroll");
+        cabinetButton.style.display = "block";
+      });
+   });
+
+</script>
 </html>
