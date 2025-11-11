@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body {
+        margin: 0;
+      }
+    
+      .helpTitle {
+        font-size: 1.2rem;
+        font-family: Montserrat;
+        font-weight: 700;
+        text-align: center;
+        margin: 100px 0 35px 0;
+      }
+  
+      a {
+        text-decoration: none;
+      }
+  
+      .border {
+        width: 90%;
+        margin: 10px auto 10px auto;
+      }
+  
+      .cabBor {
+        display: flex;
+        position: absolute;
+        width: 80%;
+        top: 100px;
+      }
+  
+      .cabBor1 {
+        display: flex;
+        position: absolute;
+        width: 80%;
+        top: 400px;
+      }
+  
+      .articleTi {
+        font-size: 1rem;
+        font-family: Arial;
+        font-weight: 500;
+        margin: -10px 30px 0 30px;
+        text-align: justify;
+      }
+  
+      .articleTitle {
+        font-size: 1rem;
+        font-family: Arial;
+        font-weight: 500;
+        margin: 20px 30px 0 30px;
+        text-align: justify;
+      }
+  
+      .article {
+        display: inline-block;
+        margin: 0 30px 0 30px;
+      }
+  
+      .section {
+        font-size: 0.80rem;
+        font-family: Arial;
+        font-weight: 300;
+        text-align: justify;
+      }
+  
+      .branch1 {
+        font-size: 0.80rem;
+        font-family: Arial;
+        margin: 10px 0 10px 20px;
+        font-weight: 200;
+        text-align: justify;
+      }
+  
+      .branch2 {
+        font-size: 0.80rem;
+        font-family: Arial;
+        margin: 10px 0 10px 40px;
+        font-weight: 200;
+        text-align: justify;
+      }
+  
+      .outerOpt {
+        display: flex;
+        position: relative;
+        align-items: center;
+        justify-content: space-evenly;
+      }
+  
+      .optionOuter {
+        font-size: 0.65rem;
+        font-weight: 300;
+        color: #A6A6A6;
+        text-decoration: none;
+        font-family: Montserrat;
+        width: auto;
+      }
+  
+      .copyrightsOutro {
+        font-size: 10px;
+        font-weight: 300px;
+        color: #A6A6A6;
+        text-align: center;
+        font-family: Arial;
+      }
+  
+      .coverTitle {
+        width: 100%;
+        height: 5rem;
+        aspect-ratio: 16 / 5;
+        background-color: #ffffff;
+        box-shadow: 2px 1px 1px rgba(0,0,0, 0.1);
+        top: 0;
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+  
+      #cabinetButton {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        z-index: 1001;
+      }
+  
+      #cabinetButton {
+        left: 20px;
+        color: #404040;
+        font-size: 30px;
+      }
+
+      #cabinet {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 60%;
+        max-width: 300px;
+        height: 100vh;
+        background: none;
+        color: #000000;
+        padding: 20px;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.5);
+        transition: left 0.3s ease;
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        gap: 70px;
+        background-color: #DDDDDD;
+      }
+  
+      #cabinet.open {
+        left: 0;
+      }
+  
+      body.lock-scroll {
+        overflow: hidden;
+      }
+  
+      #cabinet a {
+        display: block;
+        margin: -5px 0 15px 20px;
+        text-decoration: none;
+        color: #000000;
+        font-size: 18px;
+        font-family: Montserrat;
+      }
+
+      #closeCabinet {
+        padding: 2vw -6vw;
+        color: #000000;
+        background-color: #DDDDDD;
+        border: none;
+        cursor: pointer;
+        width: 15%;
+        height: auto;
+        font-size: 50px;
+        margin: 0 0 -100px 0;
+      }
+  
+      #cabinet hr {
+        margin: 5px auto;
+      }
+  
+      .logoBtn {
+        display: flex;
+        align-items: center;
+        vertical-align: center;
+      }
+  
+      .btnImg {
+        width: 10%;
+        height: 10%;
+        margin-right: 5px;
+        object-fit: contain;
+      }
+  
+      .banner {
+        width: 80%;
+        height: auto;
+        margin: 10px 0 5px 0;
+        position: absolute;
+        top: 50px;
+      }
+  
+      .cabOpt {
+        margin-top: 70px;
+      }
+  
+      .cabOpt1 {
+        display: flex;
+        flex-direction: column;
+        top: 425px;
+        left: 0;
+        justify-content: space-evenly;
+        position: absolute;
+      }
+  
+      .im1 {
+        font-size: 0.8rem;
+        font-family: Arial;
+        font-weight: 500;
+        width: auto;
+        height: auto;
+        margin: 5px 5px;
+      }
+  
+      .coverImg {
+        width: 60%;
+        height: auto;
+        margin: 2px auto 0 auto;
+      }
+  
+      @font-face {
+        font-family: "Montserrat";
+        src: url("Montserrat.ttf");
+        format("truetype");
+      }
+  
+      @font-face {
+        font-family: "Calibri";
+        src: url("calibri.ttf");
+        format("truetype");
+      }
+
+      @media screen and (min-width: 990px) {
+        .coverImg {
+          width: 30%;
+        }
+
+        .logoBadge {
+          width: 5%;
+        }
+
+        .section {
+          font-size: 1.2rem;
+          font-weight: 500;
+          text-align: justify;
+        }
+
+        .branch1,
+        .branch2 {
+          font-size: 1.2rem;
+          font-weight: 500;
+          text-align: justify;
+        }
+
+        .branch1 {
+          margin: 0 120px p 120px;
+        }
+
+        .branch2 {
+          margin: 0 180px 0 180px;
+        }
+
+        .article {
+          margin: 0 90px 0 90px;
+        }
+
+        .articleTitle {
+          font-size: 1.5rem;
+          font-family: Arial;
+          font-weight: 700;
+          margin: 20px 90px 0 90px;
+          text-align: justify;
+        }
+
+        .notice {
+          font-size: 1rem;
+          font-family: Arial;
+          font-weight: 300;
+          text-align: center;
+          margin: -20px 30px 0 30px;
+        }
+
+        .cabOpt {
+          margin-top: 70px;
+        }
+
+        .cabOpt1 {
+          margin-top: 85px;
+        }
+
+        .cabBor {
+          display: flex;
+          position: absolute;
+          width: 80%;
+          top: 110px;
+        }
+
+        .cabBor1 {
+          display: flex;
+          position: absolute;
+          width: 80%;
+          top: 475px;
+        }
+      }
+  
+    </style>
+</head>
+<body>
+  <div class="coverTitle">
+    <img src="fg-banner.png" class="coverImg">
+    <button id="cabinetButton" aria-label="Open menu">☰</button>
+  </div>
+  
+  <div id="cabinet">
+    <button id="closeCabinet">×</button>
+    <img src="fg-banner.png" class="banner">
+    
+    <hr class="cabBor">
+    
+    <div class="cabOpt">
+      <div class="logoBtn">
+        <a href="https://svsfhs.github.io/francentgazette/">
+          <img src="home.png" class="btnImg">HOME
+        </a>
+      </div>
+      
+      <div class="logoBtn">
+        <a href="francent-gazette-news.html">
+          <img src="news.png" class="btnImg">NEWS
+        </a>
+      </div>
+      
+      <div class="logoBtn">
+        <a href="francent-gazette-feature.html">
+          <img src="feature.png" class="btnImg">FEATURE
+        </a>
+      </div>
+      
+      <div class="logoBtn">
+        <a href="francent-gazette-opinion.html">
+          <img src="opinion.png" class="btnImg">OPINION
+        </a>
+      </div>
+      
+      <div class="logoBtn">
+        <a href="francent-gazette-sci-tech.html">
+          <img src="scitech.png" class="btnImg">SCIENCE AND TECHNOLOGY
+        </a>
+      </div>
+      
+      <div class="logoBtn">
+        <a href="francent-gazette-entertainment.html">
+          <img src="literary.png" class="btnImg">LITERARY
+        </a>
+      </div>
+    
+      <div class="logoBtn">
+        <a href="francent-gazette-arts.html">
+          <img src="media-photo.png" class="btnImg">MEDIA PHOTOS
+        </a>
+      </div>
+      
+      <div class="logoBtn">
+        <a href="about-francent-gazette.html">
+          <img src="about.png" class="btnImg">ABOUT US
+        </a>
+      </div>
+    </div>
+    
+    <hr class="cabBor1">
+    
+    <div class="cabOpt1">
+      <a href="feedback.html">
+        <p class="im1">Feedback</p>
+      </a>
+      
+      <a href="help-center.html">
+        <p class="im1">Help Center</p>
+      </a>
+      
+      <a href="privacy-policy.html">
+        <p class="im1">Privacy Policy</p>
+      </a>
+      
+      <a href="copyrights.html">
+        <p class="im1">Copyrights</p>
+      </a>
+    </div>
+  </div>
+  
+  <p class="helpTitle">PRIVACY POLICY</p>
+  
+  <div class="article">
+    <p class="section">We value transparency, truth, and privacy. This Privacy Policy explains how we value your privacy and safety while you navigate online. For the sake of transparency, here is the following data that will be collected by our website: Rest assured that we, the Francent Gazette, are committed to protecting your data and privacy provided on our website.</p>
+
+    <p class="section">I. What personal information do they collect?</p>
+    <p class="branch1">A. User’s information/data</p>
+      <p class="branch2">- Legal name</p>
+      <p class="branch2">- Contact details</p>
+
+    <p class="branch1">B. Article Information/Data</p>
+      <p class="branch2">-Written article(s)</p>
+      <p class="branch2">-Written literary work(s)</p>
+
+    <p class="branch1">C. Francent Journalist Information/data</p>
+      <p class="branch2">- Demographics</p>
+      <p class="branch2">- Barangay</p>
+      <p class="branch2">- Town</p>
+      <p class="branch2">- Biometric(s)</p>
+
+    <p class="section">II. How is the Information used?</p>
+    <p class="branch1">• The date will be used for authentication would serve as data for the eligibility of an article written for transparency and accountability.</p>
+ 
+    <p class="section">III. Who is the data shared with?</p>
+    <p class="branch1">• Under the <a href="lawphil.net/statutes/repacts/ra2012/ra_10175_2012.html">Republic Act No. 10173</a>, known as the Data Privacy Act of 2012:</p>
+      <p class="branch2">i. Under Section 11, that information that will be collected will be collected through a legitimate process and will be processed fairly and lawfully.</p>
+
+      <p class="branch2">ii. Under Section 12, data will be gathered with the subject's permission and consent. The data being processed are only required for the fulfillment of a certain purpose. The process of collecting data is necessary for the compliance for an obligation.</p>
+
+      <p class="branch2">iii.  Under Section 13, the data given, whether personal or privileged, will be processed and will be kept and will not be disclosed, however. In cases where it requires the discourse of certain data, we take consent from the data subject.</p>
+
+      <p class="branch2">iv. Under Section 16, The website respects the rights of subjects in regard to their data. The website managers are compelled by the law to comply in protecting your rights.</p>
+
+    <p class="section">IV. (B). R.A. 10175 or Cybercrime Prevention Act of 2012.</p>
+    <p class="branch1">• This act refers to the role of the institution in maintaining a private space for your data, recognizing the importance of your privacy and protecting your rights.</p>
+
+    <p class="section">V. How is the data stored and protected?</p>
+    <p class="branch1">A. The user’s data will be protected and processed in a legal way (data is protected and will be processed only by the necessary information obliged by the law).</p>
+
+    <p class="branch1">B. Use proper information and will ensure credibility and will avoid any copyright infringement and any plagiarism.</p>
+
+    <p class="branch1">C. Demographics, personal information, and pictures will be sealed and blocked from any downloading and will only be used with the consent of the subject and will be necessary for legal compliance.</p>
+
+    <p class="section">VI. User's Right</p>
+    <p class="branch1">A. Every user has the right to visit our website—while ensuring a safe space for everyone and promoting transparency and accountability.</p>
+
+    <p class="branch1">B. Users have rights to send grievances and complain by informing our feedback section so that the management may impart your said suggestion on the operation of the website.</p>
+
+    <p class="branch1">C. Further reports and compliance; each member and user are allowed to report and send their insights on the operation.</p>
+
+    <p class="section">VII. Contact regarding privacy concerns</p>
+    
+    <p class="branch1">Please contact us on our <a href="https://www.facebook.com/share/1H5Ti2qMqW/">Facebook page</a> or use our <a href="svsfhs.github.io/francentgazette/feedback.html">Feedback</a> section to comply.</p>
+    
+  </div>
+  
+  <hr class="border">
+
+  <div class="outerOpt">
+   <a href="svsfhs.github.io/francentgazette" class="optionOuter">
+     <p class="Home">Home</p>
+   </a>
+  
+   <a href="svsfhs.github.io/francentgazette/about-us.html" class="optionOuter">
+     <p class="Home">About us</p>
+   </a>
+  
+   <a href="svsfhs.github.io/francentgazette/contact-us.html" class="optionOuter">
+     <p class="Home">Contact us</p>
+   </a>
+  
+   <a href="svsfhs.github.io/francentgazette/privacy-policy.html" class="optionOuter">
+     <p class="Home">Privacy Policy</p>
+   </a>
+   
+   <a href="svsfhs.github.io/francentgazette/copyrights-policy.html" class="optionOuter">
+     <p class="Home">Copyrights</p>
+   </a>
+  </div>
+  
+  <p class="copyrightsOutro">Copyrights © 2025 Francent Gazette of SVSF HS. All rights reserved.</p>
+</body>
+<script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const cabinetButton = document.getElementById("cabinetButton");
+      const cabinet = document.getElementById("cabinet");
+      const closeCabinet = document.getElementById("closeCabinet");
+
+      cabinetButton && cabinetButton.addEventListener("click", () => {
+        cabinet.classList.add("open");
+        document.body.classList.add("lock-scroll");
+        cabinetButton.style.display = "none";
+      });
+      closeCabinet && closeCabinet.addEventListener("click", () => {
+        cabinet.classList.remove("open");
+        document.body.classList.remove("lock-scroll");
+        cabinetButton.style.display = "block";
+      });
+   });
+
+</script>
+</html>
