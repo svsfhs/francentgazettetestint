@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body {
+        background-color: #EAEAEA;
+        margin: 0;
+      }
+  
+      form {
+        margin-top: 100px;
+      }
+  
+      .emailForm {
+        display: flex;
+        margin: 10px 10px;
+      }
+      
+      .emailTitle {
+        margin: 5px 0 5px 0;
+        padding-left: 45px;
+        font-size: 1.1rem;
+        font-weight: 500;
+        font-family: Calibri;
+      }
+  
+      .email {
+        width: 6%;
+        height: auto;
+        padding-left: 2px;
+        margin: 0 14px 0 0;
+        object-fit: contain;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        pointer-events: none;
+        -webkit-user-drag: none;
+        user-drag: none;
+      }
+  
+      .form1 {
+        width: 110%;
+        height: 30px;
+        background-color: #ffffff;
+        border-color: transparent;
+        border-radius: 10px;
+        font-size: 1rem;
+        font-family: Calibri;
+      }
+  
+      .reasonForm {
+        display: flex;
+        margin: 10px 10px;
+      }
+      
+      .reasonTitle {
+        margin: 5px 0 5px 0;
+        padding-left: 45px;
+        font-size: 1.1rem;
+        font-weight: 500;
+        font-family: Calibri;
+      }
+  
+      .gear {
+        width: 8%;
+        height: auto;
+        margin: 0 10px 0 0;
+        object-fit: contain;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        pointer-events: none;
+        -webkit-user-drag: none;
+        user-drag: none;
+      }
+  
+      .form2 {
+        width: 78%;
+        height: 30px;
+        background-color: #ffffff;
+        border-color: transparent;
+        border-radius: 10px;
+        font-size: 1rem;
+        font-family: Calibri;
+      }
+  
+      .describeForm {
+        display: flex;
+        margin: 10px 10px;
+      }
+      
+      .describeTitle {
+        margin: 5px 0 5px 0;
+        padding-left: 45px;
+        font-size: 1.1rem;
+        font-weight: 500;
+        font-family: Calibri;
+      }
+  
+      .describe {
+        width: 8%;
+        height: auto;
+        margin: 0px 10px 100px 0;
+        object-fit: contain;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        pointer-events: none;
+        -webkit-user-drag: none;
+        user-drag: none;
+      }
+  
+      .form3 {
+        width: 130%;
+        height: 100px;
+        background-color: #ffffff;
+        border-color: transparent;
+        border-radius: 10px;
+        font-size: 1rem;
+        font-family: Calibri;
+      }
+  
+      .fileForm {
+        display: flex;
+        margin: 10px 0 -50px 10px;
+      }
+      
+      .fileTitle {
+        margin: 5px 0 5px 0;
+        padding-left: 45px;
+        font-size: 1.1rem;
+        font-weight: 500;
+        font-family: Calibri;
+      }
+  
+      .clip {
+        width: 8%;
+        height: auto;
+        margin: 0px 10px 100px 0;
+        object-fit: contain;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        pointer-events: none;
+        -webkit-user-drag: none;
+        user-drag: none;
+      }
+  
+      #form4 {
+        display: none;
+      }
+  
+      .dropfile {
+        width: 46%;
+        height: 50px;
+        border-color: transparent;
+        background-color: #ffffff;
+        border-radius: 10px;
+      }
+  
+      .dropfileText {
+        margin: 16px 0 0 0;
+        font-size: 1rem;
+        font-family: Calibri;
+        text-align: center;
+      }
+  
+      .coverTitle {
+        width: 100%;
+        height: 5rem;
+        aspect-ratio: 16 / 5;
+        background-color: #ffffff;
+        box-shadow: 2px 1px 1px rgba(0,0,0, 0.1);
+        position: fixed;
+        display: flex;
+        top: 0;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+  
+      #cabinetButton {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        z-index: 1001;
+      }
+  
+      #cabinetButton {
+        left: 20px;
+        color: #404040;
+        font-size: 30px;
+      }
+
+      #cabinet {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 60%;
+        max-width: 300px;
+        height: 100vh;
+        background: none;
+        color: #000000;
+        padding: 20px;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.5);
+        transition: left 0.3s ease;
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        gap: 70px;
+        background-color: #DDDDDD;
+      }
+  
+      #cabinet.open {
+        left: 0;
+      }
+  
+      body.lock-scroll {
+        overflow: hidden;
+      }
+  
+      #cabinet a {
+        display: block;
+        margin: -5px 0 15px 20px;
+        text-decoration: none;
+        color: #000000;
+        font-size: 18px;
+        font-family: Montserrat;
+      }
+
+      #closeCabinet {
+        padding: 2vw -6vw;
+        color: #000000;
+        background-color: #DDDDDD;
+        border: none;
+        cursor: pointer;
+        width: 15%;
+        height: auto;
+        font-size: 50px;
+        margin: 0 0 -100px 0;
+      }
+  
+      #cabinet hr {
+        margin: 5px auto;
+      }
+  
+      .logoBtn {
+        display: flex;
+        align-items: center;
+        vertical-align: center;
+      }
+  
+      .btnImg {
+        width: 10%;
+        height: 10%;
+        margin-right: 5px;
+        object-fit: contain;
+        z-index: 1001;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        pointer-events: none;
+        -webkit-user-drag: none;
+        user-drag: none;
+      }
+  
+      .banner {
+        width: 80%;
+        height: auto;
+        margin: 10px 0 5px 0;
+        position: absolute;
+        top: 50px;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        pointer-events: none;
+        -webkit-user-drag: none;
+        user-drag: none;
+      }
+  
+      .cabOpt {
+        margin-top: 70px;
+      }
+  
+      .cabOpt1 {
+        display: flex;
+        flex-direction: column;
+        top: 425px;
+        left: 0;
+        justify-content: space-evenly;
+        position: absolute;
+      }
+  
+      .im1 {
+        font-size: 0.8rem;
+        font-family: Arial;
+        font-weight: 500;
+        width: auto;
+        height: auto;
+        margin: 5px 5px;
+      }
+  
+      .coverImg {
+        width: 60%;
+        height: auto;
+        margin: 2px auto 0 auto;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        pointer-events: none;
+        -webkit-user-drag: none;
+        user-drag: none;
+      }
+  
+      .border {
+        width: 90%;
+        margin: 10px auto 10px auto;
+      }
+  
+      .cabBor {
+        display: flex;
+        position: absolute;
+        width: 80%;
+        top: 100px;
+      }
+  
+      .cabBor1 {
+        display: flex;
+        position: absolute;
+        width: 80%;
+        top: 400px;
+      }
+  
+      .submitBtn {
+        width: 30%;
+        height: 30px;
+        text-align: center;
+        font-weight: 700;
+        font-size: 1rem;
+        margin: 0 0 20px 50px;
+      }
+  
+      .state {
+        display: inline-block;
+        margin: 0 30px 0 30px;
+        font-size: 0.80rem;
+        font-family: Arial;
+        font-weight: 300;
+        text-align: justify;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        pointer-events: none;
+        -webkit-user-drag: none;
+        user-drag: none;
+      }
+  
+      .outerOpt {
+        display: flex;
+        position: relative;
+        align-items: center;
+        justify-content: space-evenly;
+      }
+  
+      .optionOuter {
+        font-size: 0.65rem;
+        font-weight: 300;
+        color: #A6A6A6;
+        text-decoration: none;
+        font-family: Montserrat;
+        width: auto;
+      }
+  
+      .copyrightsOutro {
+        font-size: 10px;
+        font-weight: 300px;
+        color: #A6A6A6;
+        text-align: center;
+        font-family: Arial;
+      }
+    </style>
+<body>
+ <div class="coverTitle">
+    <img src="fg-banner.png" class="coverImg">
+    <button id="cabinetButton" aria-label="Open menu">☰</button>
+  </div>
+  
+  <div id="cabinet">
+    <button id="closeCabinet">×</button>
+    <img src="fg-banner.png" class="banner">
+    
+    <hr class="cabBor">
+    
+    <div class="cabOpt">
+      <div class="logoBtn">
+        <a href="https://svsfhs.github.io/francentgazette/">
+          <img src="home.png" class="btnImg">HOME
+        </a>
+      </div>
+      
+      <div class="logoBtn">
+        <a href="francent-gazette-news.html">
+          <img src="news.png" class="btnImg">NEWS
+        </a>
+      </div>
+      
+      <div class="logoBtn">
+        <a href="francent-gazette-feature.html">
+          <img src="feature.png" class="btnImg">FEATURE
+        </a>
+      </div>
+      
+      <div class="logoBtn">
+        <a href="francent-gazette-opinion.html">
+          <img src="opinion.png" class="btnImg">OPINION
+        </a>
+      </div>
+      
+      <div class="logoBtn">
+        <a href="francent-gazette-sci-tech.html">
+          <img src="scitech.png" class="btnImg">SCIENCE AND TECHNOLOGY
+        </a>
+      </div>
+      
+      <div class="logoBtn">
+        <a href="francent-gazette-entertainment.html">
+          <img src="literary.png" class="btnImg">LITERARY
+        </a>
+      </div>
+    
+      <div class="logoBtn">
+        <a href="francent-gazette-arts.html">
+          <img src="media-photo.png" class="btnImg">MEDIA PHOTOS
+        </a>
+      </div>
+      
+      <div class="logoBtn">
+        <a href="about-francent-gazette.html">
+          <img src="about.png" class="btnImg">ABOUT US
+        </a>
+      </div>
+    </div>
+    
+    <hr class="cabBor1">
+    
+    <div class="cabOpt1">
+      <a href="feedback.html">
+        <p class="im1">Feedback</p>
+      </a>
+      
+      <a href="help-center.html">
+        <p class="im1">Help Center</p>
+      </a>
+      
+      <a href="privacy-policy.html">
+        <p class="im1">Privacy Policy</p>
+      </a>
+      
+      <a href="copyrights.html">
+        <p class="im1">Copyrights</p>
+      </a>
+    </div>
+  </div>
+  
+ <form action="https://formspree.io/f/mwpqondn" method="POST">
+  <div class="emailBody">
+    
+    <p class="emailTitle">Email</p>
+    <div class="emailForm">
+      <img src="email.png" class="email">
+      <label>
+        <input type="email" name="email" placeholder="e.g., juandelacruz123@gmail.com" class="form1" required>
+      </label>
+    </div>
+    
+  </div>
+   
+  <div class="reasonBody">
+    
+    <p class="reasonTitle">Choose a problem</p>
+    <div class="reasonForm">
+      <img src="gear.png" class="gear">
+      <label>
+        <select class="form2" name="reason" required>
+          <option>None</option>
+          <option>Technical/Functional Issues</option>
+          <option>Webpage No Response/404 Error Message</option>
+          <option>Privacy Concern</option>
+          <option>Legal/Policy Questions</option>
+          <option>User Experience</option>
+          <optional>Property Compliances</optional>
+          <option>Unstable network/Weak connection</option>
+          <option>Others</option>
+        </select>
+      </label>
+    </div>
+    
+  </div>
+   
+  <div class="describeBody">
+    
+    <p class="describeTitle">Other Details</p>
+    <div class="describeForm">
+      <img src="describe.png" class="describe">
+      <label>
+        <textarea name="describe" placeholder="Describe your experience" class="form3" required></textarea>
+      </label>
+    </div>
+    
+  </div>
+   
+  <div class="fileBody">
+    
+    <p class="fileTitle">Drop Files (Optional)</p>
+    <div class="fileForm">
+      <img src="clip.png" class="clip">
+       <input type="file" id="form4">
+       <label for="form4" name="file" class="dropfile">
+         <p class="dropfileText">
+           Upload file(s) here
+         </p>
+       </label>
+    </div>
+    
+  </div>
+ <button type="submit" class="submitBtn">Send</button>
+ </form>
+  
+ <hr class="border">
+
+  <div class="outerOpt">
+   <a href="svsfhs.github.io/francentgazette" class="optionOuter">
+     <p class="Home">Home</p>
+   </a>
+  
+   <a href="svsfhs.github.io/francentgazette/about-us.html" class="optionOuter">
+     <p class="Home">About us</p>
+   </a>
+  
+   <a href="svsfhs.github.io/francentgazette/contact-us.html" class="optionOuter">
+     <p class="Home">Contact us</p>
+   </a>
+  
+   <a href="svsfhs.github.io/francentgazette/privacy-policy.html" class="optionOuter">
+     <p class="Home">Privacy Policy</p>
+   </a>
+   
+   <a href="svsfhs.github.io/francentgazette/copyrights-policy.html" class="optionOuter">
+     <p class="Home">Copyrights</p>
+   </a>
+  </div>
+  
+  <p class="copyrightsOutro">Copyrights © 2025 Francent Gazette of SVSF HS. All rights reserved.</p>
+</body>
+<script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const cabinetButton = document.getElementById("cabinetButton");
+      const cabinet = document.getElementById("cabinet");
+      const closeCabinet = document.getElementById("closeCabinet");
+
+      cabinetButton && cabinetButton.addEventListener("click", () => {
+        cabinet.classList.add("open");
+        document.body.classList.add("lock-scroll");
+        cabinetButton.style.display = "none";
+      });
+      closeCabinet && closeCabinet.addEventListener("click", () => {
+        cabinet.classList.remove("open");
+        document.body.classList.remove("lock-scroll");
+        cabinetButton.style.display = "block";
+      });
+   });
+
+</script>
