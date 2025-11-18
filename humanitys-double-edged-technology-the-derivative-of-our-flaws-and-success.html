@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body {
+        margin: 0;
+      }
+  
+      .photoArt {
+        position: relative;
+        width: 85%;
+        height: 205px;
+        margin: 10px auto 0 auto;
+        aspecy-ratio: 16/9;
+        object-fit: cover;
+        background-color: #0077ff;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background-position: center;
+        background-size: cover;
+        background-image: url("ai1.png");
+      }
+  
+      .fadein {
+        width: 100%;
+        height: auto;
+        position: absolute;
+        top: 50px;
+      }
+  
+      .headline {
+        color: #000000;
+        font-weight: 700;
+        font-size: 1.4rem;
+        font-family: Montserrat;
+        margin: 10px 0 0 25px;
+      }
+  
+      .category {
+        color: #000000;
+        font-weight: 700;
+        font-size: 1.2rem;
+        font-family: Montserrat;
+        margin: 95px 0 0 25px;
+      }
+  
+      .attribute {
+        display: flex;
+      }
+  
+      .authorPic {
+        position: absolute;
+        width: 2.12rem;
+        left: 20px;
+        top: 240px;
+        height: auto;
+        border-radius: 100%;
+      }
+      
+      .author {
+        display: flex;
+        flex-direction: column;
+      }
+  
+      .authorName {
+        color: #ffffff;
+        font-weight: 600;
+        font-family: Montserrat;
+        font-size: 0.8rem;
+        position: absolute;
+        top: 230px;
+        left: 64px;
+      }
+  
+      .authorStatus {
+        color: #ffffff;
+        font-weight: 400;
+        font-family: Calibri;
+        font-size: 0.8rem;
+        position: absolute;
+        top: 247px;
+        left: 64px;
+      }
+  
+      .border {
+        width: 90%;
+        margin: 10px auto 10px auto;
+      }
+  
+      .cabBor {
+        display: flex;
+        position: absolute;
+        width: 80%;
+        top: 100px;
+      }
+  
+      .cabBor1 {
+        display: flex;
+        position: absolute;
+        width: 80%;
+        top: 400px;
+      }
+  
+      .outerOpt {
+        display: flex;
+        position: relative;
+        align-items: center;
+        justify-content: space-evenly;
+      }
+  
+      .optionOuter {
+        font-size: 0.65rem;
+        font-weight: 300;
+        color: #A6A6A6;
+        text-decoration: none;
+        font-family: Montserrat;
+        width: auto;
+      }
+  
+      .copyrightsOutro {
+        font-size: 10px;
+        font-weight: 300px;
+        color: #A6A6A6;
+        text-align: center;
+        font-family: Arial;
+      }
+  
+      .coverTitle {
+        width: 100%;
+        height: 5rem;
+        top: 0;
+        aspect-ratio: 16 / 5;
+        background-color: #ffffff;
+        box-shadow: 2px 1px 1px rgba(0,0,0, 0.1);
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+  
+      #cabinetButton {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        z-index: 1001;
+      }
+  
+      #cabinetButton {
+        left: 20px;
+        color: #404040;
+        font-size: 30px;
+      }
+
+      #cabinet {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 60%;
+        max-width: 300px;
+        height: 100vh;
+        background: none;
+        color: #000000;
+        padding: 20px;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.5);
+        transition: left 0.3s ease;
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        gap: 70px;
+        background-color: #DDDDDD;
+      }
+  
+      #cabinet.open {
+        left: 0;
+      }
+  
+      body.lock-scroll {
+        overflow: hidden;
+      }
+  
+      #cabinet a {
+        display: block;
+        margin: -5px 0 15px 20px;
+        text-decoration: none;
+        color: #000000;
+        font-size: 18px;
+        font-family: Montserrat;
+      }
+
+      #closeCabinet {
+        padding: 2vw -6vw;
+        color: #000000;
+        background-color: #DDDDDD;
+        border: none;
+        cursor: pointer;
+        width: 15%;
+        height: auto;
+        font-size: 50px;
+        margin: 0 0 -100px 0;
+      }
+  
+      #cabinet hr {
+        margin: 5px auto;
+      }
+  
+      .logoBtn {
+        display: flex;
+        align-items: center;
+        vertical-align: center;
+      }
+  
+      .btnImg {
+        width: 10%;
+        height: 10%;
+        margin-right: 5px;
+        object-fit: contain;
+        z-index: 1001;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        pointer-events: none;
+        -webkit-user-drag: none;
+        user-drag: none;
+      }
+  
+      .banner {
+        width: 80%;
+        height: auto;
+        margin: 10px 0 5px 0;
+        position: absolute;
+        top: 50px;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        pointer-events: none;
+        -webkit-user-drag: none;
+        user-drag: none;
+      }
+  
+      .cabOpt {
+        margin-top: 70px;
+      }
+  
+      .cabOpt1 {
+        display: flex;
+        flex-direction: column;
+        top: 425px;
+        left: 0;
+        justify-content: space-evenly;
+        position: absolute;
+      }
+  
+      .im1 {
+        font-size: 0.8rem;
+        font-family: Arial;
+        font-weight: 500;
+        width: auto;
+        height: auto;
+        margin: 5px 5px;
+      }
+  
+      .coverImg {
+        width: 60%;
+        height: auto;
+        margin: 2px auto 0 auto;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        pointer-events: none;
+        -webkit-user-drag: none;
+        user-drag: none;
+      }
+  
+      .byline {
+        margin: 0 0 0 25px;
+      }
+  
+      .date {
+        font-family: Arial;
+        font-weight: 600;
+        font-size: 0.6rem;
+      }
+  
+      .calendar {
+        width: 3%;
+        margin-right: 3px;
+      }
+     
+      .paragraph {
+        font-size: 0.85rem;
+        text-align: justify;
+        margin: 15px 25px 0 25px;
+        line-height: 25px;
+      }
+  
+      a {
+        text-decoration: none;
+      }
+  
+      .topstories {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+  
+      .article1 {
+        width: 80%;
+        height: 180px;
+        background-color: #EAEAEA;
+        background-image: url("hi.png");
+        aspect-ratio: 16/9;
+        object-fit: cover;
+        background-position: center;
+        background-size: cover;
+        border-radius: 10px;
+      }
+  
+      .category1 {
+        position: absolute;
+        width: 20%;
+        height: 20px;
+        line-height: 22px;
+        background-color: #0077ff;
+        text-align: center;
+        position: center;
+        font-size: 0.8rem;
+        font-family: Arial;
+        font-weight: 500;
+        color: #ffffff;
+        border-radius: 10px;
+        left: 50px;
+      }
+  
+      .headline1 {
+        position: absolute;
+        font-size: 1rem;
+        font-family: Montserrat;
+        font-weight: 700;
+        color: #ffffff;
+        left: 50px;
+        top: 1500px;
+        margin: 0 70px 0 0;
+      }
+  
+      .author1 {
+        margin-left: 15px;
+        margin-top: 155px;
+      }
+  
+      .byline1 {
+        font-size: 0.4rem;
+        color: #ffffff;
+        font-family: Montserrat;
+        font-weight: 300;
+        left: 50px;
+        top: 1530px;
+        position: absolute;
+      }
+  
+      .date1 {
+        position: absolute;
+        width: 3.5%;
+        left: 50px;
+        top: 1530px;
+        filter: invert(100%);
+      }
+  
+      @font-face {
+        font-family: "Montserrat";
+        src: url("Montserrat.ttf");
+        format: ("truetype");
+      }
+  
+      @font-face {
+        font-family: "Calibri";
+        src: url("calibri.ttf");
+        format: ("truetype");
+      }
+  
+    </style>
+</head>
+<body>
+  
+  <div class="coverTitle">
+    <img src="fg-banner.png" class="coverImg">
+    <button id="cabinetButton" aria-label="Open menu">☰</button>
+  </div>
+  
+  <div id="cabinet">
+    <button id="closeCabinet">×</button>
+    <img src="fg-banner.png" class="banner">
+    
+    <hr class="cabBor">
+    
+    <div class="cabOpt">
+      <div class="logoBtn">
+        <a href="https://svsfhs.github.io/francentgazette/">
+          <img src="home.png" class="btnImg">HOME
+        </a>
+      </div>
+      
+      <div class="logoBtn">
+        <a href="francent-gazette-news.html">
+          <img src="news.png" class="btnImg">NEWS
+        </a>
+      </div>
+      
+      <div class="logoBtn">
+        <a href="francent-gazette-feature.html">
+          <img src="feature.png" class="btnImg">FEATURE
+        </a>
+      </div>
+      
+      <div class="logoBtn">
+        <a href="francent-gazette-opinion.html">
+          <img src="opinion.png" class="btnImg">OPINION
+        </a>
+      </div>
+      
+      <div class="logoBtn">
+        <a href="francent-gazette-sci-tech.html">
+          <img src="scitech.png" class="btnImg">SCIENCE AND TECHNOLOGY
+        </a>
+      </div>
+      
+      <div class="logoBtn">
+        <a href="francent-gazette-entertainment.html">
+          <img src="literary.png" class="btnImg">LITERARY
+        </a>
+      </div>
+    
+      <div class="logoBtn">
+        <a href="francent-gazette-arts.html">
+          <img src="media-photo.png" class="btnImg">MEDIA PHOTOS
+        </a>
+      </div>
+      
+      <div class="logoBtn">
+        <a href="about-francent-gazette.html">
+          <img src="about.png" class="btnImg">ABOUT US
+        </a>
+      </div>
+    </div>
+    
+    <hr class="cabBor1">
+    
+    <div class="cabOpt1">
+      <a href="feedback.html">
+        <p class="im1">Feedback</p>
+      </a>
+      
+      <a href="help-center.html">
+        <p class="im1">Help Center</p>
+      </a>
+      
+      <a href="privacy-policy.html">
+        <p class="im1">Privacy Policy</p>
+      </a>
+      
+      <a href="copyrights.html">
+        <p class="im1">Copyrights</p>
+      </a>
+    </div>
+  </div>
+  
+  <p class="category">SCI-TECH</p>
+  
+  <p class="headline">Humanity's Double-Edged Technology: the Derivative of Our Flaws and Successes</p>
+  
+  <div class="photoArt">
+    <img src="fadein.png" class="fadein">
+  </div>
+  
+  <div class="byline">
+    <p class="date">
+      <img src="date.png" class="calendar">Published on November 13, 2025, 12:06 AM | By Lance Journey Masangcay
+    </p>
+  </div>
+  
+<p class="paragraph">  You wake up deep in the 3rd millennium; an unrecognizable world is seen. Mountains of trash piling up, energy drinks that basically replaced every use for water, buildings that look comparable to a toddler's creation, and systems built upon sheer laziness and convenience for those still surviving on the harsh drylands. You stumble upon people with the comprehension of a koala and the survival instinct of a dodo. Somehow, a political system still exists, but something is wrong. The president and officials are chosen through boxing competitions and championships. You may recognize everything that has occurred thus far as similar to the plot of a famous, old-fashioned movie, 'Idiocracy,' a movie revolving around the doomed future of humans as people evolved to have lower and lower IQs. Will this really happen to us?</p>
+  
+<p class="paragraph">  It seems like we're already experiencing the plot of the movie right now. Mountains of trash, growing wastelands, and it seems like with every generation, laziness pierces through more and more. Convenience becomes their ultimate companion, especially with the ever-growing ChatGPT, a chatbot leading the Artificial Intelligence (AI) industry, a tool not only used for technology but also in communication, convenience, and most popularly, in schools and academic work. But how does this AI chatbot possibly affect millions, if not billions of students and professionals?</p>
+  
+<p class="paragraph">  As a student or even a part of the professional field, ChatGPT has been pretty well known by now. It's used in a myriad of ways, such as aiding in the construction of essays and paragraphs, providing suggestions and ideas to the user, and even going as far as creating PDFs and images of the user's demand, all for the sake of convenience and innovativity. AI is the industrial revolution of the 21st century, expanding humanity's capabilities exponentially. We may have gained all these innovations and advancements, but at what cost? Just like every other thing, there is also a dark side to this technology. ChatGPT's looming effect is truly noticeable, especially to students. Tons and tons use AI to not just help in their homework and schoolwork but to skip the whole process altogether and rely on the chatbot's ability to let it do all the work for them. This eventually leads to students barely learning anything whilst being promoted into a higher level.</p>
+  
+<p class="paragraph">  As alarming as it sounds, the overreliance on ChatGPT is already showing its devastating effects when looking at the statistics themselves. Studies from grades show that most students nowadays are excellent at take-home academic writing, homeworks, and projects done at home. On the other hand, it also shows the undeniable gap and decline in the test and exam results that are taken in real life, where cheating is almost impossible. This is catastrophic for humanity. Imagine you're in a life-threatening situation and your doctor graduated only relying on AI technology to get through college. Would you trust them with your life, especially after knowing they didn't learn more than half the things they were taught?</p>
+  
+<p class="paragraph">  With the threat of AI slowly closing in, it's hard to imagine how we can possibly prevent the impending doom of overreliance that's already taking effect. Though we can't do much, we can still spread awareness through posters, social media posts, and even our day-to-day conversations with our peers. It's not all about academic integrity anymore, it's now about the future of our soon-to-be stakeholders that will run the world in the near future. Without the dedication to learn, grow, and strive on our own feet, the world will not progress and thrive the way we dreamed it to be.</p>
+  
+<hr class="border">
+  
+  <div class="outerOpt">
+   <a href="svsfhs.github.io/francentgazette" class="optionOuter">
+     <p class="Home">Home</p>
+   </a>
+  
+   <a href="svsfhs.github.io/francentgazette/about-us.html" class="optionOuter">
+     <p class="Home">About us</p>
+   </a>
+  
+   <a href="svsfhs.github.io/francentgazette/contact-us.html" class="optionOuter">
+     <p class="Home">Contact us</p>
+   </a>
+  
+   <a href="svsfhs.github.io/francentgazette/privacy-policy.html" class="optionOuter">
+     <p class="Home">Privacy Policy</p>
+   </a>
+   
+   <a href="svsfhs.github.io/francentgazette/copyrights-policy.html" class="optionOuter">
+     <p class="Home">Copyrights</p>
+   </a>
+  </div>
+  
+  <p class="copyrightsOutro">Copyrights © 2025 Francent Gazette of SVSF HS. All rights reserved.</p>
+  
+</body>
+<script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const cabinetButton = document.getElementById("cabinetButton");
+      const cabinet = document.getElementById("cabinet");
+      const closeCabinet = document.getElementById("closeCabinet");
+
+      cabinetButton && cabinetButton.addEventListener("click", () => {
+        cabinet.classList.add("open");
+        document.body.classList.add("lock-scroll");
+        cabinetButton.style.display = "none";
+      });
+      closeCabinet && closeCabinet.addEventListener("click", () => {
+        cabinet.classList.remove("open");
+        document.body.classList.remove("lock-scroll");
+        cabinetButton.style.display = "block";
+      });
+   });
+
+</script>
+</html>
